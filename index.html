@@ -46,13 +46,30 @@
         .contact a:hover {
             text-decoration: underline;
         }
-        .tech-stack ul, .skills ul {
+        .list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .list ul li {
+            margin-bottom: 6px;
+        }
+        .project, .experience, .edu {
+            margin-bottom: 20px;
+        }
+        .project h3, .experience h3, .edu h3 {
+            margin-bottom: 5px;
+            color: #0056b3;
+        }
+        .project ul, .experience ul {
+            margin-left: 20px;
+        }
+        .skills ul {
             list-style-type: none;
             padding: 0;
             display: flex;
             flex-wrap: wrap;
         }
-        .tech-stack li, .skills li {
+        .skills li {
             background-color: #e9ecef;
             color: #495057;
             padding: 8px 15px;
@@ -60,38 +77,12 @@
             border-radius: 20px;
             font-size: 0.95em;
         }
-        .project {
-            margin-bottom: 25px;
-            padding-left: 15px;
-            border-left: 3px solid #007bff;
-        }
-        .project h3 {
-            border-bottom: none;
-            margin-top: 0;
-            color: #0056b3;
-        }
-        .project-links a {
-            margin-right: 15px;
-            font-weight: bold;
-        }
-        .edu, .experience {
-            margin-bottom: 20px;
-        }
-        .edu h3, .experience h3 {
-            margin-bottom: 5px;
-            color: #0056b3;
-        }
-        .edu p, .experience p, .experience ul {
-            margin: 2px 0 8px 0;
-        }
-        ul {
-            padding-left: 20px;
-        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Header -->
     <div style="text-align: center; margin-bottom: 30px;">
         <h1>👋 Hi, I’m Clay Liang</h1>
         <h3>🚀 AI & Data Science | Machine Learning & Cloud Enthusiast</h3>
@@ -102,7 +93,7 @@
         </p>
     </div>
 
-    <!-- Education Section -->
+    <!-- Education -->
     <div class="section">
         <h2><i class="fas fa-graduation-cap"></i> Education</h2>
         <div class="edu">
@@ -112,22 +103,22 @@
         </div>
         <div class="edu">
             <h3>Tianjin Normal University — Tianjin, China</h3>
-            <p>BSc in Artificial Intelligence | 2023.9.1 – 2025.6.10</p>
+            <p>BSc in Artificial Intelligence and Data Science | 2023.9.1 – 2025.6.10</p>
             <p>GPA: 3.3 / 4.0</p>
         </div>
     </div>
 
-    <!-- Experience Section -->
+    <!-- Experience -->
     <div class="section">
         <h2><i class="fas fa-briefcase"></i> Experience</h2>
-        
+
         <div class="experience">
             <h3>Research Assistant — Tsinghua University (Remote) | 2024.6.10 – Present</h3>
             <ul>
-                <li>Create and distribute education materials about exercise and wellness; plan wellness events.</li>
-                <li>Co-developed DL models for audio processing; improved speech recognition accuracy using data augmentation & loss tuning.</li>
+                <li>Create and distribute educational materials about exercise and wellness; plan wellness events for students, faculty, and staff.</li>
+                <li>Co-developed deep learning models for audio processing; improved speech recognition accuracy using data augmentation and loss tuning.</li>
                 <li>Managed and structured datasets; created Excel-based visual analytics for stakeholders.</li>
-                <li>Debugged and optimized backend code to enhance runtime efficiency.</li>
+                <li>Debugged and optimized backend code to enhance runtime efficiency and reduce latency.</li>
             </ul>
         </div>
 
@@ -135,9 +126,9 @@
             <h3>Data Science Intern — Lenovo, Tianjin, China | 2025.2.13 – 2025.6.13</h3>
             <ul>
                 <li>Designed interactive dashboards in Tableau/Power BI for digital transformation strategy visualization.</li>
-                <li>Developed and implemented training data optimization strategies for model performance.</li>
+                <li>Developed and implemented training data optimization strategies to improve model performance.</li>
                 <li>Built Excel/PowerPoint templates for scientific and technical presentations.</li>
-                <li>Delegated project duties to other interns as the project lead.</li>
+                <li>Delegated project duties to other interns as project lead.</li>
             </ul>
         </div>
 
@@ -145,13 +136,13 @@
             <h3>Data Analyst Intern — Airbus (Tianjin) Final Assembly Co. Ltd., Tianjin, China | 2025.6.14 – Present</h3>
             <ul>
                 <li>Collaborate with cross-functional teams to deliver tailored visual outputs (charts, infographics, slide decks).</li>
-                <li>Analyze ops data via SQL & Apps Script to identify decarbonization metrics & process bottlenecks.</li>
-                <li>Leverage Databricks/Python for large-scale data preprocessing & collaborative model development.</li>
+                <li>Analyze operational data via SQL & Apps Script to identify decarbonization metrics and process bottlenecks.</li>
+                <li>Leverage Databricks/Python for large-scale data preprocessing and collaborative model development.</li>
             </ul>
         </div>
     </div>
 
-    <!-- Projects Section -->
+    <!-- Projects -->
     <div class="section">
         <h2><i class="fas fa-tasks"></i> Projects</h2>
 
@@ -166,11 +157,9 @@
                 <a href="https://github.com/Clayins131" target="_blank">GitHub Repo</a>
             </div>
         </div>
-
-        <!-- You can add more projects here similarly -->
     </div>
 
-    <!-- Skills Section -->
+    <!-- Skills -->
     <div class="section skills">
         <h2><i class="fas fa-cogs"></i> Skills</h2>
         <ul>
@@ -185,7 +174,18 @@
         </ul>
     </div>
 
-    <!-- Contact Section -->
+    <!-- Current Focus / Research Interests -->
+    <div class="section">
+        <h2><i class="fas fa-brain"></i> Current Focus</h2>
+        <ul>
+            <li>Large Language Models (LLMs) & prompt engineering</li>
+            <li>MLOps & robust pipeline development</li>
+            <li>Advanced audio processing & speech recognition</li>
+            <li>Cloud computing optimization for AI applications</li>
+        </ul>
+    </div>
+
+    <!-- Contact -->
     <div class="section contact">
         <h2><i class="fas fa-paper-plane"></i> Contact</h2>
         <p>
