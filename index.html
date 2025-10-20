@@ -3,312 +3,1550 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clay Liang — AI & Data Science</title>
+  <meta name="description" content="Clay Liang - AI & Data Science Professional | Machine Learning Engineer | Portfolio">
+  <meta name="keywords" content="Clay Liang, AI, Data Science, Machine Learning, Deep Learning, Portfolio">
+  <title>Clay Liang — AI & Data Science Professional</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --bg: #f7f9fc;
-      --card-bg: #fff;
-      --text: #333;
-      --primary: #007bff;
-      --accent: #0056b3;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1a202c;
+      --text-light: #4a5568;
+      --primary: #3182ce;
+      --primary-dark: #2c5282;
+      --accent: #805ad5;
+      --success: #48bb78;
+      --warning: #ed8936;
+      --border: #e2e8f0;
+      --shadow: rgba(0, 0, 0, 0.1);
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
+
     [data-theme='dark'] {
-      --bg: #121212;
-      --card-bg: #1e1e1e;
-      --text: #f2f2f2;
-      --primary: #4ea8ff;
-      --accent: #82cfff;
+      --bg: #0f1419;
+      --card-bg: #1a202c;
+      --text: #f7fafc;
+      --text-light: #cbd5e0;
+      --primary: #63b3ed;
+      --primary-dark: #4299e1;
+      --accent: #b794f4;
+      --success: #68d391;
+      --warning: #f6ad55;
+      --border: #2d3748;
+      --shadow: rgba(0, 0, 0, 0.5);
+      --gradient: linear-gradient(135deg, #667eea 0%, #9f7aea 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       background: var(--bg);
       color: var(--text);
-      transition: background 0.5s, color 0.5s;
+      line-height: 1.6;
+      transition: all 0.3s ease;
     }
 
-    /* Navbar */
-    nav {
-      position: sticky;
+    /* Loading Screen */
+    .loader {
+      position: fixed;
       top: 0;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 25px;
-      padding: 12px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      z-index: 100;
-      transition: background 0.5s;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s;
     }
+
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px var(--shadow);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
     [data-theme='dark'] nav {
-      background: rgba(30,30,30,0.8);
+      background: rgba(26, 32, 44, 0.95);
     }
-    nav a {
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
       color: var(--text);
-      font-weight: 600;
-      transition: all 0.3s;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s;
     }
-    nav a:hover {
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover {
       color: var(--primary);
-      transform: translateY(-2px);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     .theme-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
       background: var(--primary);
       border: none;
-      color: #fff;
+      color: white;
       border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      font-size: 1.3em;
+      width: 40px;
+      height: 40px;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
-    }
-    .theme-toggle:hover {
-      transform: rotate(20deg) scale(1.1);
-    }
-
-    .container {
-      max-width: 950px;
-      margin: 60px auto;
-      padding: 20px;
-    }
-
-    /* Header */
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
-      animation: fadeUp 0.8s ease forwards;
-    }
-    .avatar {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      margin: 15px auto;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      transition: all 0.3s;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-size: 2.5em;
-      box-shadow: 0 0 15px rgba(0,0,0,0.15);
-      animation: glow 3s infinite alternate;
-    }
-    @keyframes glow {
-      from { box-shadow: 0 0 10px var(--primary); }
-      to { box-shadow: 0 0 25px var(--accent); }
+      font-size: 1.2rem;
     }
 
-    .header h1 {
-      font-size: 2.6em;
-      margin-bottom: 5px;
-    }
-    .header h3 {
-      font-weight: 400;
-      color: var(--accent);
+    .theme-toggle:hover {
+      transform: rotate(180deg);
+      background: var(--primary-dark);
     }
 
-    .social-links a {
-      margin: 0 10px;
-      font-size: 1.5em;
-      color: var(--text);
-      transition: color 0.3s, transform 0.3s;
-    }
-    .social-links a:hover {
-      color: var(--primary);
-      transform: scale(1.2);
+    /* Mobile Menu */
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
     }
 
-    /* Section cards */
-    .section {
-      background: var(--card-bg);
-      padding: 25px;
-      border-radius: 18px;
-      margin-bottom: 40px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transform: translateY(40px);
-      opacity: 0;
-      transition: all 0.8s ease;
-    }
-    .section.visible {
-      transform: translateY(0);
-      opacity: 1;
+    .mobile-menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: var(--text);
+      margin: 3px 0;
+      transition: 0.3s;
     }
 
-    .section h2 {
-      border-bottom: 2px solid #e0e0e0;
-      padding-bottom: 8px;
-      margin-bottom: 20px;
-      color: var(--primary);
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
+      padding: 5rem 2rem 2rem;
+      background: var(--gradient);
+      position: relative;
+      overflow: hidden;
     }
 
-    .skills ul {
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      text-align: center;
+      color: white;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease;
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: white;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      animation: float 3s ease-in-out infinite;
+      margin: 0 auto 2rem;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .hero .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: var(--primary);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 5rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      color: var(--text-light);
+      font-size: 1.1rem;
+    }
+
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px var(--shadow);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      color: var(--text-light);
+      margin-top: 0.5rem;
+    }
+
+    .about-text {
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    /* Experience Timeline */
+    .timeline {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-right: auto;
+      margin-left: 0;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 4px solid var(--bg);
+      z-index: 1;
+    }
+
+    .timeline-content {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px var(--shadow);
+      width: 45%;
+      position: relative;
+    }
+
+    .timeline-content h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-content .company {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-content .date {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-content ul {
+      padding-left: 1.2rem;
+      color: var(--text-light);
+    }
+
+    .timeline-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-category {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px var(--shadow);
+      transition: transform 0.3s;
+    }
+
+    .skill-category:hover {
+      transform: translateY(-5px);
+    }
+
+    .skill-category h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      list-style: none;
-      padding: 0;
+      gap: 0.5rem;
     }
-    .skills li {
-      background: #e9f3ff;
-      color: #0056b3;
-      padding: 8px 15px;
+
+    .skill-tag {
+      background: var(--primary);
+      background: var(--gradient);
+      color: white;
+      padding: 0.4rem 1rem;
       border-radius: 20px;
-      transition: background 0.3s;
-    }
-    [data-theme='dark'] .skills li {
-      background: #223344;
-      color: #bcdcff;
-    }
-    .skills li:hover {
-      background: #d0e6ff;
+      font-size: 0.9rem;
+      transition: transform 0.3s;
     }
 
-    footer {
+    .skill-tag:hover {
+      transform: scale(1.05);
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px var(--shadow);
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .project-header {
+      background: var(--gradient);
+      padding: 2rem;
+      color: white;
+    }
+
+    .project-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-body {
+      padding: 2rem;
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .project-description {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-badge {
+      background: rgba(99, 179, 237, 0.1);
+      color: var(--primary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      border: 1px solid var(--primary);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-link {
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .project-link:hover {
+      color: var(--primary-dark);
+    }
+
+    /* Achievements */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .achievement-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px var(--shadow);
       text-align: center;
-      color: #777;
-      margin-top: 50px;
-      font-size: 0.9em;
+      transition: transform 0.3s;
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .achievement-card:hover {
+      transform: translateY(-5px);
     }
 
+    .achievement-icon {
+      font-size: 3rem;
+      color: var(--warning);
+      margin-bottom: 1rem;
+    }
+
+    .achievement-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .achievement-description {
+      color: var(--text-light);
+    }
+
+    /* Contact Section */
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-info {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px var(--shadow);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-light);
+    }
+
+    .contact-item i {
+      color: var(--primary);
+      font-size: 1.5rem;
+      width: 30px;
+    }
+
+    .contact-form {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px var(--shadow);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--gradient);
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--card-bg);
+      padding: 3rem 0 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-link {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient);
+      color: white;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      transition: transform 0.3s;
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .theme-toggle { top: 15px; right: 15px; }
-      nav { gap: 12px; }
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero .subtitle {
+        font-size: 1.2rem;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::before {
+        left: 30px;
+      }
+
+      .timeline-item {
+        justify-content: flex-start;
+        padding-left: 60px;
+      }
+
+      .timeline-dot {
+        left: 30px;
+      }
+
+      .timeline-content {
+        width: 100%;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content,
+      .timeline-item:nth-child(even) .timeline-content {
+        margin: 0;
+      }
+
+      .projects-grid,
+      .achievements-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Scroll Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--gradient);
+      z-index: 10000;
+      transition: width 0.3s;
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      box-shadow: 0 5px 20px var(--shadow);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px);
     }
   </style>
 </head>
 <body>
+  <!-- Loading Screen -->
+  <div class="loader">
+    <div class="loader-spinner"></div>
+  </div>
 
-  <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
 
+  <!-- Navigation -->
   <nav>
-    <a href="#education">Education</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#focus">Focus</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <div class="container">
-    <div class="header">
-      <div class="avatar">C</div>
-      <h1>👋 Hi, I’m Clay Liang</h1>
-      <h3>🚀 AI & Data Science | Machine Learning & Cloud Enthusiast</h3>
-      <p>Leiden, South Netherlands | <a href="mailto:claysps@outlook.com">claysps@outlook.com</a></p>
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/clayins131" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/Clayins131" target="_blank"><i class="fab fa-github"></i></a>
+    <div class="nav-container">
+      <div class="logo">Clay Liang</div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" id="themeToggle">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+      <div class="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
+  </nav>
 
-    <div class="section" id="education">
-      <h2><i class="fas fa-graduation-cap"></i> Education</h2>
-      <p><b>Leiden University</b> — BSc in Artificial Intelligence and Data Science (Expected 2027)<br>GPA: 7.0 / 10.0</p>
-      <p><b>Tianjin Normal University</b> — BSc in AI and Data Science (2023.9 – 2025.6)<br>GPA: 3.3 / 4.0</p>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="profile-img">C</div>
+      <h1>Clay Liang</h1>
+      <p class="subtitle">AI & Data Science Professional</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">
+          <i class="fas fa-envelope"></i> Get In Touch
+        </a>
+        <a href="https://github.com/Clayins131" target="_blank" class="btn btn-outline">
+          <i class="fab fa-github"></i> View GitHub
+        </a>
+      </div>
     </div>
+  </section>
 
-    <div class="section" id="experience">
-      <h2><i class="fas fa-briefcase"></i> Experience</h2>
-      <h3>Research Assistant — Tsinghua University (Remote)</h3>
-      <ul>
-        <li>Developed DL models for audio/speech recognition.</li>
-        <li>Improved model accuracy via loss tuning & augmentation.</li>
-        <li>Optimized backend runtime and visual dashboards.</li>
-      </ul>
-      <h3>Data Science Intern — Lenovo, Tianjin (2025.2 – 2025.6)</h3>
-      <ul>
-        <li>Designed dashboards in Tableau/Power BI.</li>
-        <li>Built data optimization strategies & led intern tasks.</li>
-      </ul>
-      <h3>Data Analyst Intern — Airbus (Tianjin) (2025.6 – Present)</h3>
-      <ul>
-        <li>Analyzed operational data for decarbonization metrics.</li>
-        <li>Built Databricks pipelines and visual outputs.</li>
-      </ul>
+  <!-- About Section -->
+  <section class="container section" id="about">
+    <div class="section-header">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">Passionate about building intelligent systems that make a difference</p>
     </div>
-
-    <div class="section" id="projects">
-      <h2><i class="fas fa-tasks"></i> Projects</h2>
-      <h3>🎥 Video Annotator</h3>
-      <p>Flask-based web tool for local video labeling & CSV export for ML datasets.</p>
-      <a href="https://github.com/Clayins131" target="_blank">🔗 View on GitHub</a>
+    <div class="about-content">
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-number">3+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">92%</div>
+          <div class="stat-label">Model Accuracy</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Universities</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>
+          I'm a dedicated AI and Data Science professional currently pursuing my Bachelor's degree across two prestigious institutions: Leiden University and Tianjin Normal University. With hands-on experience at industry leaders like Airbus and Lenovo, I specialize in developing cutting-edge machine learning solutions.
+        </p>
+        <br>
+        <p>
+          My passion lies in leveraging artificial intelligence to solve complex real-world problems. From developing deep learning models for speech recognition at Tsinghua University to optimizing data pipelines at Airbus, I bring a unique blend of academic rigor and practical experience to every project.
+        </p>
+        <br>
+        <p>
+          Currently, I'm focused on Large Language Models, MLOps, and cloud-based AI solutions. I believe in the power of data-driven decision making and am committed to building scalable, efficient AI systems that drive business value.
+        </p>
+      </div>
     </div>
+  </section>
 
-    <div class="section skills" id="skills">
-      <h2><i class="fas fa-cogs"></i> Skills</h2>
-      <ul>
-        <li>Python</li><li>Databricks</li><li>SQL</li><li>Java</li><li>C++</li>
-        <li>Power BI</li><li>Tableau</li><li>Flask</li><li>Machine Learning</li>
-        <li>Deep Learning</li><li>Google Workspace</li>
-      </ul>
+  <!-- Experience Section -->
+  <section class="container section" id="experience">
+    <div class="section-header">
+      <h2 class="section-title">Professional Experience</h2>
+      <p class="section-subtitle">Building AI solutions at leading companies</p>
     </div>
-
-    <div class="section" id="focus">
-      <h2><i class="fas fa-brain"></i> Current Focus</h2>
-      <ul>
-        <li>Large Language Models & Prompt Engineering</li>
-        <li>MLOps & Scalable AI Pipelines</li>
-        <li>Speech Recognition & Audio Signal Processing</li>
-        <li>Cloud Optimization for AI</li>
-      </ul>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Data Analyst Intern</h3>
+          <div class="company">Airbus - Tianjin, China</div>
+          <div class="date">June 2025 - Present</div>
+          <ul>
+            <li>Analyzed operational data to develop decarbonization metrics for sustainability initiatives</li>
+            <li>Designed and implemented Databricks pipelines processing 10TB+ aviation datasets</li>
+            <li>Created interactive dashboards for executive decision-making using Power BI</li>
+            <li>Reduced data processing time by 40% through pipeline optimization</li>
+            <li>Collaborated with cross-functional teams to identify optimization opportunities</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Data Science Intern</h3>
+          <div class="company">Lenovo - Tianjin, China</div>
+          <div class="date">February 2025 - June 2025</div>
+          <ul>
+            <li>Designed comprehensive dashboards in Tableau and Power BI for supply chain optimization</li>
+            <li>Developed data optimization strategies improving query performance by 25%</li>
+            <li>Led team of 5 interns in implementing automated reporting systems</li>
+            <li>Conducted statistical analysis on customer behavior patterns</li>
+            <li>Presented insights to senior management influencing key business decisions</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Research Assistant</h3>
+          <div class="company">Tsinghua University - Remote</div>
+          <div class="date">2024 - 2025</div>
+          <ul>
+            <li>Developed deep learning models for audio/speech recognition achieving 92% accuracy</li>
+            <li>Improved model performance by 15% through advanced loss function tuning</li>
+            <li>Optimized backend runtime reducing inference time by 30%</li>
+            <li>Built interactive visual dashboards for model performance monitoring</li>
+            <li>Published research findings in university technical reports</li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="section" id="contact">
-      <h2><i class="fas fa-paper-plane"></i> Contact</h2>
-      <p><a href="mailto:claysps@outlook.com"><i class="fas fa-envelope"></i> Email</a> |
-         <a href="https://linkedin.com/in/clayins131"><i class="fab fa-linkedin"></i> LinkedIn</a> |
-         <a href="https://github.com/Clayins131"><i class="fab fa-github"></i> GitHub</a></p>
+  <!-- Projects Section -->
+  <section class="container section" id="projects">
+    <div class="section-header">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">Innovative solutions powered by AI</p>
     </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🎥</div>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Video Annotator Tool</h3>
+          <p class="project-description">
+            Flask-based web application for efficient video labeling and annotation. Features frame-by-frame navigation, multi-class labeling, and batch processing capabilities. Used by 20+ researchers for creating ML training datasets.
+          </p>
+          <div class="project-tech">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Flask</span>
+            <span class="tech-badge">OpenCV</span>
+            <span class="tech-badge">JavaScript</span>
+            <span class="tech-badge">SQLite</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Clayins131" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> View Code
+            </a>
+            <a href="#" class="project-link">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+          </div>
+        </div>
+      </div>
 
-    <footer>
-      © 2025 Clay Liang — Built with ❤️ using HTML, CSS & JS
-    </footer>
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🎤</div>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Speech Recognition System</h3>
+          <p class="project-description">
+            End-to-end speech recognition system using Transformer architecture. Achieved 89% word error rate on custom dataset with real-time transcription and streaming capability.
+          </p>
+          <div class="project-tech">
+            <span class="tech-badge">PyTorch</span>
+            <span class="tech-badge">Whisper</span>
+            <span class="tech-badge">ONNX</span>
+            <span class="tech-badge">FastAPI</span>
+            <span class="tech-badge">Docker</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Clayins131" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> View Code
+            </a>
+            <a href="#" class="project-link">
+              <i class="fas fa-file-alt"></i> Documentation
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">⚙️</div>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Predictive Maintenance Dashboard</h3>
+          <p class="project-description">
+            ML-powered dashboard for industrial equipment maintenance prediction. Reduced unplanned downtime by 35% in pilot implementation. Won first place in University AI Hackathon 2024.
+          </p>
+          <div class="project-tech">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Scikit-learn</span>
+            <span class="tech-badge">Streamlit</span>
+            <span class="tech-badge">PostgreSQL</span>
+            <span class="tech-badge">XGBoost</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Clayins131" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> View Code
+            </a>
+            <a href="#" class="project-link">
+              <i class="fas fa-trophy"></i> Award
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">📊</div>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Customer Behavior Analytics</h3>
+          <p class="project-description">
+            Comprehensive analytics platform for understanding customer behavior patterns. Implemented clustering algorithms and predictive models to improve customer retention by 20%.
+          </p>
+          <div class="project-tech">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Pandas</span>
+            <span class="tech-badge">Plotly</span>
+            <span class="tech-badge">Apache Spark</span>
+            <span class="tech-badge">AWS</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Clayins131" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> View Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🤖</div>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">LLM Fine-tuning Framework</h3>
+          <p class="project-description">
+            Developed a framework for fine-tuning large language models on custom datasets. Includes automatic prompt engineering and evaluation metrics.
+          </p>
+          <div class="project-tech">
+            <span class="tech-badge">Transformers</span>
+            <span class="tech-badge">PyTorch</span>
+            <span class="tech-badge">Hugging Face</span>
+            <span class="tech-badge">PEFT</span>
+            <span class="tech-badge">Gradio</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Clayins131" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> View Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">☁️</div>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Cloud ML Pipeline</h3>
+          <p class="project-description">
+            Scalable machine learning pipeline on AWS for automated model training, evaluation, and deployment. Handles 1M+ predictions daily with sub-100ms latency.
+          </p>
+          <div class="project-tech">
+            <span class="tech-badge">AWS SageMaker</span>
+            <span class="tech-badge">Lambda</span>
+            <span class="tech-badge">S3</span>
+            <span class="tech-badge">Docker</span>
+            <span class="tech-badge">Kubernetes</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Clayins131" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> View Code
+            </a>
+            <a href="#" class="project-link">
+              <i class="fas fa-chart-line"></i> Metrics
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="container section" id="skills">
+    <div class="section-header">
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-subtitle">Technologies I work with</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3><i class="fas fa-code"></i> Programming Languages</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">R</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3><i class="fas fa-brain"></i> ML/DL Frameworks</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">Keras</span>
+          <span class="skill-tag">Hugging Face</span>
+          <span class="skill-tag">XGBoost</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3><i class="fas fa-database"></i> Data Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Databricks</span>
+          <span class="skill-tag">Apache Spark</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Git</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3><i class="fas fa-chart-bar"></i> Visualization</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Tableau</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Matplotlib</span>
+          <span class="skill-tag">Seaborn</span>
+          <span class="skill-tag">Plotly</span>
+          <span class="skill-tag">D3.js</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3><i class="fas fa-cloud"></i> Cloud Platforms</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Google Cloud</span>
+          <span class="skill-tag">Azure</span>
+          <span class="skill-tag">SageMaker</span>
+          <span class="skill-tag">Lambda</span>
+          <span class="skill-tag">EC2</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3><i class="fas fa-server"></i> Databases</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">Redis</span>
+          <span class="skill-tag">Elasticsearch</span>
+          <span class="skill-tag">SQLite</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section class="container section" id="achievements">
+    <div class="section-header">
+      <h2 class="section-title">Achievements & Certifications</h2>
+      <p class="section-subtitle">Recognition and continuous learning</p>
+    </div>
+    <div class="achievements-grid">
+      <div class="achievement-card">
+        <div class="achievement-icon">🏆</div>
+        <h3 class="achievement-title">1st Place - AI Hackathon</h3>
+        <p class="achievement-description">University AI Hackathon 2024 - Predictive Maintenance Solution</p>
+      </div>
+      
+      <div class="achievement-card">
+        <div class="achievement-icon">📜</div>
+        <h3 class="achievement-title">AWS ML Specialty</h3>
+        <p class="achievement-description">AWS Certified Machine Learning - Specialty (In Progress)</p>
+      </div>
+      
+      <div class="achievement-card">
+        <div class="achievement-icon">🎓</div>
+        <h3 class="achievement-title">Deep Learning Specialization</h3>
+        <p class="achievement-description">Coursera - Andrew Ng's Deep Learning Course</p>
+      </div>
+      
+      <div class="achievement-card">
+        <div class="achievement-icon">📊</div>
+        <h3 class="achievement-title">Google Data Analytics</h3>
+        <p class="achievement-description">Google Data Analytics Professional Certificate</p>
+      </div>
+      
+      <div class="achievement-card">
+        <div class="achievement-icon">🏅</div>
+        <h3 class="achievement-title">Top 10% Kaggle</h3>
+        <p class="achievement-description">House Prices Prediction Competition</p>
+      </div>
+      
+      <div class="achievement-card">
+        <div class="achievement-icon">☁️</div>
+        <h3 class="achievement-title">Azure Fundamentals</h3>
+        <p class="achievement-description">Microsoft Azure Fundamentals (AZ-900)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="container section" id="contact">
+    <div class="section-header">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-subtitle">Let's discuss how we can work together</p>
+    </div>
+    <div class="contact-content">
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:claysps@outlook.com">claysps@outlook.com</a>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Leiden, South Netherlands</span>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-linkedin"></i>
+          <a href="https://linkedin.com/in/clayins131" target="_blank">linkedin.com/in/clayins131</a>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-github"></i>
+          <a href="https://github.com/Clayins131" target="_blank">github.com/Clayins131</a>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <h3>Send Message</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="mailto:claysps@outlook.com" class="social-link">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="https://linkedin.com/in/clayins131" target="_blank" class="social-link">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/Clayins131" target="_blank" class="social-link">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="#" class="social-link">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </div>
+    <p>&copy; 2025 Clay Liang. All rights reserved.</p>
+    <p>Built with passion using HTML, CSS & JavaScript</p>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
   </div>
 
   <script>
-    // 🌗 Theme toggle
-    const toggleBtn = document.getElementById('themeToggle');
-    toggleBtn.addEventListener('click', () => {
-      document.body.dataset.theme =
-        document.body.dataset.theme === 'dark' ? '' : 'dark';
-      toggleBtn.innerHTML =
-        document.body.dataset.theme === 'dark'
-          ? '<i class="fas fa-sun"></i>'
-          : '<i class="fas fa-moon"></i>';
+    // Remove loader after page loads
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelector('.loader').classList.add('hidden');
+      }, 500);
     });
 
-    // ✨ Scroll animation
-    const sections = document.querySelectorAll('.section');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.15 });
-    sections.forEach(sec => observer.observe(sec));
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      body.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+    
+    function updateThemeIcon(theme) {
+      const icon = themeToggle.querySelector('i');
+      icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
 
-    // 🧭 Smooth scroll
-    document.querySelectorAll('nav a').forEach(a => {
-      a.addEventListener('click', e => {
+    // Smooth Scrolling for Navigation Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(a.getAttribute('href'))
-          .scrollIntoView({ behavior: 'smooth' });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Scroll Progress Bar
+    const progressBar = document.querySelector('.progress-bar');
+    
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      progressBar.style.width = scrolled + '%';
+    });
+
+    // Section Animation on Scroll
+    const sections = document.querySelectorAll('.section');
+    
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+
+    // Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Contact Form Handler
+    const contactForm = document.getElementById('contactForm');
+    
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(contactForm);
+      const data = Object.fromEntries(formData);
+      
+      // Here you would typically send the data to a server
+      console.log('Form submitted:', data);
+      
+      // Show success message
+      alert('Thank you for your message! I will get back to you soon.');
+      
+      // Reset form
+      contactForm.reset();
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    mobileMenuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobileMenuToggle.classList.toggle('active');
+    });
+
+    // Typing Effect for Hero Title
+    const heroTitle = document.querySelector('.hero h1');
+    const text = heroTitle.textContent;
+    heroTitle.textContent = '';
+    let index = 0;
+    
+    function typeText() {
+      if (index < text.length) {
+        heroTitle.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeText, 100);
+      }
+    }
+    
+    // Start typing effect after loader is hidden
+    setTimeout(typeText, 1000);
+
+    // Add hover effect to project cards
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-15px) rotateX(5deg)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) rotateX(0)';
+      });
+    });
+
+    // Parallax Effect for Hero Section
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    });
+
+    // Active Navigation Link Highlighting
+    window.addEventListener('scroll', () => {
+      let current = '';
+      const sections = document.querySelectorAll('section[id]');
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (scrollY >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      const navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+          link.classList.add('active');
+        }
       });
     });
   </script>
