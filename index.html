@@ -1,162 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clay Liang — AI & Data Science</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* ----------- Base styles ----------- */
+    :root {
+      --bg: #f7f9fc;
+      --card-bg: #fff;
+      --text: #333;
+      --primary: #007bff;
+      --accent: #0056b3;
+    }
+    [data-theme='dark'] {
+      --bg: #121212;
+      --card-bg: #1e1e1e;
+      --text: #f2f2f2;
+      --primary: #4ea8ff;
+      --accent: #82cfff;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      background: linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%);
-      color: #333;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.5s, color 0.5s;
     }
 
-    a {
-      color: #007bff;
-      text-decoration: none;
-    }
-    a:hover {
-      color: #0056b3;
-    }
-
-    h1, h2, h3 {
-      color: #2c3e50;
-    }
-
-    /* ----------- Navbar ----------- */
+    /* Navbar */
     nav {
       position: sticky;
       top: 0;
-      background-color: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(10px);
       display: flex;
       justify-content: center;
-      gap: 30px;
+      flex-wrap: wrap;
+      gap: 25px;
       padding: 12px 0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       z-index: 100;
+      transition: background 0.5s;
+    }
+    [data-theme='dark'] nav {
+      background: rgba(30,30,30,0.8);
     }
     nav a {
+      color: var(--text);
       font-weight: 600;
-      color: #333;
-      transition: all 0.3s ease;
+      transition: all 0.3s;
     }
     nav a:hover {
-      color: #007bff;
+      color: var(--primary);
       transform: translateY(-2px);
     }
 
-    /* ----------- Container ----------- */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--primary);
+      border: none;
+      color: #fff;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 1.3em;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .theme-toggle:hover {
+      transform: rotate(20deg) scale(1.1);
+    }
+
     .container {
       max-width: 950px;
       margin: 60px auto;
       padding: 20px;
     }
 
-    /* ----------- Header ----------- */
+    /* Header */
     .header {
       text-align: center;
       margin-bottom: 40px;
+      animation: fadeUp 0.8s ease forwards;
     }
+    .avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      margin: 15px auto;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5em;
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+      animation: glow 3s infinite alternate;
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 10px var(--primary); }
+      to { box-shadow: 0 0 25px var(--accent); }
+    }
+
     .header h1 {
-      font-size: 2.8em;
+      font-size: 2.6em;
       margin-bottom: 5px;
     }
     .header h3 {
-      font-weight: normal;
-      color: #555;
-      margin-bottom: 10px;
+      font-weight: 400;
+      color: var(--accent);
     }
-    .header p {
-      color: #666;
-    }
+
     .social-links a {
       margin: 0 10px;
-      font-size: 1.4em;
+      font-size: 1.5em;
+      color: var(--text);
       transition: color 0.3s, transform 0.3s;
     }
     .social-links a:hover {
-      color: #007bff;
+      color: var(--primary);
       transform: scale(1.2);
     }
 
-    /* ----------- Card section ----------- */
+    /* Section cards */
     .section {
-      background-color: #fff;
+      background: var(--card-bg);
       padding: 25px;
-      border-radius: 16px;
+      border-radius: 18px;
       margin-bottom: 40px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-      transition: all 0.3s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transform: translateY(40px);
+      opacity: 0;
+      transition: all 0.8s ease;
     }
-    .section:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
+    .section.visible {
+      transform: translateY(0);
+      opacity: 1;
     }
+
     .section h2 {
       border-bottom: 2px solid #e0e0e0;
       padding-bottom: 8px;
       margin-bottom: 20px;
+      color: var(--primary);
       display: flex;
       align-items: center;
       gap: 10px;
-      color: #0056b3;
     }
 
-    /* ----------- Lists ----------- */
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    ul li {
-      margin-bottom: 8px;
-    }
-
-    /* ----------- Skills ----------- */
     .skills ul {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      list-style: none;
+      padding: 0;
     }
     .skills li {
       background: #e9f3ff;
       color: #0056b3;
       padding: 8px 15px;
       border-radius: 20px;
-      font-size: 0.95em;
       transition: background 0.3s;
+    }
+    [data-theme='dark'] .skills li {
+      background: #223344;
+      color: #bcdcff;
     }
     .skills li:hover {
       background: #d0e6ff;
     }
 
-    /* ----------- Footer ----------- */
     footer {
       text-align: center;
       color: #777;
-      font-size: 0.9em;
       margin-top: 50px;
-      padding-bottom: 20px;
+      font-size: 0.9em;
     }
 
-    /* ----------- Responsive ----------- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 768px) {
-      nav {
-        flex-wrap: wrap;
-        gap: 15px;
-      }
-      .container {
-        padding: 10px;
-      }
+      .theme-toggle { top: 15px; right: 15px; }
+      nav { gap: 12px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
+  <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+
   <nav>
     <a href="#education">Education</a>
     <a href="#experience">Experience</a>
@@ -167,8 +207,8 @@
   </nav>
 
   <div class="container">
-    <!-- Header -->
     <div class="header">
+      <div class="avatar">C</div>
       <h1>👋 Hi, I’m Clay Liang</h1>
       <h3>🚀 AI & Data Science | Machine Learning & Cloud Enthusiast</h3>
       <p>Leiden, South Netherlands | <a href="mailto:claysps@outlook.com">claysps@outlook.com</a></p>
@@ -178,50 +218,39 @@
       </div>
     </div>
 
-    <!-- Education -->
     <div class="section" id="education">
       <h2><i class="fas fa-graduation-cap"></i> Education</h2>
-      <p><b>Leiden University</b> — Leiden, South Netherlands<br>
-        BSc in Artificial Intelligence and Data Science | Expected Graduation: <b>June 2027</b><br>
-        GPA: 7.0 / 10.0</p>
-      <p><b>Tianjin Normal University</b> — Tianjin, China<br>
-        BSc in Artificial Intelligence and Data Science | 2023.9 – 2025.6<br>
-        GPA: 3.3 / 4.0</p>
+      <p><b>Leiden University</b> — BSc in Artificial Intelligence and Data Science (Expected 2027)<br>GPA: 7.0 / 10.0</p>
+      <p><b>Tianjin Normal University</b> — BSc in AI and Data Science (2023.9 – 2025.6)<br>GPA: 3.3 / 4.0</p>
     </div>
 
-    <!-- Experience -->
     <div class="section" id="experience">
       <h2><i class="fas fa-briefcase"></i> Experience</h2>
-
-      <h3>Research Assistant — Tsinghua University (Remote) | 2024.6 – Present</h3>
+      <h3>Research Assistant — Tsinghua University (Remote)</h3>
       <ul>
-        <li>Developed deep learning models for audio processing and speech recognition.</li>
-        <li>Improved model performance through loss tuning and data augmentation.</li>
-        <li>Built analytics dashboards and optimized backend code for efficiency.</li>
+        <li>Developed DL models for audio/speech recognition.</li>
+        <li>Improved model accuracy via loss tuning & augmentation.</li>
+        <li>Optimized backend runtime and visual dashboards.</li>
       </ul>
-
-      <h3>Data Science Intern — Lenovo, Tianjin, China | 2025.2 – 2025.6</h3>
+      <h3>Data Science Intern — Lenovo, Tianjin (2025.2 – 2025.6)</h3>
       <ul>
-        <li>Designed interactive dashboards in Tableau/Power BI for strategic visualization.</li>
-        <li>Led intern project tasks and created reusable presentation templates.</li>
+        <li>Designed dashboards in Tableau/Power BI.</li>
+        <li>Built data optimization strategies & led intern tasks.</li>
       </ul>
-
-      <h3>Data Analyst Intern — Airbus (Tianjin) | 2025.6 – Present</h3>
+      <h3>Data Analyst Intern — Airbus (Tianjin) (2025.6 – Present)</h3>
       <ul>
-        <li>Analyzed operational data to support decarbonization strategy.</li>
-        <li>Built Python/Databricks pipelines for model development and visualization.</li>
+        <li>Analyzed operational data for decarbonization metrics.</li>
+        <li>Built Databricks pipelines and visual outputs.</li>
       </ul>
     </div>
 
-    <!-- Projects -->
     <div class="section" id="projects">
       <h2><i class="fas fa-tasks"></i> Projects</h2>
-      <h3>🎥 Video Annotator — GitHub Project</h3>
-      <p>Developed a Flask-based web tool for video labeling and CSV export, streamlining small-scale ML dataset preparation.</p>
+      <h3>🎥 Video Annotator</h3>
+      <p>Flask-based web tool for local video labeling & CSV export for ML datasets.</p>
       <a href="https://github.com/Clayins131" target="_blank">🔗 View on GitHub</a>
     </div>
 
-    <!-- Skills -->
     <div class="section skills" id="skills">
       <h2><i class="fas fa-cogs"></i> Skills</h2>
       <ul>
@@ -231,29 +260,57 @@
       </ul>
     </div>
 
-    <!-- Focus -->
     <div class="section" id="focus">
       <h2><i class="fas fa-brain"></i> Current Focus</h2>
       <ul>
-        <li>Large Language Models (LLMs) & Prompt Engineering</li>
+        <li>Large Language Models & Prompt Engineering</li>
         <li>MLOps & Scalable AI Pipelines</li>
         <li>Speech Recognition & Audio Signal Processing</li>
-        <li>Cloud Optimization for AI Applications</li>
+        <li>Cloud Optimization for AI</li>
       </ul>
     </div>
 
-    <!-- Contact -->
     <div class="section" id="contact">
       <h2><i class="fas fa-paper-plane"></i> Contact</h2>
       <p><a href="mailto:claysps@outlook.com"><i class="fas fa-envelope"></i> Email</a> |
-      <a href="https://www.linkedin.com/in/clayins131" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> |
-      <a href="https://github.com/Clayins131" target="_blank"><i class="fab fa-github"></i> GitHub</a></p>
+         <a href="https://linkedin.com/in/clayins131"><i class="fab fa-linkedin"></i> LinkedIn</a> |
+         <a href="https://github.com/Clayins131"><i class="fab fa-github"></i> GitHub</a></p>
     </div>
 
     <footer>
-      © 2025 Clay Liang — Built with ❤️ using HTML & CSS
+      © 2025 Clay Liang — Built with ❤️ using HTML, CSS & JS
     </footer>
   </div>
 
+  <script>
+    // 🌗 Theme toggle
+    const toggleBtn = document.getElementById('themeToggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.dataset.theme =
+        document.body.dataset.theme === 'dark' ? '' : 'dark';
+      toggleBtn.innerHTML =
+        document.body.dataset.theme === 'dark'
+          ? '<i class="fas fa-sun"></i>'
+          : '<i class="fas fa-moon"></i>';
+    });
+
+    // ✨ Scroll animation
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+    sections.forEach(sec => observer.observe(sec));
+
+    // 🧭 Smooth scroll
+    document.querySelectorAll('nav a').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href'))
+          .scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
 </body>
 </html>
