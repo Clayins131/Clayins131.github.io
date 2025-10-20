@@ -1,200 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clay Liang - AI & Data Science</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #343a40;
-        }
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-        }
-        h1, h2, h3 {
-            color: #2c3e50;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 10px;
-            margin-top: 30px;
-        }
-        h1 {
-            font-size: 2.5em;
-            border-bottom: none;
-        }
-        h2 {
-            font-size: 1.8em;
-        }
-        .section {
-            margin-bottom: 30px;
-        }
-        .contact a {
-            color: #007bff;
-            text-decoration: none;
-            margin-right: 20px;
-            font-size: 1.2em;
-        }
-        .contact a:hover {
-            text-decoration: underline;
-        }
-        .list ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .list ul li {
-            margin-bottom: 6px;
-        }
-        .project, .experience, .edu {
-            margin-bottom: 20px;
-        }
-        .project h3, .experience h3, .edu h3 {
-            margin-bottom: 5px;
-            color: #0056b3;
-        }
-        .project ul, .experience ul {
-            margin-left: 20px;
-        }
-        .skills ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .skills li {
-            background-color: #e9ecef;
-            color: #495057;
-            padding: 8px 15px;
-            margin: 5px;
-            border-radius: 20px;
-            font-size: 0.95em;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clay Liang — AI & Data Science</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ----------- Base styles ----------- */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%);
+      color: #333;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #0056b3;
+    }
+
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+
+    /* ----------- Navbar ----------- */
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 12px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      z-index: 100;
+    }
+    nav a {
+      font-weight: 600;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+    nav a:hover {
+      color: #007bff;
+      transform: translateY(-2px);
+    }
+
+    /* ----------- Container ----------- */
+    .container {
+      max-width: 950px;
+      margin: 60px auto;
+      padding: 20px;
+    }
+
+    /* ----------- Header ----------- */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .header h1 {
+      font-size: 2.8em;
+      margin-bottom: 5px;
+    }
+    .header h3 {
+      font-weight: normal;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .header p {
+      color: #666;
+    }
+    .social-links a {
+      margin: 0 10px;
+      font-size: 1.4em;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .social-links a:hover {
+      color: #007bff;
+      transform: scale(1.2);
+    }
+
+    /* ----------- Card section ----------- */
+    .section {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 16px;
+      margin-bottom: 40px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+    .section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
+    }
+    .section h2 {
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #0056b3;
+    }
+
+    /* ----------- Lists ----------- */
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    /* ----------- Skills ----------- */
+    .skills ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .skills li {
+      background: #e9f3ff;
+      color: #0056b3;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.95em;
+      transition: background 0.3s;
+    }
+    .skills li:hover {
+      background: #d0e6ff;
+    }
+
+    /* ----------- Footer ----------- */
+    footer {
+      text-align: center;
+      color: #777;
+      font-size: 0.9em;
+      margin-top: 50px;
+      padding-bottom: 20px;
+    }
+
+    /* ----------- Responsive ----------- */
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      .container {
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
+  <!-- Navbar -->
+  <nav>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#focus">Focus</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="container">
     <!-- Header -->
-    <div style="text-align: center; margin-bottom: 30px;">
-        <h1>👋 Hi, I’m Clay Liang</h1>
-        <h3>🚀 AI & Data Science | Machine Learning & Cloud Enthusiast</h3>
-        <p>Leiden, South Netherlands | claysps@outlook.com</p>
-        <p>
-            <a href="https://www.linkedin.com/in/clayins131" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://github.com/Clayins131" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        </p>
+    <div class="header">
+      <h1>👋 Hi, I’m Clay Liang</h1>
+      <h3>🚀 AI & Data Science | Machine Learning & Cloud Enthusiast</h3>
+      <p>Leiden, South Netherlands | <a href="mailto:claysps@outlook.com">claysps@outlook.com</a></p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/clayins131" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Clayins131" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
     </div>
 
     <!-- Education -->
-    <div class="section">
-        <h2><i class="fas fa-graduation-cap"></i> Education</h2>
-        <div class="edu">
-            <h3>Leiden University — Leiden, South Netherlands</h3>
-            <p>BSc in Artificial Intelligence and Data Science | Expected Graduation: June 2027</p>
-            <p>GPA: 7.0 / 10.0</p>
-        </div>
-        <div class="edu">
-            <h3>Tianjin Normal University — Tianjin, China</h3>
-            <p>BSc in Artificial Intelligence and Data Science | 2023.9.1 – 2025.6.10</p>
-            <p>GPA: 3.3 / 4.0</p>
-        </div>
+    <div class="section" id="education">
+      <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+      <p><b>Leiden University</b> — Leiden, South Netherlands<br>
+        BSc in Artificial Intelligence and Data Science | Expected Graduation: <b>June 2027</b><br>
+        GPA: 7.0 / 10.0</p>
+      <p><b>Tianjin Normal University</b> — Tianjin, China<br>
+        BSc in Artificial Intelligence and Data Science | 2023.9 – 2025.6<br>
+        GPA: 3.3 / 4.0</p>
     </div>
 
     <!-- Experience -->
-    <div class="section">
-        <h2><i class="fas fa-briefcase"></i> Experience</h2>
+    <div class="section" id="experience">
+      <h2><i class="fas fa-briefcase"></i> Experience</h2>
 
-        <div class="experience">
-            <h3>Research Assistant — Tsinghua University (Remote) | 2024.6.10 – Present</h3>
-            <ul>
-                <li>Create and distribute educational materials about exercise and wellness; plan wellness events for students, faculty, and staff.</li>
-                <li>Co-developed deep learning models for audio processing; improved speech recognition accuracy using data augmentation and loss tuning.</li>
-                <li>Managed and structured datasets; created Excel-based visual analytics for stakeholders.</li>
-                <li>Debugged and optimized backend code to enhance runtime efficiency and reduce latency.</li>
-            </ul>
-        </div>
+      <h3>Research Assistant — Tsinghua University (Remote) | 2024.6 – Present</h3>
+      <ul>
+        <li>Developed deep learning models for audio processing and speech recognition.</li>
+        <li>Improved model performance through loss tuning and data augmentation.</li>
+        <li>Built analytics dashboards and optimized backend code for efficiency.</li>
+      </ul>
 
-        <div class="experience">
-            <h3>Data Science Intern — Lenovo, Tianjin, China | 2025.2.13 – 2025.6.13</h3>
-            <ul>
-                <li>Designed interactive dashboards in Tableau/Power BI for digital transformation strategy visualization.</li>
-                <li>Developed and implemented training data optimization strategies to improve model performance.</li>
-                <li>Built Excel/PowerPoint templates for scientific and technical presentations.</li>
-                <li>Delegated project duties to other interns as project lead.</li>
-            </ul>
-        </div>
+      <h3>Data Science Intern — Lenovo, Tianjin, China | 2025.2 – 2025.6</h3>
+      <ul>
+        <li>Designed interactive dashboards in Tableau/Power BI for strategic visualization.</li>
+        <li>Led intern project tasks and created reusable presentation templates.</li>
+      </ul>
 
-        <div class="experience">
-            <h3>Data Analyst Intern — Airbus (Tianjin) Final Assembly Co. Ltd., Tianjin, China | 2025.6.14 – Present</h3>
-            <ul>
-                <li>Collaborate with cross-functional teams to deliver tailored visual outputs (charts, infographics, slide decks).</li>
-                <li>Analyze operational data via SQL & Apps Script to identify decarbonization metrics and process bottlenecks.</li>
-                <li>Leverage Databricks/Python for large-scale data preprocessing and collaborative model development.</li>
-            </ul>
-        </div>
+      <h3>Data Analyst Intern — Airbus (Tianjin) | 2025.6 – Present</h3>
+      <ul>
+        <li>Analyzed operational data to support decarbonization strategy.</li>
+        <li>Built Python/Databricks pipelines for model development and visualization.</li>
+      </ul>
     </div>
 
     <!-- Projects -->
-    <div class="section">
-        <h2><i class="fas fa-tasks"></i> Projects</h2>
-
-        <div class="project">
-            <h3>Video Annotator — GitHub Project</h3>
-            <p>Built a local video annotation tool using Python and Flask with a browser-based UI.</p>
-            <ul>
-                <li>Supported video playback, timestamped labeling, and CSV export for ML datasets.</li>
-                <li>Designed for small-scale data labeling tasks in research workflows.</li>
-            </ul>
-            <div class="project-links">
-                <a href="https://github.com/Clayins131" target="_blank">GitHub Repo</a>
-            </div>
-        </div>
+    <div class="section" id="projects">
+      <h2><i class="fas fa-tasks"></i> Projects</h2>
+      <h3>🎥 Video Annotator — GitHub Project</h3>
+      <p>Developed a Flask-based web tool for video labeling and CSV export, streamlining small-scale ML dataset preparation.</p>
+      <a href="https://github.com/Clayins131" target="_blank">🔗 View on GitHub</a>
     </div>
 
     <!-- Skills -->
-    <div class="section skills">
-        <h2><i class="fas fa-cogs"></i> Skills</h2>
-        <ul>
-            <li>Python</li>
-            <li>Databricks</li>
-            <li>SQL</li>
-            <li>Java, C++</li>
-            <li>MS Office & Google Workspace</li>
-            <li>Deep Learning, Machine Learning</li>
-            <li>Tableau, Power BI</li>
-            <li>Flask, Web Development</li>
-        </ul>
+    <div class="section skills" id="skills">
+      <h2><i class="fas fa-cogs"></i> Skills</h2>
+      <ul>
+        <li>Python</li><li>Databricks</li><li>SQL</li><li>Java</li><li>C++</li>
+        <li>Power BI</li><li>Tableau</li><li>Flask</li><li>Machine Learning</li>
+        <li>Deep Learning</li><li>Google Workspace</li>
+      </ul>
     </div>
 
-    <!-- Current Focus / Research Interests -->
-    <div class="section">
-        <h2><i class="fas fa-brain"></i> Current Focus</h2>
-        <ul>
-            <li>Large Language Models (LLMs) & prompt engineering</li>
-            <li>MLOps & robust pipeline development</li>
-            <li>Advanced audio processing & speech recognition</li>
-            <li>Cloud computing optimization for AI applications</li>
-        </ul>
+    <!-- Focus -->
+    <div class="section" id="focus">
+      <h2><i class="fas fa-brain"></i> Current Focus</h2>
+      <ul>
+        <li>Large Language Models (LLMs) & Prompt Engineering</li>
+        <li>MLOps & Scalable AI Pipelines</li>
+        <li>Speech Recognition & Audio Signal Processing</li>
+        <li>Cloud Optimization for AI Applications</li>
+      </ul>
     </div>
 
     <!-- Contact -->
-    <div class="section contact">
-        <h2><i class="fas fa-paper-plane"></i> Contact</h2>
-        <p>
-            <a href="mailto:claysps@outlook.com" title="Email"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://www.linkedin.com/in/clayins131" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://github.com/Clayins131" target="_blank" title="GitHub"><i class="fab fa-github"></i> GitHub</a>
-        </p>
+    <div class="section" id="contact">
+      <h2><i class="fas fa-paper-plane"></i> Contact</h2>
+      <p><a href="mailto:claysps@outlook.com"><i class="fas fa-envelope"></i> Email</a> |
+      <a href="https://www.linkedin.com/in/clayins131" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> |
+      <a href="https://github.com/Clayins131" target="_blank"><i class="fab fa-github"></i> GitHub</a></p>
     </div>
-</div>
+
+    <footer>
+      © 2025 Clay Liang — Built with ❤️ using HTML & CSS
+    </footer>
+  </div>
 
 </body>
 </html>
