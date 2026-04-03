@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Clay Liang — Blog on data, finance, and the space between.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Blog — Clay Liang">
+  <meta property="og:description" content="Data, markets, and the space between models and decisions.">
+  <meta property="og:url" content="https://tuixue.nl/blog/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Clay Liang">
+  <meta name="twitter:card" content="summary">
+
+  <title>Blog — Clay Liang</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="Clay Liang — Blog" href="/blog/feed.xml">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="/assets/shared.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .wrap { max-width: 820px; }
+    .page-title { font-size: 28px; font-weight: normal; margin-bottom: 6px; }
+    .page-desc { color: var(--text3); font-size: 14px; margin-bottom: 8px; }
+    .rss-link {
+      font-size: 12px; color: var(--text3);
+      font-family: -apple-system, sans-serif;
+      margin-bottom: 32px; display: block;
+    }
+    .rss-link i { margin-right: 3px; }
+
+    .post-list { list-style: none; }
+    .post-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-light);
+      display: flex; gap: 16px; align-items: baseline;
+    }
+    .post-item:last-child { border-bottom: none; }
+    .post-date {
+      font-family: 'Courier New', monospace;
+      font-size: 12.5px; color: var(--text3);
+      flex-shrink: 0; width: 90px;
+    }
+    .post-info { flex: 1; }
+    .post-title { font-size: 16px; font-weight: bold; line-height: 1.4; }
+    .post-title a { color: var(--text); }
+    .post-title a:hover { color: var(--link); }
+    .post-excerpt {
+      font-size: 13.5px; color: var(--text2); margin-top: 3px; line-height: 1.5;
+    }
+    .post-meta-row {
+      margin-top: 5px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    }
+    .read-time {
+      font-family: -apple-system, sans-serif;
+      font-size: 11px; color: var(--text3);
+    }
+
+    @media (max-width: 560px) {
+      .post-item { flex-direction: column; gap: 2px; }
+      .post-date { width: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="back" href="/"><i class="fas fa-arrow-left"></i> Clay Liang</a>
+    <div class="topbar-right">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+    </div>
+  </div>
+
+  <h1 class="page-title">Blog</h1>
+  <p class="page-desc">Data, markets, and the space between models and decisions.</p>
+  <a class="rss-link" href="/blog/feed.xml"><i class="fas fa-rss"></i> RSS Feed</a>
+
+  <ul class="post-list">
+
+    <li class="post-item">
+      <div class="post-date">2025-08</div>
+      <div class="post-info">
+        <div class="post-title"><a href="/blog/asml-first-dcf.html">My First DCF: Valuing ASML as a Leiden Student</a></div>
+        <div class="post-excerpt">ASML is 45 minutes from my university. I used my own DCF calculator to value it from scratch — three scenarios, real numbers, and every place I was unsure. The terminal value is 73% of the total. That's the real lesson.</div>
+        <div class="post-meta-row">
+          <span class="tag">fintech</span> <span class="tag">valuation</span>
+          <span class="read-time">4 min read</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="post-item">
+      <div class="post-date">2025-07</div>
+      <div class="post-info">
+        <div class="post-title"><a href="/blog/bimodal-reality-of-cs.html">The Bimodal Reality of CS Careers</a></div>
+        <div class="post-excerpt">CS has two career tracks: research scientist and infrastructure engineer. The middle is hollow. If you're not going to be the former — and statistically, you're not — then the game is school name + stacked internships, not GPA.</div>
+        <div class="post-meta-row">
+          <span class="tag">career</span> <span class="tag">thinking</span>
+          <span class="read-time">8 min read</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="post-item">
+      <div class="post-date">2025-07</div>
+      <div class="post-info">
+        <div class="post-title"><a href="/blog/databricks-pipeline-notes.html">Notes on Building a Databricks Pipeline That Doesn't Fall Over</a></div>
+        <div class="post-excerpt">Practical things I learned processing 10TB+ of aviation data — partition strategies, avoiding collect(), and why your notebook that works at 1GB will betray you at 100GB.</div>
+        <div class="post-meta-row">
+          <span class="tag">technical</span> <span class="tag">python</span> <span class="tag">spark</span>
+          <span class="read-time">6 min read</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="post-item">
+      <div class="post-date">2025-06</div>
+      <div class="post-info">
+        <div class="post-title"><a href="/blog/what-airbus-taught-me.html">What an Aircraft Factory Taught Me About Data</a></div>
+        <div class="post-excerpt">I went to Airbus expecting to build models. Instead I spent most of my time cleaning SQL queries, arguing about chart colours, and learning that the hardest part of data work has nothing to do with data.</div>
+        <div class="post-meta-row">
+          <span class="tag">internship</span> <span class="tag">airbus</span>
+          <span class="read-time">5 min read</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="post-item">
+      <div class="post-date">2025-04</div>
+      <div class="post-info">
+        <div class="post-title"><a href="/blog/why-i-read-annual-reports.html">Why I Read Annual Reports as a Data Person</a></div>
+        <div class="post-excerpt">Everyone says "data-driven." But most data work never touches the documents where real decisions get recorded. Here's why I started reading 10-Ks for fun — and what it taught me about the gap between dashboards and boardrooms.</div>
+        <div class="post-meta-row">
+          <span class="tag">fintech</span> <span class="tag">thinking</span>
+          <span class="read-time">5 min read</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="post-item">
+      <div class="post-date">2025-03</div>
+      <div class="post-info">
+        <div class="post-title"><a href="/blog/from-loss-functions-to-decisions.html">From Loss Functions to Decisions: Why I'm Moving Toward Finance</a></div>
+        <div class="post-excerpt">I spent two years optimising models and one year optimising slide decks. The slide decks changed more outcomes. A reflection on why I'm pointing my career at the data-decisions boundary — and why finance is where that gap is widest.</div>
+        <div class="post-meta-row">
+          <span class="tag">career</span> <span class="tag">fintech</span>
+          <span class="read-time">6 min read</span>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+
+  <div class="footer">
+    &copy; 2025–2026 Clay Liang &middot; <a href="https://tuixue.nl">tuixue.nl</a>
+  </div>
+
+</div>
+<script src="/assets/theme.js"></script>
+</body>
+</html>

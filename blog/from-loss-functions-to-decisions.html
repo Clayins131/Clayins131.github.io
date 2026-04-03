@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="I spent two years optimising models and one year optimising slide decks. The slide decks changed more outcomes.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="From Loss Functions to Decisions: Why I'm Moving Toward Finance — Clay Liang">
+  <meta property="og:description" content="I spent two years optimising models and one year optimising slide decks. The slide decks changed more outcomes.">
+  <meta property="og:url" content="https://tuixue.nl/blog/from-loss-functions-to-decisions.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Clay Liang">
+  <meta name="twitter:card" content="summary">
+
+  <title>From Loss Functions to Decisions: Why I'm Moving Toward Finance — Clay Liang</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="/assets/shared.css">
+  <link rel="stylesheet" href="/assets/blog-post.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="/blog/"><i class="fas fa-arrow-left"></i> All Posts</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+  </div>
+
+  <div class="post-header">
+    <h1 class="post-title">From Loss Functions to Decisions: Why I'm Moving Toward Finance</h1>
+    <div class="post-meta">March 2025 <span class="tag">career</span> <span class="tag">fintech</span> <span class="read-time">6 min read</span></div>
+  </div>
+
+  <div class="post-body">
+
+
+    <p>
+      Three years ago, I was sure I wanted to be a machine learning engineer. I liked the elegance of it — define a loss function, minimise it, watch accuracy go up. Clean problems with clean metrics.
+    </p>
+
+    <p>
+      Then I started working, and the clean problems disappeared.
+    </p>
+
+    <h2>The first crack</h2>
+
+    <p>
+      At Tsinghua, I built speech recognition models. I got accuracy from 77% to 92%. Fifteen percentage points. Months of work. Loss function tuning, data augmentation, architecture experiments.
+    </p>
+
+    <p>
+      At the end, I wrote a report. My supervisor read it, said "good work," and the model went into a shared folder. I don't know if anyone ever used it downstream. The accuracy improvement was real. The impact was unclear.
+    </p>
+
+    <p>
+      This isn't a complaint about academia — research has its own logic and its own value. But it made me notice something: I was more interested in what happened after the model was done than in building the model itself.
+    </p>
+
+    <h2>The second crack</h2>
+
+    <p>
+      At Lenovo, I built dashboards. Strategy dashboards, supply chain dashboards, digital transformation dashboards. The technical work was straightforward — Tableau, Power BI, some SQL. Nothing that would impress anyone at a machine learning conference.
+    </p>
+
+    <p>
+      But these dashboards were in front of senior management every week. I sat in meetings where someone pointed at my chart and said "based on this, we should..." and then a decision happened. A real decision, with budget attached to it.
+    </p>
+
+    <p>
+      I was doing less sophisticated technical work and having more impact. That was uncomfortable to admit.
+    </p>
+
+    <h2>The pattern</h2>
+
+    <p>
+      At Airbus, the pattern became impossible to ignore. The sophisticated pipeline work was necessary but invisible. The "simple" visualisation work — the charts, the slide decks, the one-page summaries — was what actually moved things.
+    </p>
+
+    <p>
+      I started to see my career options as a spectrum:
+    </p>
+
+    <ul>
+      <li><strong>Left side:</strong> Build better models. Optimise inference. Publish papers. The technical depth is impressive and the impact is indirect.</li>
+      <li><strong>Right side:</strong> Sit closer to decisions. Translate data into action. The technical work is simpler but the impact is direct.</li>
+    </ul>
+
+    <p>
+      I found myself consistently drifting right.
+    </p>
+
+    <h2>Why finance</h2>
+
+    <p>
+      Once I realised I wanted to be closer to the decision end of the data pipeline, the question became: which decisions? Which industry puts the most weight on data-driven reasoning, moves the most capital based on quantitative analysis, and has the highest cost of getting it wrong?
+    </p>
+
+    <p>
+      Finance is the obvious answer.
+    </p>
+
+    <p>
+      Not because I want to be a quant. The full-stack quant researcher path — Bayesian statistics, stochastic calculus, HFT infrastructure — is a fine career, but it's the left side of the spectrum in a different domain. I'm more interested in the translation layer:
+    </p>
+
+    <ul>
+      <li>How does a risk team turn model output into position limits?</li>
+      <li>How does an analyst turn financial data into a narrative that moves a stock price?</li>
+      <li>How does a bank's back office turn regulatory data into compliance decisions?</li>
+    </ul>
+
+    <p>
+      These are data-to-decision problems with real stakes, real feedback loops, and real consequences for getting the translation wrong.
+    </p>
+
+    <h2>The TUM decision</h2>
+
+    <p>
+      This is why I'm doing a Management & Data Science master's at TUM instead of a pure ML or CS program. I don't need to learn more about neural architectures. I need to learn about how organisations make decisions with data — the management side, the strategy side, the financial modelling side.
+    </p>
+
+    <p>
+      It's an unusual path for someone who started in AI. Most of my classmates from the Tsinghua lab are going deeper into ML research. I'm going sideways — deliberately. Because I think the most interesting unsolved problems in data aren't about better models. They're about better bridges between models and the humans who have to act on them.
+    </p>
+
+    <h2>What I'm doing about it</h2>
+
+    <p>
+      Talk is cheap. Here's what I'm actually doing to make this transition:
+    </p>
+
+    <ul>
+      <li><strong>Reading annual reports.</strong> Not to become a financial analyst, but to understand how companies narrate their own data. (<a href="/blog/why-i-read-annual-reports.html">I wrote about this.</a>)</li>
+      <li><strong>Building fintech tools.</strong> Small things — FX dashboards, DCF calculators, market data scrapers. The kind of tools that force me to engage with financial data structures and conventions. Available on <a href="/fintools/">my site</a> as I finish them.</li>
+      <li><strong>Targeting internships at the intersection.</strong> Data roles in banks, asset managers, or fintech companies. Not "data scientist" roles where I'd be building recommendation engines — roles where the output is a decision, not a prediction.</li>
+    </ul>
+
+    <p>
+      I'm not sure this will work. The finance industry isn't exactly looking for people whose main qualification is "built a Databricks pipeline at an aircraft factory." But I think the combination of real data engineering experience, an understanding of how data moves through organisations, and a deliberate focus on the decision layer is a more interesting story than "I know PyTorch."
+    </p>
+
+    <p>
+      At worst, I'll end up as a data engineer at a bank who reads too many annual reports. There are worse fates.
+    </p>
+
+    </div>
+
+  <div class="post-nav">
+    <span>Next: <a href="/blog/why-i-read-annual-reports.html">Why I Read Annual Reports</a></span>
+  </div>
+
+  <div class="footer">&copy; 2025–2026 Clay Liang &middot; <a href="https://tuixue.nl">tuixue.nl</a></div>
+</div>
+<script src="/assets/theme.js"></script>
+</body>
+</html>

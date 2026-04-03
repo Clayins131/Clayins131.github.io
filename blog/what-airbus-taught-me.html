@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="I went to Airbus expecting to build models. Instead I learned that the hardest part of data work has nothing to do with data.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="What an Aircraft Factory Taught Me About Data — Clay Liang">
+  <meta property="og:description" content="I went to Airbus expecting to build models. Instead I learned that the hardest part of data work has nothing to do with data.">
+  <meta property="og:url" content="https://tuixue.nl/blog/what-airbus-taught-me.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Clay Liang">
+  <meta name="twitter:card" content="summary">
+
+  <title>What an Aircraft Factory Taught Me About Data — Clay Liang</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="/assets/shared.css">
+  <link rel="stylesheet" href="/assets/blog-post.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="/blog/"><i class="fas fa-arrow-left"></i> All Posts</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+  </div>
+
+  <div class="post-header">
+    <h1 class="post-title">What an Aircraft Factory Taught Me About Data</h1>
+    <div class="post-meta">June 2025 <span class="tag">internship</span> <span class="tag">airbus</span> <span class="read-time">5 min read</span></div>
+  </div>
+
+  <div class="post-body">
+
+
+    <p>
+      When I accepted the Airbus internship, I imagined myself building machine learning models on aviation data. Neural networks predicting maintenance failures. That kind of thing.
+    </p>
+
+    <p>
+      What I actually did: wrote SQL queries, wrestled with Apps Script, built charts in Power BI, and spent a surprising amount of time deciding whether a bar chart or a line chart was the right way to show decarbonisation progress to a room of engineers who had about ninety seconds of patience for data.
+    </p>
+
+    <p>
+      It was the most educational three months of my life.
+    </p>
+
+    <h2>Lesson 1: Nobody cares about your pipeline</h2>
+
+    <p>
+      I built a Databricks pipeline that processed over 10TB of operational data. It was genuinely complex work — partition strategies, memory management, the whole thing. I was proud of it.
+    </p>
+
+    <p>
+      Not a single person outside my immediate team ever asked about it. What they cared about was the slide deck that came out the other end. The three charts. The one-sentence summary. The pipeline was infrastructure; the output was the product.
+    </p>
+
+    <blockquote>
+      In school, the model is the deliverable. In industry, the model is plumbing. The deliverable is the decision it enables.
+    </blockquote>
+
+    <p>
+      This sounds obvious written down. It was not obvious to me at 8am on a Monday, wondering why my beautifully optimised notebook wasn't getting the reaction I expected.
+    </p>
+
+    <h2>Lesson 2: The chart colour argument is not trivial</h2>
+
+    <p>
+      I spent an entire afternoon arguing with a colleague about whether to use green or blue for a sustainability metric. At the time I thought it was absurd. In retrospect, they were right to push back.
+    </p>
+
+    <p>
+      The chart was going to the site director. Green implied "we're doing well." Blue was neutral. The data was ambiguous — some metrics were improving, others weren't. Choosing green would have been editorialising. Choosing blue kept the conversation open.
+    </p>
+
+    <p>
+      Visualisation choices are editorial choices. Every colour, every axis range, every decision to include or exclude a data point shapes the story. I knew this intellectually from coursework. Airbus is where I started to feel it.
+    </p>
+
+    <h2>Lesson 3: Cross-functional means cross-language</h2>
+
+    <p>
+      My team sat between engineering, sustainability, and operations. Each group had different vocabularies, different KPIs they cared about, and different definitions of "good." The sustainability team measured carbon per aircraft. Engineering measured cycle time. Operations measured throughput.
+    </p>
+
+    <p>
+      My job, increasingly, was translation. Take the same underlying data and present it three different ways for three different audiences. Same truth, different frames.
+    </p>
+
+    <p>
+      This is the skill no technical curriculum teaches. Not "communication skills" in the vague sense that career advisors mean. Specifically: the ability to take one dataset and produce three different honest stories from it, each optimised for a different decision-maker.
+    </p>
+
+    <h2>Lesson 4: The 40% wasn't the point</h2>
+
+    <p>
+      I reduced data processing time by 40% through pipeline optimisation. It's a nice number. It's on my CV. But the actual value wasn't the speed improvement — it was that the faster pipeline meant we could regenerate dashboards before the Monday meeting instead of after. The data went from being a retrospective artefact to a real-time input.
+    </p>
+
+    <p>
+      Technical improvements matter when they change the timing or the form of information reaching decision-makers. A 40% speedup that doesn't change anyone's workflow is an engineering exercise. A 40% speedup that moves your dashboard from "interesting historical reference" to "thing we look at before deciding" is a business outcome.
+    </p>
+
+    <h2>What I took away</h2>
+
+    <p>
+      Airbus taught me that the interesting problems in data aren't in the middle of the stack. They're at the edges — where raw data enters the system, and where processed information exits into someone's brain. The ingestion layer and the presentation layer. Everything in between is, in a sense, commodity.
+    </p>
+
+    <p>
+      That's why I'm increasingly interested in finance. Financial services is an industry where the gap between data and decisions is enormous, where the presentation layer is literally worth billions, and where the people consuming the data are sophisticated enough to notice when you get it wrong.
+    </p>
+
+    <p>
+      An aircraft factory was a good place to learn this. A trading floor or a risk management team might be the place to apply it.
+    </p>
+
+    </div>
+
+  <div class="post-nav" style="display: flex; justify-content: space-between;">
+    <span>Prev: <a href="/blog/why-i-read-annual-reports.html">Why I Read Annual Reports</a></span>
+    <span>Next: <a href="/blog/databricks-pipeline-notes.html">Databricks Pipeline Notes</a></span>
+  </div>
+
+  <div class="footer">&copy; 2025–2026 Clay Liang &middot; <a href="https://tuixue.nl">tuixue.nl</a></div>
+</div>
+<script src="/assets/theme.js"></script>
+</body>
+</html>

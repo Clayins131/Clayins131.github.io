@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Clay Liang — Projects. Things I've built because I needed them.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Projects — Clay Liang">
+  <meta property="og:description" content="Things I've built because I needed them.">
+  <meta property="og:url" content="https://tuixue.nl/projects/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Clay Liang">
+  <meta name="twitter:card" content="summary">
+
+  <title>Projects — Clay Liang</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="/assets/shared.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .wrap { max-width: 720px; }
+    h1 { font-size: 28px; font-weight: normal; margin-bottom: 6px; }
+    .desc { color: var(--text3); font-size: 14px; margin-bottom: 32px; }
+    .proj { margin-bottom: 32px; padding-bottom: 28px; border-bottom: 1px solid var(--border-light); }
+    .proj:last-of-type { border-bottom: none; }
+    .proj h2 { font-size: 20px; font-weight: normal; margin-bottom: 4px; }
+    .proj .meta { font-size: 12px; color: var(--text3); font-family: -apple-system, sans-serif; margin-bottom: 10px; }
+    .proj .meta a { color: var(--link); }
+    .proj p { color: var(--text2); margin-bottom: 10px; font-size: 14.5px; }
+    .proj .tech { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; }
+    .tag { font-size: 10.5px; }
+    .proj .why {
+      background: var(--card); border: 1px solid var(--border-light);
+      border-radius: 8px; padding: 10px 12px;
+      font-size: 13px; color: var(--text2); margin-top: 10px;
+      line-height: 1.6; font-family: -apple-system, sans-serif;
+    }
+    .proj .why strong { color: var(--text); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="/"><i class="fas fa-arrow-left"></i> Clay Liang</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+  </div>
+
+  <h1>Projects</h1>
+  <p class="desc">Most of these exist because I needed something and the available options were either overkill or didn't exist.</p>
+
+  <div class="proj">
+    <h2>💱 Fin Tools</h2>
+    <div class="meta"><a href="/fintools/">tuixue.nl/fintools</a> · 2025</div>
+    <p>Nine financial tools in a single HTML file: live FX with 30-day sparklines, crypto prices, US stock quotes, real inflation data by country, DCF valuation, compound interest, loan/mortgage, stock return, and purchasing power calculators. Plus an <a href="/fintools/asml.html">ASML tracker</a> that plots the live price against my own DCF range.</p>
+    <p>No sign-up, no backend, no tracking. Four live APIs (ECB, CoinGecko, Alpha Vantage, World Bank), all client-side. The kind of financial toolkit I wanted as a student reading annual reports for the first time.</p>
+    <div class="tech"><span class="tag">HTML</span><span class="tag">JavaScript</span><span class="tag">CoinGecko API</span><span class="tag">Alpha Vantage</span><span class="tag">World Bank API</span><span class="tag">Frankfurter API</span></div>
+  </div>
+
+  <div class="proj">
+    <h2>🎥 Video Annotation Tool</h2>
+    <div class="meta"><a href="https://github.com/Clayins131/video-annotator">GitHub</a> · 2024</div>
+    <p>Browser-based video labeling tool. Frame-by-frame navigation, timestamped multi-class annotations, CSV export. Built for the Tsinghua lab when CVAT and Labelbox turned out to be absurdly heavy for what we needed: timestamps and labels, not bounding boxes.</p>
+    <div class="why"><strong>Lesson:</strong> First version had 12 buttons. The version people used had 4. Building for researchers is UX education you can't get from a course.</div>
+    <div class="tech"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">OpenCV</span><span class="tag">JavaScript</span></div>
+  </div>
+
+  <div class="proj">
+    <h2>🎵 Offline Music Recommendation</h2>
+    <div class="meta"><a href="https://github.com/Clayins131/Offline-Music-Recommendation-System">GitHub</a> · 2024</div>
+    <p>End-to-end ML pipeline that recommends music based on detected mood — speech recognition → sentiment analysis → content-based filtering → local playback. The constraint: entirely offline, zero API calls, everything runs on one machine. Not production-grade, but a useful exercise in building without a safety net.</p>
+    <div class="tech"><span class="tag">Python</span><span class="tag">Speech Recognition</span><span class="tag">Sentiment Analysis</span></div>
+  </div>
+
+  <div class="proj">
+    <h2>⚡ csvtool</h2>
+    <div class="meta"><a href="https://github.com/Clayins131/csvtool">GitHub</a> · 2024</div>
+    <p>C++ CSV parser. Exists because pandas choked on an 8GB file during a research task. Memory-mapped I/O, zero-copy parsing. Finishes in ~40 seconds what pandas does in ~3 minutes. Small project, but apparently "I wrote a C++ parser because Python was too slow" makes for a good interview story.</p>
+    <div class="tech"><span class="tag">C++</span></div>
+  </div>
+
+  <div class="proj">
+    <h2>🌍 AI-Eco</h2>
+    <div class="meta"><a href="https://github.com/Clayins131/AI-Eco">GitHub</a> · 2025</div>
+    <p>Interactive visualisation of AI's environmental cost — energy, water, e-waste — built for a Leiden interaction design course. Users compare models via Chart.js dashboards and a Three.js 3D landscape that degrades as you increase AI usage. Melodramatic, but it got the point across.</p>
+    <div class="tech"><span class="tag">HTML</span><span class="tag">JavaScript</span><span class="tag">Three.js</span><span class="tag">Chart.js</span></div>
+  </div>
+
+  <div class="proj">
+    <h2>🌐 tuixue.nl</h2>
+    <div class="meta"><a href="https://tuixue.nl">tuixue.nl</a> · 2025</div>
+    <p>This site. Static HTML, GitHub Pages, custom domain. No frameworks, no build step, no dependencies. Fourteen files, 189KB total, loads in under a second anywhere. I understand every line of code because I wrote every line of code.</p>
+    <div class="tech"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">GitHub Pages</span></div>
+  </div>
+
+  <div class="footer">&copy; 2025–2026 Clay Liang &middot; <a href="https://tuixue.nl">tuixue.nl</a></div>
+</div>
+<script src="/assets/theme.js"></script>
+</body>
+</html>

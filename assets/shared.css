@@ -1,0 +1,135 @@
+/* ── shared.css — tuixue.nl ── */
+
+/* ── tokens ── */
+:root {
+  --bg: #ffffff;
+  --text: #222;
+  --text2: #555;
+  --text3: #999;
+  --link: #1772d0;
+  --link-hover: #f09228;
+  --border: #ddd;
+  --border-light: #eee;
+  --card: #fafafa;
+  --tag-bg: #f0f0f0;
+  --highlight: #fffbe6;
+  --green: #16a34a;
+  --red: #dc2626;
+  --tip: #f0f7ff;
+  --tipb: #c4ddf5;
+  --code-bg: #f5f5f5;
+}
+[data-theme="dark"] {
+  --bg: #111;
+  --text: #ddd;
+  --text2: #aaa;
+  --text3: #666;
+  --link: #6db3f2;
+  --link-hover: #f09228;
+  --border: #333;
+  --border-light: #222;
+  --card: #1a1a1a;
+  --tag-bg: #252525;
+  --highlight: #1a1800;
+  --green: #4ade80;
+  --red: #f87171;
+  --tip: #131c25;
+  --tipb: #1e3a5f;
+  --code-bg: #1a1a1a;
+}
+
+/* ── reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  transition: background 0.3s, color 0.3s;
+  padding: 30px 20px 60px;
+}
+
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hover); }
+::selection { background: var(--link); color: #fff; }
+
+.wrap { max-width: 820px; margin: 0 auto; }
+
+/* ── topbar ── */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 36px;
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.topbar .back { color: var(--text2); }
+.topbar .back:hover { color: var(--link-hover); }
+.topbar-right {
+  display: flex; gap: 14px; align-items: center;
+}
+.topbar-right a { color: var(--text3); }
+.topbar-right a:hover { color: var(--link-hover); }
+
+/* ── theme toggle ── */
+.theme-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text3);
+  border-radius: 6px;
+  width: 30px; height: 30px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  transition: 0.2s;
+}
+.theme-btn:hover { border-color: var(--link); color: var(--link); }
+
+/* ── tags ── */
+.tag {
+  font-family: -apple-system, sans-serif;
+  font-size: 11px; font-weight: 600;
+  background: var(--tag-bg); color: var(--text3);
+  padding: 2px 8px; border-radius: 4px;
+}
+
+/* ── footer ── */
+.footer {
+  margin-top: 44px; padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 11.5px; color: var(--text3); text-align: center;
+  font-family: -apple-system, sans-serif;
+}
+.footer a { color: var(--text3); }
+
+/* ── aside / quote block ── */
+.aside {
+  background: var(--highlight);
+  border-left: 3px solid var(--link-hover);
+  padding: 10px 14px;
+  margin: 16px 0;
+  font-size: 14px;
+  color: var(--text2);
+  border-radius: 0 6px 6px 0;
+}
+.aside em { font-style: italic; }
+
+/* ── info box ── */
+.ex {
+  background: var(--tip);
+  border: 1px solid var(--tipb);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 10px 0 16px;
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+  font-family: -apple-system, sans-serif;
+}
+.ex summary { cursor: pointer; font-weight: 600; color: var(--link); font-size: 13px; }
+.ex summary:hover { color: var(--link-hover); }
+.ex p { margin-top: 8px; }

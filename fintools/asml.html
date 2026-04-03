@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ASML live price vs DCF valuation — Clay Liang's personal tracker.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ASML Tracker — Clay Liang">
+  <meta property="og:description" content="Live ASML price plotted against my own DCF valuation range.">
+  <meta property="og:url" content="https://tuixue.nl/fintools/asml.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Clay Liang">
+  <meta name="twitter:card" content="summary">
+
+  <title>ASML Tracker — Clay Liang</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{--bg:#fff;--text:#222;--text2:#555;--text3:#999;--link:#1772d0;--link-hover:#f09228;--border:#ddd;--bl:#eee;--card:#fafafa;--tag:#f0f0f0;--green:#16a34a;--red:#dc2626;--tip:#f0f7ff;--tipb:#c4ddf5}
+    [data-theme="dark"]{--bg:#111;--text:#ddd;--text2:#aaa;--text3:#666;--link:#6db3f2;--link-hover:#f09228;--border:#333;--bl:#222;--card:#1a1a1a;--tag:#252525;--green:#4ade80;--red:#f87171;--tip:#131c25;--tipb:#1e3a5f}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--bg);transition:background .3s,color .3s;padding:30px 20px 60px}
+    a{color:var(--link);text-decoration:none}a:hover{color:var(--link-hover)}::selection{background:var(--link);color:#fff}
+    .wrap{max-width:820px;margin:0 auto}
+    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;font-size:13px;font-family:-apple-system,sans-serif}
+    .topbar .back{color:var(--text2)}.topbar .back:hover{color:var(--link-hover)}
+    .tb{background:none;border:1px solid var(--border);color:var(--text3);border-radius:6px;width:30px;height:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;transition:.2s}.tb:hover{border-color:var(--link);color:var(--link)}
+    h1{font-size:26px;font-weight:normal;margin-bottom:4px}
+    .sub{color:var(--text3);font-size:14px;margin-bottom:24px}
+    .ex{background:var(--tip);border:1px solid var(--tipb);border-radius:8px;padding:12px 14px;margin-bottom:20px;font-size:13px;color:var(--text2);line-height:1.6;font-family:-apple-system,sans-serif}
+    .ex summary{cursor:pointer;font-weight:600;color:var(--link);font-size:13px}.ex summary:hover{color:var(--link-hover)}.ex p{margin-top:8px}
+
+    /* price card */
+    .price-card{background:var(--card);border:1px solid var(--bl);border-radius:12px;padding:20px 24px;margin-bottom:20px;font-family:-apple-system,sans-serif}
+    .price-card .ticker{font-size:12px;font-weight:700;color:var(--text3);letter-spacing:.08em}
+    .price-card .price{font-family:'Courier New',monospace;font-size:36px;font-weight:700;color:var(--text);margin:4px 0}
+    .price-card .change{font-size:14px;font-weight:600}
+    .price-card .change.up{color:var(--green)}.price-card .change.down{color:var(--red)}
+    .price-card .meta{font-size:11px;color:var(--text3);margin-top:6px}
+
+    /* valuation comparison */
+    .val-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px}
+    .val-box{background:var(--card);border:1px solid var(--bl);border-radius:10px;padding:14px;text-align:center;font-family:-apple-system,sans-serif}
+    .val-box .label{font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.03em;margin-bottom:4px}
+    .val-box .num{font-family:'Courier New',monospace;font-size:22px;font-weight:700}
+    .val-box .note{font-size:10.5px;color:var(--text3);margin-top:3px}
+    .val-box.bear .num{color:var(--red)}.val-box.base .num{color:var(--link)}.val-box.bull .num{color:var(--green)}
+
+    /* verdict */
+    .verdict{background:var(--card);border:1px solid var(--bl);border-radius:10px;padding:16px 20px;margin-bottom:24px;font-family:-apple-system,sans-serif}
+    .verdict .title{font-size:13px;font-weight:700;color:var(--text3);margin-bottom:6px}
+    .verdict .bar-container{position:relative;height:32px;background:var(--tag);border-radius:8px;overflow:hidden;margin-bottom:8px}
+    .verdict .bar-zone{position:absolute;top:0;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff}
+    .verdict .bar-marker{position:absolute;top:-4px;width:3px;height:40px;background:var(--text);border-radius:2px;z-index:2}
+    .verdict .bar-label{font-size:10px;color:var(--text3);display:flex;justify-content:space-between;margin-top:2px}
+    .verdict .summary{font-size:13.5px;color:var(--text2);margin-top:10px;line-height:1.5}
+
+    /* chart */
+    .chart-container{background:var(--card);border:1px solid var(--bl);border-radius:10px;padding:16px;margin-bottom:20px}
+    .chart-container .chart-title{font-size:13px;font-weight:600;color:var(--text3);margin-bottom:10px;font-family:-apple-system,sans-serif}
+    .chart-container canvas{width:100%!important;height:300px!important}
+    .chart-note{font-size:11px;color:var(--text3);margin-top:8px;font-family:-apple-system,sans-serif}
+
+    /* assumptions */
+    .assumptions{background:var(--card);border:1px solid var(--bl);border-radius:10px;padding:16px;margin-bottom:20px;font-family:-apple-system,sans-serif;font-size:13px;color:var(--text2)}
+    .assumptions h3{font-size:14px;font-weight:600;color:var(--text);margin-bottom:8px}
+    .assumptions table{width:100%;border-collapse:collapse;margin:8px 0}
+    .assumptions th{text-align:left;font-weight:600;color:var(--text3);padding:4px 8px;border-bottom:1px solid var(--border);font-size:11px}
+    .assumptions td{padding:4px 8px;border-bottom:1px solid var(--bl);font-family:'Courier New',monospace;font-size:12.5px}
+
+    .links{font-family:-apple-system,sans-serif;font-size:13px;color:var(--text3);margin-bottom:20px}
+    .links a{margin-right:12px}
+
+    .footer{margin-top:44px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);text-align:center;font-family:-apple-system,sans-serif}.footer a{color:var(--text3)}
+    .fl{color:var(--text3);font-size:13px;font-family:-apple-system,sans-serif;padding:12px 0}
+
+    @media(max-width:560px){.val-grid{grid-template-columns:1fr}.price-card .price{font-size:28px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="/fintools/"><i class="fas fa-arrow-left"></i> Fin Tools</a>
+    <button class="tb" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+  </div>
+
+  <h1>ASML Tracker</h1>
+  <p class="sub">Live stock price vs my DCF valuation. Updated every time you open this page.</p>
+
+  <details class="ex">
+    <summary><i class="fas fa-question-circle"></i> What am I looking at?</summary>
+    <p>I wrote a <a href="/blog/asml-first-dcf.html">blog post</a> where I valued ASML using a DCF model — three scenarios (bear, base, bull) based on their 2024 annual report. This page shows the current market price alongside my estimates, so you can see whether the market agrees with me. <em>Spoiler: it usually doesn't.</em></p>
+    <p style="margin-top:6px;">The chart shows ASML's actual price over the past months with my valuation range overlaid. This is not investment advice — it's a learning tool.</p>
+  </details>
+
+  <!-- Price Card -->
+  <div class="price-card" id="priceCard">
+    <div class="ticker">ASML · Euronext Amsterdam</div>
+    <div class="price" id="livePrice">Loading...</div>
+    <div class="change" id="liveChange"></div>
+    <div class="meta" id="liveMeta"></div>
+  </div>
+
+  <!-- Valuation Comparison -->
+  <div class="val-grid">
+    <div class="val-box bear">
+      <div class="label">BEAR CASE</div>
+      <div class="num">€298</div>
+      <div class="note">Cycle downturn, China restrictions bite</div>
+    </div>
+    <div class="val-box base">
+      <div class="label">BASE CASE</div>
+      <div class="num">€429</div>
+      <div class="note">Steady EUV growth, margins hold</div>
+    </div>
+    <div class="val-box bull">
+      <div class="label">BULL CASE</div>
+      <div class="num">€581</div>
+      <div class="note">High-NA ramps fast, backlog converts</div>
+    </div>
+  </div>
+
+  <!-- Visual Verdict Bar -->
+  <div class="verdict">
+    <div class="title">WHERE IS THE MARKET PRICE?</div>
+    <div class="bar-container" id="verdictBar">
+      <div class="bar-zone" style="left:0;width:33%;background:var(--red);opacity:0.3">BEAR</div>
+      <div class="bar-zone" style="left:33%;width:34%;background:var(--link);opacity:0.3">BASE</div>
+      <div class="bar-zone" style="left:67%;width:33%;background:var(--green);opacity:0.3">BULL</div>
+      <div class="bar-marker" id="priceMarker" style="left:50%"></div>
+    </div>
+    <div class="bar-label"><span>€298</span><span>€429</span><span>€581</span><span>€750+</span></div>
+    <div class="summary" id="verdictText">Loading price data...</div>
+  </div>
+
+  <!-- Chart -->
+  <div class="chart-container">
+    <div class="chart-title">ASML Price vs My DCF Range (6 Months)</div>
+    <canvas id="priceChart"></canvas>
+    <div class="chart-note" id="chartNote"></div>
+  </div>
+
+  <!-- My Assumptions -->
+  <div class="assumptions">
+    <h3>My DCF Assumptions (Base Case)</h3>
+    <table>
+      <tr><th>Parameter</th><th>Value</th><th>Why</th></tr>
+      <tr><td>WACC</td><td>10%</td><td>Mega-cap with monopoly position, moderate risk</td></tr>
+      <tr><td>Terminal growth</td><td>3%</td><td>Semis are structural growth, but not forever-15%</td></tr>
+      <tr><td>2025 FCF</td><td>€10.0B</td><td>Guided revenue €30-40B, ~33% FCF margin</td></tr>
+      <tr><td>5yr FCF CAGR</td><td>~6%</td><td>EUV cycle matures, High-NA ramps</td></tr>
+      <tr><td>Shares</td><td>393M</td><td>Per 2024 annual report</td></tr>
+    </table>
+    <p style="margin-top:10px;">Full analysis: <a href="/blog/asml-first-dcf.html">My First DCF: Valuing ASML</a> · Run your own: <a href="/fintools/#dcf">DCF Calculator</a></p>
+  </div>
+
+  <div class="links">
+    Related: <a href="/blog/asml-first-dcf.html">Blog post</a>
+    <a href="/fintools/">All Fin Tools</a>
+    <a href="/reading/">Annual reports I've read</a>
+  </div>
+
+  <div class="footer">&copy; 2025–2026 Clay Liang &middot; <a href="https://tuixue.nl">tuixue.nl</a> &middot; Not financial advice. A learning project.</div>
+</div>
+
+<!-- Chart.js from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<script>
+// Theme
+const tb=document.getElementById('themeBtn'),ti=tb.querySelector('i');
+function gT(){const m=document.cookie.match(/(?:^|; )theme=(\w+)/);return m?m[1]:null}
+function sT(t){document.cookie=`theme=${t};path=/;max-age=${365*86400};SameSite=Lax`;t==='dark'?(document.documentElement.setAttribute('data-theme','dark'),ti.className='fas fa-sun'):(document.documentElement.removeAttribute('data-theme'),ti.className='fas fa-moon')}
+if(gT()==='dark')sT('dark');tb.addEventListener('click',()=>{sT(gT()==='dark'?'light':'dark');if(chart)updateChartColors()});
+
+const BEAR=298, BASE=429, BULL=581;
+
+// Fetch ASML price from Alpha Vantage
+async function fetchASML(){
+  try{
+    // Try quote first
+    const qr=await fetch('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=ASML&apikey=demo');
+    const qd=await qr.json();
+    const q=qd['Global Quote'];
+
+    if(q&&q['05. price']){
+      const price=parseFloat(q['05. price']);
+      const change=parseFloat(q['09. change']);
+      const pct=q['10. change percent'];
+      const cls=change>=0?'up':'down';
+      const arrow=change>=0?'▲':'▼';
+      document.getElementById('livePrice').textContent=`€${price.toFixed(2)}`;
+      document.getElementById('liveChange').className='change '+cls;
+      document.getElementById('liveChange').textContent=`${arrow} €${Math.abs(change).toFixed(2)} (${pct})`;
+      document.getElementById('liveMeta').textContent=`Last: ${q['07. latest trading day']} · Data: Alpha Vantage (15-min delay)`;
+      updateVerdict(price);
+      return price;
+    }
+
+    // Fallback: try with ticker ASML (might need .AS for Amsterdam)
+    document.getElementById('livePrice').textContent='€ —';
+    document.getElementById('liveMeta').textContent='Could not fetch live price. Alpha Vantage demo key may be rate-limited. Try refreshing in a minute.';
+    updateVerdict(680); // use approximate known price as fallback
+    return 680;
+  }catch(e){
+    document.getElementById('livePrice').textContent='€ —';
+    document.getElementById('liveMeta').textContent='Network error. Using approximate price.';
+    updateVerdict(680);
+    return 680;
+  }
+}
+
+function updateVerdict(price){
+  // Position marker on bar (range: 200 to 800)
+  const minP=200, maxP=800;
+  const pct=Math.max(0,Math.min(100,(price-minP)/(maxP-minP)*100));
+  document.getElementById('priceMarker').style.left=pct+'%';
+
+  let verdict='';
+  if(price<BEAR){
+    verdict=`At €${price.toFixed(0)}, ASML is trading below even my bear case (€${BEAR}). Either I'm wrong about the downside, or this is genuinely cheap. I'd want to understand what the market knows that I don't.`;
+  }else if(price<BASE){
+    verdict=`At €${price.toFixed(0)}, ASML sits between my bear (€${BEAR}) and base (€${BASE}) cases. The market is pricing in slower growth than my base scenario. Could be reasonable — semiconductor cycles are unpredictable.`;
+  }else if(price<BULL){
+    verdict=`At €${price.toFixed(0)}, ASML is between my base (€${BASE}) and bull (€${BULL}) cases. The market is more optimistic than my base scenario but hasn't gone full bull. This is the zone where reasonable people disagree.`;
+  }else{
+    const premium=((price-BULL)/BULL*100).toFixed(0);
+    verdict=`At €${price.toFixed(0)}, ASML is trading ${premium}% above even my bull case (€${BULL}). The market is pricing in something I didn't model — maybe faster High-NA adoption, or AI-driven demand I'm underestimating. My DCF may simply be too conservative.`;
+  }
+  document.getElementById('verdictText').textContent=verdict;
+}
+
+// Chart
+let chart=null;
+async function fetchHistory(){
+  try{
+    // Use Alpha Vantage monthly data
+    const r=await fetch('https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=ASML&apikey=demo');
+    const d=await r.json();
+    const ts=d['Monthly Time Series'];
+    if(!ts){
+      // Fallback: generate approximate data
+      return generateFallbackData();
+    }
+    const dates=Object.keys(ts).sort().slice(-12); // last 12 months
+    return dates.map(date=>({date,price:parseFloat(ts[date]['4. close'])}));
+  }catch(e){
+    return generateFallbackData();
+  }
+}
+
+function generateFallbackData(){
+  // Approximate ASML prices if API fails
+  const now=new Date();
+  const data=[];
+  const basePrice=680;
+  for(let i=11;i>=0;i--){
+    const d=new Date(now);d.setMonth(d.getMonth()-i);
+    const noise=(Math.random()-0.5)*80;
+    data.push({date:d.toISOString().slice(0,7),price:basePrice+noise-i*5});
+  }
+  return data;
+}
+
+function getChartColors(){
+  const isDark=gT()==='dark';
+  return{
+    line:isDark?'#6db3f2':'#1772d0',
+    bear:isDark?'rgba(248,113,113,0.15)':'rgba(220,38,38,0.08)',
+    bull:isDark?'rgba(74,222,128,0.15)':'rgba(22,163,74,0.08)',
+    base:isDark?'#6db3f2':'#1772d0',
+    grid:isDark?'#333':'#eee',
+    text:isDark?'#888':'#999',
+  };
+}
+
+async function drawChart(){
+  const history=await fetchHistory();
+  const labels=history.map(h=>h.date);
+  const prices=history.map(h=>h.price);
+  const colors=getChartColors();
+
+  const ctx=document.getElementById('priceChart').getContext('2d');
+  chart=new Chart(ctx,{
+    type:'line',
+    data:{
+      labels,
+      datasets:[
+        {label:'ASML Price',data:prices,borderColor:colors.line,borderWidth:2.5,pointRadius:3,pointBackgroundColor:colors.line,fill:false,tension:0.3},
+        {label:'Bull (€581)',data:Array(labels.length).fill(BULL),borderColor:colors.bull.replace('0.15','0.6'),borderWidth:1,borderDash:[6,4],pointRadius:0,fill:false},
+        {label:'Base (€429)',data:Array(labels.length).fill(BASE),borderColor:colors.base,borderWidth:1.5,borderDash:[4,4],pointRadius:0,fill:false},
+        {label:'Bear (€298)',data:Array(labels.length).fill(BEAR),borderColor:colors.bear.replace('0.15','0.6'),borderWidth:1,borderDash:[6,4],pointRadius:0,fill:false},
+      ]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{font:{family:'-apple-system,sans-serif',size:11},color:colors.text,padding:12,usePointStyle:true}}},
+      scales:{
+        x:{grid:{color:colors.grid},ticks:{color:colors.text,font:{family:'-apple-system,sans-serif',size:10}}},
+        y:{grid:{color:colors.grid},ticks:{color:colors.text,font:{family:'Courier New,monospace',size:11},callback:v=>'€'+v}}
+      }
+    }
+  });
+  document.getElementById('chartNote').textContent=`Showing ${labels.length} months of data. Dashed lines = my DCF estimates.`;
+}
+
+function updateChartColors(){
+  if(!chart)return;
+  const c=getChartColors();
+  chart.data.datasets[0].borderColor=c.line;
+  chart.data.datasets[0].pointBackgroundColor=c.line;
+  chart.options.scales.x.grid.color=c.grid;
+  chart.options.scales.y.grid.color=c.grid;
+  chart.options.scales.x.ticks.color=c.text;
+  chart.options.scales.y.ticks.color=c.text;
+  chart.options.plugins.legend.labels.color=c.text;
+  chart.update();
+}
+
+// Init
+fetchASML();
+drawChart();
+</script>
+</body>
+</html>

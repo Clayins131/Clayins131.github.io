@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="I used my own DCF calculator to value ASML from scratch — three scenarios, real numbers, and every assumption laid bare.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="My First DCF: Valuing ASML as a Leiden Student — Clay Liang">
+  <meta property="og:description" content="I used my own DCF calculator to value ASML from scratch — three scenarios, real numbers, and every assumption laid bare.">
+  <meta property="og:url" content="https://tuixue.nl/blog/asml-first-dcf.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Clay Liang">
+  <meta name="twitter:card" content="summary">
+
+  <title>My First DCF: Valuing ASML as a Leiden Student — Clay Liang</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="/assets/shared.css">
+  <link rel="stylesheet" href="/assets/blog-post.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="/blog/"><i class="fas fa-arrow-left"></i> All Posts</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+  </div>
+
+  <div class="post-header">
+    <h1 class="post-title">My First DCF: Valuing ASML as a Leiden Student</h1>
+    <div class="post-meta">August 2025 <span class="tag">fintech</span> <span class="tag">valuation</span> <span class="read-time">4 min read</span></div>
+  </div>
+
+  <div class="post-body">
+
+
+    <p>
+      ASML is headquartered 45 minutes from my university in Leiden. Their building is visible from the train. It felt like the right company to practice my first DCF valuation on — a company I can literally see from public transport, that happens to be one of the most important businesses in the world.
+    </p>
+
+    <p>
+      This is not investment advice. I'm a data science student, not an analyst. But walking through a DCF from scratch — with real numbers, real assumptions, and real uncertainty — taught me more about finance than any textbook chapter. Here's the process, including every place I was unsure and every assumption I had to make.
+    </p>
+
+    <h2>Step 1: Get the numbers</h2>
+
+    <p>
+      ASML's 2024 annual report gives us the raw inputs. I pulled these from their consolidated financial statements:
+    </p>
+
+    <ul>
+      <li><strong>2024 Revenue:</strong> ~€28.3 billion</li>
+      <li><strong>2024 Free Cash Flow:</strong> ~€9.2 billion</li>
+      <li><strong>Shares outstanding:</strong> ~393 million</li>
+      <li><strong>Current share price:</strong> ~€680 (at time of writing)</li>
+    </ul>
+
+    <p>
+      The FCF number is the important one. That's the cash left over after all expenses, taxes, and capital expenditures. It's the money that theoretically belongs to shareholders.
+    </p>
+
+    <h2>Step 2: Project future cash flows</h2>
+
+    <p>
+      This is where the art starts. ASML has guided for €30-40B in revenue by 2025, and the EUV/High-NA cycle suggests strong growth through 2028. But semiconductor cycles are brutal — what goes up comes down.
+    </p>
+
+    <p>
+      I modeled three scenarios, because pretending you know the future with one number is dishonest:
+    </p>
+
+    <table>
+      <tr><th>Year</th><th>Bear ($B)</th><th>Base ($B)</th><th>Bull ($B)</th></tr>
+      <tr><td>2025</td><td>8.5</td><td>10.0</td><td>11.5</td></tr>
+      <tr><td>2026</td><td>8.0</td><td>11.5</td><td>14.0</td></tr>
+      <tr><td>2027</td><td>7.5</td><td>12.5</td><td>16.0</td></tr>
+      <tr><td>2028</td><td>8.0</td><td>13.0</td><td>17.0</td></tr>
+      <tr><td>2029</td><td>8.5</td><td>13.5</td><td>17.5</td></tr>
+    </table>
+
+    <p>
+      The bear case assumes the AI capex cycle cools and China restrictions bite harder. The bull case assumes High-NA EUV ramps faster than expected and ASML's backlog converts at higher margins.
+    </p>
+
+    <h2>Step 3: Pick a discount rate</h2>
+
+    <p>
+      The discount rate (WACC) is supposed to represent the return an investor demands for the risk of owning this company. For a mega-cap with a monopoly-like position, something in the 9-11% range feels reasonable. I used <strong>10%</strong>.
+    </p>
+
+    <p>
+      For terminal growth (how fast the company grows forever after year 5), I used <strong>3%</strong>. ASML isn't going to grow at 15% forever, but it's also not going to stagnate — semiconductors are a long-term growth industry.
+    </p>
+
+    <h2>Step 4: Run the numbers</h2>
+
+    <p>
+      I plugged the base case into my <a href="/fintools/#dcf">DCF calculator</a> (yes, the one on this site). Here's what came out:
+    </p>
+
+    <table>
+      <tr><th>Year</th><th>FCF (€B)</th><th>Discount Factor</th><th>PV (€B)</th></tr>
+      <tr><td>2025</td><td>10.0</td><td>0.9091</td><td>9.1</td></tr>
+      <tr><td>2026</td><td>11.5</td><td>0.8264</td><td>9.5</td></tr>
+      <tr><td>2027</td><td>12.5</td><td>0.7513</td><td>9.4</td></tr>
+      <tr><td>2028</td><td>13.0</td><td>0.6830</td><td>8.9</td></tr>
+      <tr><td>2029</td><td>13.5</td><td>0.6209</td><td>8.4</td></tr>
+      <tr><td>Terminal</td><td>13.9</td><td>0.6209</td><td>123.4</td></tr>
+      <tr><td>Total</td><td></td><td></td><td>168.7</td></tr>
+    </table>
+
+    <p>
+      Enterprise value: <strong>~€169 billion</strong>. Per share: <strong>~€429</strong>.
+    </p>
+
+    <p>
+      Current price: ~€680. So according to my base case DCF, ASML is overvalued by about 37%.
+    </p>
+
+    <h2>Step 5: Realise why DCF is both useful and dangerous</h2>
+
+    <p>
+      Here's what this exercise actually taught me:
+    </p>
+
+    <blockquote>
+      The terminal value (€123.4B) represents 73% of the total valuation. That single number — which depends on a growth rate I essentially guessed — determines most of the outcome.
+    </blockquote>
+
+    <p>
+      If I change the terminal growth from 3% to 4%, the per-share value jumps from €429 to €528. If I drop WACC from 10% to 9%, it jumps to €563. Small changes in assumptions produce massive changes in output.
+    </p>
+
+    <p>
+      This is why Damodaran calls DCF "a tool for structured thinking, not a calculator for truth." The value isn't in the final number — it's in forcing yourself to make explicit assumptions about growth, risk, and time. Once those assumptions are visible, you can argue about them productively.
+    </p>
+
+    <h2>What I'd tell someone doing their first DCF</h2>
+
+    <ul>
+      <li><strong>Do it on a company you can physically see.</strong> It makes the numbers feel less abstract. ASML's factory is right there — I've walked past it.</li>
+      <li><strong>Run three scenarios, not one.</strong> Anyone who gives you a single DCF output is either lying or lazy. The range matters more than the point estimate.</li>
+      <li><strong>Pay attention to where the terminal value dominates.</strong> If 70%+ of your valuation comes from the terminal value, your model is basically a guess about the long-term growth rate dressed up in a spreadsheet.</li>
+      <li><strong>Compare your result to the market price.</strong> If your DCF says a stock is 50% undervalued, the most likely explanation isn't that you've found a bargain — it's that your assumptions are wrong.</li>
+    </ul>
+
+    <p>
+      You can run your own version of this analysis at <a href="/fintools/#dcf">tuixue.nl/fintools</a>. The DCF calculator there is exactly what I used for this post. Enter your own assumptions and see how the numbers change.
+    </p>
+
+    </div>
+
+  <div class="post-nav">
+    <span>Prev: <a href="/blog/bimodal-reality-of-cs.html">The Bimodal Reality of CS Careers</a></span>
+  </div>
+
+  <div class="footer">&copy; 2025–2026 Clay Liang &middot; <a href="https://tuixue.nl">tuixue.nl</a></div>
+</div>
+<script src="/assets/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Most data work never touches the documents where real decisions get recorded. Here's why I started reading 10-Ks for fun.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Why I Read Annual Reports as a Data Person — Clay Liang">
+  <meta property="og:description" content="Most data work never touches the documents where real decisions get recorded. Here's why I started reading 10-Ks for fun.">
+  <meta property="og:url" content="https://tuixue.nl/blog/why-i-read-annual-reports.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Clay Liang">
+  <meta name="twitter:card" content="summary">
+
+  <title>Why I Read Annual Reports as a Data Person — Clay Liang</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="/assets/shared.css">
+  <link rel="stylesheet" href="/assets/blog-post.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .post-body h3 { font-size: 17px; font-weight: bold; margin: 24px 0 8px; color: var(--text); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="/blog/"><i class="fas fa-arrow-left"></i> All Posts</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+  </div>
+
+  <div class="post-header">
+    <h1 class="post-title">Why I Read Annual Reports as a Data Person</h1>
+    <div class="post-meta">April 2025 <span class="tag">fintech</span> <span class="tag">thinking</span> <span class="read-time">5 min read</span></div>
+  </div>
+
+  <div class="post-body">
+
+
+    <p>
+      I started reading annual reports by accident. During my Lenovo internship, someone asked me to pull numbers for a strategy deck. I opened the company's annual report looking for a table, and ended up reading forty pages of management discussion. Not because it was exciting — most of it wasn't — but because I realised I was seeing something I'd never seen in any dataset: the reasoning behind the numbers.
+    </p>
+
+    <h2>The gap nobody talks about</h2>
+
+    <p>
+      In every data science course I've taken, the workflow looks the same: get data, clean data, build model, evaluate model. Maybe deploy it. The implicit assumption is that once you produce a good prediction, the job is done.
+    </p>
+
+    <p>
+      But at Airbus, I watched perfectly good analyses sit in shared drives for weeks because no one translated them into a format that fit the decision-making rhythm of the team. At Lenovo, the dashboards I built were only useful after I started attending the meetings where people actually argued about what to do.
+    </p>
+
+    <blockquote>
+      The bottleneck is never the model. It's the gap between what the data shows and what reaches the room where decisions happen.
+    </blockquote>
+
+    <p>
+      Annual reports sit right at that junction. They're where quantitative reality meets narrative — where a company takes its numbers and tells a story about what they mean. Reading them taught me more about how data actually gets used than any Kaggle competition ever did.
+    </p>
+
+    <h2>What I actually look for</h2>
+
+    <p>
+      I'm not a finance expert. I don't read 10-Ks like an analyst building a DCF model. I read them like a data person trying to understand how organisations think about their own numbers. A few things I pay attention to:
+    </p>
+
+    <ul>
+      <li><strong>What metrics do they choose to highlight?</strong> The KPIs a company puts on page one of its annual report tell you what management thinks matters. Compare that to what the data actually shows and you'll often find interesting gaps.</li>
+      <li><strong>How do they explain bad quarters?</strong> This is where the narrative gets creative. "Macroeconomic headwinds" is a very different story from "we lost market share because our product was late." The vagueness is itself data.</li>
+      <li><strong>What's in the risk factors?</strong> The risk section is often the most honest part of the document, precisely because it's written by lawyers trying to cover liability. Ironically, the section designed to protect the company is the one that tells you the most about it.</li>
+      <li><strong>Year-over-year language changes.</strong> When a company stops talking about something it emphasised last year, that silence is information.</li>
+    </ul>
+
+    <h2>Why this matters for fintech</h2>
+
+    <p>
+      I think the next generation of useful financial tools won't be better trading algorithms. They'll be tools that help people — analysts, managers, investors — navigate the gap between raw data and understanding. Things like:
+    </p>
+
+    <ul>
+      <li>NLP tools that track how language changes across filings over time</li>
+      <li>Dashboards that pair financial metrics with the management narrative around them</li>
+      <li>Alerts for when a company's story diverges from its numbers</li>
+    </ul>
+
+    <p>
+      None of these require frontier AI. They require someone who understands both the data and the context it lives in. That's the niche I'm trying to occupy.
+    </p>
+
+    <h2>A habit I'd recommend</h2>
+
+    <p>
+      If you work with data and have never read an annual report, pick a company you use every day and read its most recent one. Not to learn finance — to learn how people package numbers into decisions. It'll change how you think about your own dashboards.
+    </p>
+
+    <p>
+      I keep a running list of reports I've read on my <a href="/reading/">reading page</a> <em>(coming soon)</em>. It's a weird hobby. But it's the hobby that made me realise I wanted to work closer to where data meets business — which is why I'm pointing myself at finance.
+    </p>
+
+    </div>
+
+  <div class="post-nav" style="display: flex; justify-content: space-between;">
+    <span>Prev: <a href="/blog/from-loss-functions-to-decisions.html">From Loss Functions to Decisions</a></span>
+    <span>Next: <a href="/blog/what-airbus-taught-me.html">What Airbus Taught Me</a></span>
+  </div>
+
+  <div class="footer">&copy; 2025–2026 Clay Liang &middot; <a href="https://tuixue.nl">tuixue.nl</a></div>
+</div>
+<script src="/assets/theme.js"></script>
+</body>
+</html>

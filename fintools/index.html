@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Clay Liang — Free financial tools with live data. Currency, crypto, stocks, inflation, DCF, loan calculator.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Fin Tools — Clay Liang">
+  <meta property="og:description" content="Free financial tools with live data. Currency, crypto, stocks, inflation, DCF, loan calculator.">
+  <meta property="og:url" content="https://tuixue.nl/fintools/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Clay Liang">
+  <meta name="twitter:card" content="summary">
+
+  <title>Fin Tools — Clay Liang</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{--bg:#fff;--text:#222;--text2:#555;--text3:#999;--link:#1772d0;--link-hover:#f09228;--border:#ddd;--bl:#eee;--card:#fafafa;--tag:#f0f0f0;--green:#16a34a;--red:#dc2626;--tip:#f0f7ff;--tipb:#c4ddf5}
+    [data-theme="dark"]{--bg:#111;--text:#ddd;--text2:#aaa;--text3:#666;--link:#6db3f2;--link-hover:#f09228;--border:#333;--bl:#222;--card:#1a1a1a;--tag:#252525;--green:#4ade80;--red:#f87171;--tip:#131c25;--tipb:#1e3a5f}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--bg);transition:background .3s,color .3s;padding:30px 20px 60px}
+    a{color:var(--link);text-decoration:none}a:hover{color:var(--link-hover)}::selection{background:var(--link);color:#fff}
+    .wrap{max-width:840px;margin:0 auto}
+    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;font-size:13px;font-family:-apple-system,sans-serif}
+    .topbar .back{color:var(--text2)}.topbar .back:hover{color:var(--link-hover)}
+    .tb{background:none;border:1px solid var(--border);color:var(--text3);border-radius:6px;width:30px;height:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;transition:.2s}
+    .tb:hover{border-color:var(--link);color:var(--link)}
+    h1.pt{font-size:28px;font-weight:normal;margin-bottom:6px}
+    .pd{color:var(--text3);font-size:14px;margin-bottom:12px}
+    .tn{display:flex;gap:6px;margin-bottom:32px;flex-wrap:wrap;font-family:-apple-system,sans-serif}
+    .tn a{font-size:11.5px;font-weight:600;padding:5px 11px;border:1px solid var(--border);border-radius:18px;color:var(--text2);transition:.2s;white-space:nowrap}
+    .tn a:hover{border-color:var(--link);color:var(--link)}
+    .s{margin-bottom:44px}.s h2{font-size:19px;font-weight:normal;padding-bottom:7px;border-bottom:1px solid var(--border);margin-bottom:6px}
+    .ex{background:var(--tip);border:1px solid var(--tipb);border-radius:8px;padding:12px 14px;margin:10px 0 16px;font-size:13px;color:var(--text2);line-height:1.6;font-family:-apple-system,sans-serif}
+    .ex summary{cursor:pointer;font-weight:600;color:var(--link);font-size:13px}.ex summary:hover{color:var(--link-hover)}.ex p{margin-top:8px}
+    /* fx */
+    .fq{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px;font-family:-apple-system,sans-serif;font-size:14px}
+    .fq select,.fq input[type="number"]{font-family:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text)}
+    .fq select:focus,.fq input:focus{outline:none;border-color:var(--link)}
+    .sb{background:var(--tag);border:1px solid var(--border);border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text3);transition:.2s;flex-shrink:0}.sb:hover{color:var(--link);border-color:var(--link)}
+    .fr{font-family:'Courier New',monospace;font-size:24px;font-weight:700;color:var(--text);margin:8px 0 4px}
+    .fd{font-size:12px;color:var(--text3);font-family:-apple-system,sans-serif}
+    .fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;margin-top:14px}
+    .fc{background:var(--card);border:1px solid var(--bl);border-radius:8px;padding:10px 12px;font-family:-apple-system,sans-serif;transition:border-color .2s;cursor:pointer}
+    .fc:hover{border-color:var(--link)}
+    .fp{font-size:10.5px;font-weight:600;color:var(--text3);letter-spacing:.04em}
+    .fv{font-size:17px;font-weight:700;color:var(--text);margin:2px 0;font-family:'Courier New',monospace}
+    .fch{font-size:10px}.fch.up{color:var(--green)}.fch.down{color:var(--red)}
+    .fsp{margin:3px 0 1px}.fsp svg{display:block}
+    .fcv{font-size:10px;color:var(--text3);margin-top:2px}
+    .fl{color:var(--text3);font-size:13px;font-family:-apple-system,sans-serif;padding:12px 0}
+    .fdt{font-size:10.5px;color:var(--text3);margin-top:8px;font-family:-apple-system,sans-serif}
+    /* crypto grid */
+    .cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-top:14px}
+    .cc{background:var(--card);border:1px solid var(--bl);border-radius:8px;padding:12px;font-family:-apple-system,sans-serif}
+    .cc:hover{border-color:var(--link)}
+    .cc .cn{font-size:13px;font-weight:700;color:var(--text)}.cc .cs{font-size:10.5px;color:var(--text3);text-transform:uppercase;margin-left:4px}
+    .cc .cp{font-family:'Courier New',monospace;font-size:20px;font-weight:700;color:var(--text);margin:4px 0}
+    .cc .cd{font-size:11px}.cc .cm{font-size:10.5px;color:var(--text3);margin-top:4px}
+    /* calc */
+    .cg2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+    .cf label{display:block;font-size:11.5px;font-weight:600;color:var(--text3);margin-bottom:3px;font-family:-apple-system,sans-serif}
+    .cf .h{font-size:10px;color:var(--text3);font-weight:400;font-style:italic;margin-left:2px}
+    .cf input,.cf select{width:100%;padding:8px 10px;font-family:'Courier New',monospace;font-size:14px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text)}
+    .cf input:focus,.cf select:focus{outline:none;border-color:var(--link)}.cf select{font-family:-apple-system,sans-serif}
+    .pr{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;font-family:-apple-system,sans-serif}
+    .pr button{font-size:11px;font-weight:600;padding:4px 10px;border:1px solid var(--border);border-radius:14px;background:var(--bg);color:var(--text3);cursor:pointer;transition:.2s}
+    .pr button:hover{border-color:var(--link);color:var(--link)}
+    .cr{background:var(--card);border:1px solid var(--bl);border-radius:8px;padding:16px;font-family:-apple-system,sans-serif}
+    .cr .lb{font-size:12px;color:var(--text3);font-weight:600}
+    .cr .vl{font-size:28px;font-weight:700;color:var(--link);font-family:'Courier New',monospace;margin:4px 0}
+    .cr .dt{font-size:12px;color:var(--text3);line-height:1.5}
+    .cr .pl{font-size:13px;color:var(--text2);margin-top:8px;padding-top:8px;border-top:1px solid var(--bl);line-height:1.5}
+    .ct{width:100%;border-collapse:collapse;margin-top:12px;font-family:-apple-system,sans-serif;font-size:12.5px}
+    .ct th{text-align:left;font-weight:600;color:var(--text3);padding:5px 8px;border-bottom:1px solid var(--border);font-size:10.5px}
+    .ct td{padding:4px 8px;border-bottom:1px solid var(--bl);color:var(--text2);font-family:'Courier New',monospace;font-size:12px}
+    .ct tr:last-child td{font-weight:700;color:var(--text)}
+    .footer{margin-top:44px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);text-align:center;font-family:-apple-system,sans-serif}
+    .footer a{color:var(--text3)}
+    @media(max-width:560px){.cg2{grid-template-columns:1fr}.fg,.cg{grid-template-columns:1fr 1fr}.fq{flex-direction:column;align-items:stretch}.fq select,.fq input{width:100%}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="/"><i class="fas fa-arrow-left"></i> Clay Liang</a>
+    <button class="tb" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+  </div>
+
+  <h1 class="pt">Fin Tools</h1>
+  <p class="pd">Free financial tools with live data. No sign-up, no ads, runs in your browser.</p>
+
+  <div class="tn">
+    <a href="#fx"><i class="fas fa-exchange-alt"></i> Currency</a>
+    <a href="#crypto"><i class="fab fa-bitcoin"></i> Crypto</a>
+    <a href="#stocks"><i class="fas fa-chart-bar"></i> Stocks</a>
+    <a href="#inflation-live"><i class="fas fa-globe"></i> Inflation Data</a>
+    <a href="#dcf"><i class="fas fa-building"></i> DCF</a>
+    <a href="#compound"><i class="fas fa-seedling"></i> Compound</a>
+    <a href="#loan"><i class="fas fa-home"></i> Loan</a>
+    <a href="#stock-calc"><i class="fas fa-chart-line"></i> Stock Return</a>
+    <a href="#inflation-calc"><i class="fas fa-coins"></i> Inflation Calc</a>
+    <a href="/fintools/asml.html" style="border-color:var(--link);color:var(--link)"><i class="fas fa-microchip"></i> ASML Tracker</a>
+  </div>
+
+  <!-- ═══ 1. FX ═══ -->
+  <div class="s" id="fx">
+    <h2>💱 Currency Converter</h2>
+    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>Convert currencies using real ECB rates. The mini charts show 30-day trends. Click any card to quick-convert.</p></details>
+    <div class="fq">
+      <input type="number" id="fxAmt" value="1000" min="0" style="width:110px;" oninput="cvFX()">
+      <select id="fxF" onchange="cvFX()"><option value="EUR" selected>EUR</option><option value="USD">USD</option><option value="GBP">GBP</option><option value="CNY">CNY</option><option value="JPY">JPY</option><option value="CHF">CHF</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="HKD">HKD</option><option value="SGD">SGD</option><option value="SEK">SEK</option><option value="KRW">KRW</option></select>
+      <button class="sb" onclick="swFX()" title="Swap"><i class="fas fa-arrows-alt-h"></i></button>
+      <select id="fxT" onchange="cvFX()"><option value="USD" selected>USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="CNY">CNY</option><option value="JPY">JPY</option><option value="CHF">CHF</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="HKD">HKD</option><option value="SGD">SGD</option><option value="SEK">SEK</option><option value="KRW">KRW</option></select>
+    </div>
+    <div class="fr" id="fxR">—</div><div class="fd" id="fxD"></div>
+    <div id="fxG" class="fg"><div class="fl">Loading rates...</div></div>
+    <div id="fxDt" class="fdt"></div>
+  </div>
+
+  <!-- ═══ 2. CRYPTO ═══ -->
+  <div class="s" id="crypto">
+    <h2>₿ Crypto Prices <span style="font-size:12px;color:var(--text3);font-weight:400;">— live</span></h2>
+    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>Live cryptocurrency prices from <a href="https://www.coingecko.com/" target="_blank">CoinGecko</a>. Prices update every time you open the page. Shows the top coins by market cap plus 24-hour change.</p></details>
+    <div id="cryptoGrid" class="cg"><div class="fl">Loading crypto prices...</div></div>
+    <div id="cryptoDt" class="fdt"></div>
+  </div>
+
+  <!-- ═══ 3. STOCKS ═══ -->
+  <div class="s" id="stocks">
+    <h2>📈 Stock Quote <span style="font-size:12px;color:var(--text3);font-weight:400;">— live</span></h2>
+    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>Look up any US stock price by ticker symbol (like AAPL, TSLA, MSFT). Uses <a href="https://www.alphavantage.co/" target="_blank">Alpha Vantage</a> free API. The free tier allows 25 lookups per day — plenty for checking prices. Data is delayed ~15 min.</p></details>
+    <div class="fq">
+      <input type="text" id="stockTicker" placeholder="Enter ticker, e.g. AAPL" style="width:200px;text-transform:uppercase;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-family:-apple-system,sans-serif;font-size:14px;" onkeydown="if(event.key==='Enter')fetchStock()">
+      <button class="sb" onclick="fetchStock()" title="Search" style="border-radius:8px;width:auto;padding:0 14px;font-weight:600;background:var(--link);color:#fff;border-color:var(--link);font-size:13px;font-family:-apple-system,sans-serif;">Search</button>
+    </div>
+    <div class="pr" style="margin-top:8px">
+      <span style="font-size:11px;color:var(--text3);padding:4px 0;">Quick:</span>
+      <button onclick="qStock('AAPL')">AAPL</button>
+      <button onclick="qStock('MSFT')">MSFT</button>
+      <button onclick="qStock('GOOGL')">GOOGL</button>
+      <button onclick="qStock('AMZN')">AMZN</button>
+      <button onclick="qStock('TSLA')">TSLA</button>
+      <button onclick="qStock('NVDA')">NVDA</button>
+      <button onclick="qStock('META')">META</button>
+      <button onclick="qStock('JPM')">JPM</button>
+    </div>
+    <div class="cr" id="stockResult" style="display:none"></div>
+    <div id="stockMsg" class="fl"></div>
+  </div>
+
+  <!-- ═══ 4. INFLATION LIVE ═══ -->
+  <div class="s" id="inflation-live">
+    <h2>🌍 Inflation by Country <span style="font-size:12px;color:var(--text3);font-weight:400;">— World Bank data</span></h2>
+    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>Real annual inflation rates (CPI) for major economies, from the <a href="https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG" target="_blank">World Bank</a>. This is the official data governments report. Updated yearly — the most recent data is typically 1-2 years behind. Useful for comparing inflation across countries over time.</p></details>
+    <div id="inflLiveGrid" class="fl">Loading inflation data...</div>
+    <table class="ct" id="inflLiveTable" style="display:none"><thead><tr><th>Country</th><th id="inflY1"></th><th id="inflY2"></th><th id="inflY3"></th><th id="inflY4"></th><th id="inflY5"></th></tr></thead><tbody id="inflLiveBody"></tbody></table>
+    <div id="inflLiveDt" class="fdt"></div>
+  </div>
+
+  <!-- ═══ 5. DCF ═══ -->
+  <div class="s" id="dcf">
+    <h2>🏢 Company Valuation (DCF)</h2>
+    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p><strong>DCF</strong> estimates a company's worth by adding up all future cash flows, discounted to today's value. $100 next year is worth less than $100 today — the discount rate captures that.</p></details>
+    <div class="pr"><span style="font-size:11px;color:var(--text3);padding:4px 0;">Try:</span><button onclick="dP('s')">Stable</button><button onclick="dP('g')">Growth</button><button onclick="dP('d')">Declining</button></div>
+    <div class="cg2">
+      <div class="cf"><label>Yr 1 FCF <span class="h">($M)</span></label><input type="number" id="d1" value="100" oninput="dC()"></div>
+      <div class="cf"><label>Yr 2 FCF <span class="h">($M)</span></label><input type="number" id="d2" value="110" oninput="dC()"></div>
+      <div class="cf"><label>Yr 3 FCF <span class="h">($M)</span></label><input type="number" id="d3" value="120" oninput="dC()"></div>
+      <div class="cf"><label>Yr 4 FCF <span class="h">($M)</span></label><input type="number" id="d4" value="130" oninput="dC()"></div>
+      <div class="cf"><label>Yr 5 FCF <span class="h">($M)</span></label><input type="number" id="d5" value="140" oninput="dC()"></div>
+      <div class="cf"><label>Growth rate <span class="h">(%, typ 2-3)</span></label><input type="number" id="dg" value="2.5" step="0.1" oninput="dC()"></div>
+      <div class="cf"><label>Discount (WACC) <span class="h">(%, higher=riskier)</span></label><input type="number" id="dw" value="10" step="0.1" oninput="dC()"></div>
+      <div class="cf"><label>Shares <span class="h">(millions)</span></label><input type="number" id="ds" value="50" oninput="dC()"></div>
+    </div>
+    <div class="cr"><div class="lb">Estimated Value</div><div class="vl" id="dV">—</div><div class="dt" id="dD"></div><div class="pl" id="dPl"></div></div>
+    <table class="ct"><thead><tr><th>Year</th><th>FCF ($M)</th><th>Discount</th><th>PV ($M)</th></tr></thead><tbody id="dB"></tbody></table>
+  </div>
+
+  <!-- ═══ 6. COMPOUND ═══ -->
+  <div class="s" id="compound">
+    <h2>🌱 Compound Interest</h2>
+    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>See how money snowballs. Start with something, add monthly, and let time work. Stock market averages ~7-10%/yr historically.</p></details>
+    <div class="pr"><span style="font-size:11px;color:var(--text3);padding:4px 0;">Try:</span><button onclick="cP('s')">Student €100/mo</button><button onclick="cP('j')">€500/mo</button><button onclick="cP('a')">€1500/mo</button></div>
+    <div class="cg2">
+      <div class="cf"><label>Starting amount</label><input type="number" id="cp" value="5000" oninput="cC()"></div>
+      <div class="cf"><label>Monthly <span class="h">(added each month)</span></label><input type="number" id="cm" value="500" oninput="cC()"></div>
+      <div class="cf"><label>Annual return <span class="h">(%, avg ≈ 8)</span></label><input type="number" id="cr" value="8" step="0.1" oninput="cC()"></div>
+      <div class="cf"><label>Years</label><input type="number" id="cy" value="20" oninput="cC()"></div>
+    </div>
+    <div class="cr"><div class="lb">After <span id="cYL">20</span> Years</div><div class="vl" id="cV">—</div><div class="dt" id="cD"></div><div class="pl" id="cPl"></div></div>
+    <table class="ct"><thead><tr><th>Year</th><th>Put In</th><th>Interest</th><th>Balance</th></tr></thead><tbody id="cB"></tbody></table>
+  </div>
+
+  <!-- ═══ 7. LOAN ═══ -->
+  <div class="s" id="loan">
+    <h2>🏠 Loan / Mortgage</h2>
+    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>Calculate monthly payments for any loan. See total interest cost and how extra payments save money.</p></details>
+    <div class="pr"><span style="font-size:11px;color:var(--text3);padding:4px 0;">Try:</span><button onclick="lP('a')">Apartment €250k</button><button onclick="lP('h')">House €500k</button><button onclick="lP('c')">Car €25k</button><button onclick="lP('s')">Student €30k</button></div>
+    <div class="cg2">
+      <div class="cf"><label>Loan amount</label><input type="number" id="la" value="250000" oninput="lC()"></div>
+      <div class="cf"><label>Interest rate <span class="h">(%, mortgage ≈ 3-5)</span></label><input type="number" id="lr" value="4" step="0.1" oninput="lC()"></div>
+      <div class="cf"><label>Term <span class="h">(years)</span></label><input type="number" id="ly" value="25" oninput="lC()"></div>
+      <div class="cf"><label>Extra monthly <span class="h">(optional)</span></label><input type="number" id="le" value="0" oninput="lC()"></div>
+    </div>
+    <div class="cr"><div class="lb">Monthly Payment</div><div class="vl" id="lV">—</div><div class="dt" id="lD"></div><div class="pl" id="lPl"></div></div>
+    <table class="ct"><thead><tr><th>Year</th><th>Principal</th><th>Interest</th><th>Remaining</th></tr></thead><tbody id="lB"></tbody></table>
+  </div>
+
+  <!-- ═══ 8. STOCK RETURN ═══ -->
+  <div class="s" id="stock-calc">
+    <h2>📊 Stock Return Calculator</h2>
+    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>Enter buy/sell price and holding period to get your total and annualized return. Annualized lets you fairly compare investments held for different durations.</p></details>
+    <div class="cg2">
+      <div class="cf"><label>Buy price</label><input type="number" id="sb" value="50" step="0.01" oninput="sC()"></div>
+      <div class="cf"><label>Sell price</label><input type="number" id="ss" value="78" step="0.01" oninput="sC()"></div>
+      <div class="cf"><label>Shares</label><input type="number" id="sn" value="100" oninput="sC()"></div>
+      <div class="cf"><label>Dividends received <span class="h">(total $)</span></label><input type="number" id="sd" value="120" oninput="sC()"></div>
+      <div class="cf"><label>Years held <span class="h">(e.g. 2.5)</span></label><input type="number" id="sy" value="3" step="0.1" oninput="sC()"></div>
+    </div>
+    <div class="cr"><div class="lb">Your Return</div><div class="vl" id="sV">—</div><div class="dt" id="sD"></div><div class="pl" id="sPl"></div></div>
+  </div>
+
+  <!-- ═══ 9. INFLATION CALC ═══ -->
+  <div class="s" id="inflation-calc">
+    <h2>💸 Inflation Calculator</h2>
+    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>See how inflation erodes purchasing power. Check what today's money will buy in the future, or what old money would be worth now.</p></details>
+    <div class="pr"><span style="font-size:11px;color:var(--text3);padding:4px 0;">Try:</span><button onclick="iP('e')">EU avg 2.1%</button><button onclick="iP('h')">High 6%</button><button onclick="iP('l')">Low 1%</button></div>
+    <div class="cg2">
+      <div class="cf"><label>Amount</label><input type="number" id="ia" value="1000" oninput="iC()"></div>
+      <div class="cf"><label>Inflation rate <span class="h">(%, EU avg ≈ 2)</span></label><input type="number" id="ir" value="2.1" step="0.1" oninput="iC()"></div>
+      <div class="cf"><label>Years</label><input type="number" id="iy" value="10" oninput="iC()"></div>
+      <div class="cf"><label>Direction</label><select id="id" onchange="iC()" style="font-size:14px"><option value="f">Future → what will it buy?</option><option value="p">Past → what was it worth?</option></select></div>
+    </div>
+    <div class="cr"><div class="lb" id="iL">Purchasing Power in 10 Years</div><div class="vl" id="iV">—</div><div class="dt" id="iD"></div><div class="pl" id="iPl"></div></div>
+    <table class="ct"><thead><tr><th>Year</th><th>Value</th><th>Change</th></tr></thead><tbody id="iB"></tbody></table>
+  </div>
+
+  <div class="footer">&copy; 2025–2026 Clay Liang &middot; <a href="https://tuixue.nl">tuixue.nl</a> &middot; Educational only — not financial advice.</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id),F=(n,d=0)=>n.toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
+
+// Theme
+const tb=$('themeBtn'),ti=tb.querySelector('i');
+function gT(){const m=document.cookie.match(/(?:^|; )theme=(\w+)/);return m?m[1]:null}
+function sT(t){document.cookie=`theme=${t};path=/;max-age=${365*86400};SameSite=Lax`;if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');ti.className='fas fa-sun'}else{document.documentElement.removeAttribute('data-theme');ti.className='fas fa-moon'}}
+if(gT()==='dark')sT('dark');tb.addEventListener('click',()=>sT(gT()==='dark'?'light':'dark'));
+
+// ═══════ FX ═══════
+let fxC={};const AC=['USD','EUR','GBP','CNY','JPY','CHF','CAD','AUD','HKD','SGD','SEK','KRW'];
+async function fR(b){if(fxC[b])return fxC[b];const t=AC.filter(c=>c!==b).join(',');try{const p=new Date(Date.now()-4*864e5).toISOString().split('T')[0],d30=new Date(Date.now()-30*864e5).toISOString().split('T')[0];const[l,pv,sr]=await Promise.all([fetch(`https://api.frankfurter.app/latest?from=${b}&to=${t}`).then(r=>r.json()),fetch(`https://api.frankfurter.app/${p}?from=${b}&to=${t}`).then(r=>r.json()),fetch(`https://api.frankfurter.app/${d30}..?from=${b}&to=${t}`).then(r=>r.json())]);fxC[b]={r:l.rates,p:pv.rates,d:l.date,s:sr.rates||{}};return fxC[b]}catch(e){return null}}
+function spark(s,c){const d=Object.keys(s).sort(),v=d.map(k=>s[k][c]).filter(Boolean);if(v.length<3)return'';const mn=Math.min(...v),mx=Math.max(...v),rg=mx-mn||1,w=110,h=22;const pts=v.map((val,i)=>`${2+i/(v.length-1)*(w-4)},${h-2-(val-mn)/rg*(h-4)}`).join(' ');const cl=v[v.length-1]>=v[0]?'var(--green)':'var(--red)';return`<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline points="${pts}" fill="none" stroke="${cl}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
+async function cvFX(){const f=$('fxF').value,t=$('fxT').value,a=parseFloat($('fxAmt').value)||0,d=await fR(f);if(!d){$('fxR').textContent='Error';return}if(f===t){$('fxR').textContent=F(a,2)+' '+t;$('fxD').textContent='Same currency'}else{const r=d.r[t];if(!r)return;$('fxR').textContent=F(a*r,2)+' '+t;$('fxD').textContent=`1 ${f} = ${r.toFixed(4)} ${t}  ·  1 ${t} = ${(1/r).toFixed(4)} ${f}`}
+const g=$('fxG');g.innerHTML='';for(const c of AC){if(c===f)continue;const r=d.r[c];if(!r)continue;const pv=d.p?.[c];let ch='';if(pv){const p=(r-pv)/pv*100;ch=`<div class="fch ${p>=0?'up':'down'}">${p>=0?'▲':'▼'} ${Math.abs(p).toFixed(3)}%</div>`}const sk=spark(d.s,c);const cd=document.createElement('div');cd.className='fc';cd.title=`Click → ${c}`;cd.innerHTML=`<div class="fp">${f} → ${c}</div><div class="fv">${r.toFixed(4)}</div>${ch}<div class="fsp">${sk}</div><div class="fcv">${F(a)} ${f} = ${F(a*r,2)} ${c}</div>`;cd.onclick=()=>{$('fxT').value=c;cvFX()};g.appendChild(cd)}$('fxDt').textContent=`ECB · ${d.d} · 30-day sparklines`}
+function swFX(){const f=$('fxF'),t=$('fxT'),v=f.value;f.value=t.value;t.value=v;cvFX()}
+
+// ═══════ CRYPTO ═══════
+async function fetchCrypto(){const g=$('cryptoGrid');try{const r=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=12&page=1&sparkline=true&price_change_percentage=24h');const data=await r.json();g.innerHTML='';for(const c of data){const ch=c.price_change_percentage_24h||0;const cls=ch>=0?'up':'down';const arrow=ch>=0?'▲':'▼';
+// sparkline
+let sk='';if(c.sparkline_in_7d?.price){const v=c.sparkline_in_7d.price,mn=Math.min(...v),mx=Math.max(...v),rg=mx-mn||1,w=110,h=22;const pts=v.map((val,i)=>`${2+i/(v.length-1)*(w-4)},${h-2-(val-mn)/rg*(h-4)}`).join(' ');const cl=v[v.length-1]>=v[0]?'var(--green)':'var(--red)';sk=`<div class="fsp"><svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline points="${pts}" fill="none" stroke="${cl}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`}
+const card=document.createElement('div');card.className='cc';
+const price=c.current_price>=1?`$${F(c.current_price,2)}`:`$${c.current_price.toPrecision(4)}`;
+const mcap=c.market_cap>=1e12?`$${(c.market_cap/1e12).toFixed(2)}T`:c.market_cap>=1e9?`$${(c.market_cap/1e9).toFixed(1)}B`:`$${(c.market_cap/1e6).toFixed(0)}M`;
+card.innerHTML=`<div><span class="cn">${c.name}</span><span class="cs">${c.symbol}</span></div><div class="cp">${price}</div><div class="cd fch ${cls}">${arrow} ${Math.abs(ch).toFixed(2)}% (24h)</div>${sk}<div class="cm">MCap: ${mcap}</div>`;
+g.appendChild(card)}$('cryptoDt').textContent=`Source: CoinGecko · ${new Date().toLocaleString()}`}catch(e){g.innerHTML='<div class="fl">Failed to load. CoinGecko may be rate-limiting — try again in a minute.</div>'}}
+
+// ═══════ STOCKS ═══════
+const AV_KEY='demo'; // free demo key — users can get their own at alphavantage.co
+function qStock(t){$('stockTicker').value=t;fetchStock()}
+async function fetchStock(){const t=$('stockTicker').value.trim().toUpperCase();if(!t){$('stockMsg').textContent='Enter a ticker symbol';return}
+$('stockMsg').textContent='Loading...';$('stockResult').style.display='none';
+try{const r=await fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${t}&apikey=${AV_KEY}`);const d=await r.json();const q=d['Global Quote'];if(!q||!q['05. price']){$('stockMsg').textContent=d.Note?'API limit reached (25/day). Try again tomorrow or get a free key at alphavantage.co':'Ticker not found. Try a US stock like AAPL, MSFT, GOOGL.';return}
+const price=parseFloat(q['05. price']),chg=parseFloat(q['09. change']),pct=parseFloat(q['10. change percent']),prev=parseFloat(q['08. previous close']),vol=parseInt(q['06. volume']);
+const cls=chg>=0?'up':'down',arrow=chg>=0?'▲':'▼';
+$('stockResult').style.display='block';$('stockMsg').textContent='';
+$('stockResult').innerHTML=`<div class="lb">${t} · ${q['07. latest trading day']}</div><div class="vl" style="color:var(--${chg>=0?'green':'red'})">\$${F(price,2)}</div><div class="dt"><span class="fch ${cls}">${arrow} $${Math.abs(chg).toFixed(2)} (${pct})</span> · Prev close: $${F(prev,2)} · Vol: ${vol.toLocaleString()}</div><div class="pl">Data from Alpha Vantage (15-min delay). Free tier: 25 lookups/day. Get your own key at <a href="https://www.alphavantage.co/support/#api-key" target="_blank">alphavantage.co</a> for more.</div>`}catch(e){$('stockMsg').textContent='Network error. Try again.'}}
+
+// ═══════ INFLATION LIVE ═══════
+async function fetchInflation(){try{const r=await fetch('https://api.worldbank.org/v2/country/US;DE;CN;GB;JP;NL;FR;IN;BR;KR/indicator/FP.CPI.TOTL.ZG?format=json&per_page=500&date=2019:2024');const d=await r.json();if(!d[1]){$('inflLiveGrid').textContent='Could not load data';return}
+const byC={};d[1].forEach(e=>{if(e.value===null)return;if(!byC[e.country.value])byC[e.country.value]={};byC[e.country.value][e.date]=e.value});
+const years=['2024','2023','2022','2021','2020'];
+$('inflY1').textContent=years[0];$('inflY2').textContent=years[1];$('inflY3').textContent=years[2];$('inflY4').textContent=years[3];$('inflY5').textContent=years[4];
+const body=$('inflLiveBody');body.innerHTML='';
+const countries=Object.keys(byC).sort();
+for(const c of countries){const tr=document.createElement('tr');let html=`<td style="font-family:-apple-system,sans-serif;font-weight:600">${c}</td>`;
+for(const y of years){const v=byC[c][y];if(v!==undefined){const cls=v>5?'color:var(--red)':v>3?'color:var(--link-hover)':'';html+=`<td style="${cls}">${v.toFixed(1)}%</td>`}else html+=`<td style="color:var(--text3)">—</td>`}
+tr.innerHTML=html;body.appendChild(tr)}
+$('inflLiveGrid').style.display='none';$('inflLiveTable').style.display='';
+$('inflLiveDt').textContent='Source: World Bank · CPI annual % change · High inflation (>5%) in red'}catch(e){$('inflLiveGrid').textContent='Could not load data. Try refreshing.'}}
+
+// ═══════ DCF ═══════
+function dP(t){const p={s:{f:[100,105,110,116,122],g:2.5,w:9,s:50},g:{f:[50,75,110,155,210],g:3,w:12,s:100},d:{f:[200,180,160,145,130],g:1,w:8,s:80}}[t];p.f.forEach((v,i)=>$('d'+(i+1)).value=v);$('dg').value=p.g;$('dw').value=p.w;$('ds').value=p.s;dC()}
+function dC(){const f=[1,2,3,4,5].map(i=>parseFloat($('d'+i).value)||0),g=(parseFloat($('dg').value)||0)/100,r=(parseFloat($('dw').value)||1)/100,sh=parseFloat($('ds').value)||1;
+if(r<=g){$('dV').textContent='⚠️';$('dD').textContent='Discount rate must exceed growth rate';$('dPl').textContent='';$('dB').innerHTML='';return}
+let pv=0;const b=$('dB');b.innerHTML='';for(let i=0;i<5;i++){const d=1/Math.pow(1+r,i+1),v=f[i]*d;pv+=v;b.innerHTML+=`<tr><td>Yr ${i+1}</td><td>${f[i].toFixed(1)}</td><td>${d.toFixed(4)}</td><td>${v.toFixed(1)}</td></tr>`}
+const tf=f[4]*(1+g),tv=tf/(r-g),pvtv=tv/Math.pow(1+r,5);pv+=pvtv;
+b.innerHTML+=`<tr><td>Terminal</td><td>${tf.toFixed(1)}</td><td>${(1/Math.pow(1+r,5)).toFixed(4)}</td><td>${pvtv.toFixed(1)}</td></tr><tr><td>Total</td><td></td><td></td><td>${pv.toFixed(1)}</td></tr>`;
+$('dV').textContent=`$${F(pv,1)}M`;$('dD').textContent=`Per share: $${(pv/sh).toFixed(2)} · Terminal: ${(pvtv/pv*100).toFixed(0)}% of total`;
+$('dPl').textContent=`Based on these cash flows and ${(r*100).toFixed(1)}% required return, this company is worth ~$${F(pv,0)}M, or $${(pv/sh).toFixed(2)} per share.`}
+
+// ═══════ COMPOUND ═══════
+function cP(t){const p={s:{p:1000,m:100,r:8,y:30},j:{p:5000,m:500,r:8,y:20},a:{p:20000,m:1500,r:7,y:25}}[t];$('cp').value=p.p;$('cm').value=p.m;$('cr').value=p.r;$('cy').value=p.y;cC()}
+function cC(){const p=parseFloat($('cp').value)||0,m=parseFloat($('cm').value)||0,r=(parseFloat($('cr').value)||0)/100,y=parseInt($('cy').value)||1;$('cYL').textContent=y;
+const b=$('cB');b.innerHTML='';let bl=p;const mr=r/12,tc=p+m*12*y;const sh=new Set();for(let i=1;i<=Math.min(y,5);i++)sh.add(i);[10,15,20,25,30,40].forEach(v=>{if(v<=y)sh.add(v)});sh.add(y);
+for(let yr=1;yr<=y;yr++){for(let mo=0;mo<12;mo++)bl=bl*(1+mr)+m;if(sh.has(yr)){const c=p+m*12*yr,int=bl-c;b.innerHTML+=`<tr><td>${yr}</td><td>$${F(c)}</td><td>$${F(int)}</td><td>$${F(bl)}</td></tr>`}}
+const int=bl-tc,mul=tc>0?(bl/tc).toFixed(1):'—';
+$('cV').textContent=`$${F(bl)}`;$('cD').textContent=`Put in: $${F(tc)} · Interest: $${F(int)} · ${mul}× your money`;
+$('cPl').textContent=`$${F(p)} upfront + $${F(m)}/mo at ${(r*100).toFixed(1)}% for ${y}yr → $${F(bl)}. That's $${F(int)} earned from compound growth.`}
+
+// ═══════ LOAN ═══════
+function lP(t){const p={a:{a:250000,r:4,y:25,e:0},h:{a:500000,r:3.8,y:30,e:0},c:{a:25000,r:6.5,y:5,e:0},s:{a:30000,r:3.5,y:10,e:0}}[t];$('la').value=p.a;$('lr').value=p.r;$('ly').value=p.y;$('le').value=p.e;lC()}
+function lC(){const P=parseFloat($('la').value)||0,r=(parseFloat($('lr').value)||0)/100/12,n=(parseInt($('ly').value)||1)*12,ex=parseFloat($('le').value)||0;
+if(r===0){$('lV').textContent=`$${F(P/n+ex,2)}/mo`;$('lD').textContent='0% — no interest!';$('lPl').textContent='';$('lB').innerHTML='';return}
+const mp=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),tp=mp+ex;let bl=P,ti=0;const b=$('lB');b.innerHTML='';
+for(let yr=1;yr<=Math.ceil(n/12)+5;yr++){let yi=0,yp=0;for(let mo=0;mo<12;mo++){if(bl<=0)break;const ip=bl*r;let pp=Math.min(tp-ip,bl);if(pp<0)pp=0;bl=Math.max(bl-pp,0);yi+=ip;yp+=pp;ti+=ip}
+if(yp>0||yi>0)b.innerHTML+=`<tr><td>${yr}</td><td>$${F(yp)}</td><td>$${F(yi)}</td><td>$${F(bl)}</td></tr>`;if(bl<=0)break}
+$('lV').textContent=`$${F(tp,2)}/mo`;$('lD').textContent=`Base: $${F(mp,2)} + $${F(ex,2)} extra · Total interest: $${F(ti)} · Total: $${F(ti+P)}`;
+const sv=ex>0?` Extra $${F(ex)}/mo saves ~$${F(P*r*n-ti)} in interest.`:'';
+$('lPl').textContent=`Borrowing $${F(P)} at ${(r*1200).toFixed(1)}% for ${(n/12).toFixed(0)}yr = $${F(tp,2)}/mo. You'll pay $${F(ti)} in interest (${(ti/P*100).toFixed(0)}% of loan).${sv}`}
+
+// ═══════ STOCK RETURN ═══════
+function sC(){const b=parseFloat($('sb').value)||0,s=parseFloat($('ss').value)||0,n=parseFloat($('sn').value)||1,d=parseFloat($('sd').value)||0,y=parseFloat($('sy').value)||1;
+const cost=b*n,rev=s*n+d,tr=(rev-cost)/cost*100,ar=(Math.pow(rev/cost,1/y)-1)*100,pf=rev-cost;
+$('sV').textContent=`${pf>=0?'📈':'📉'} ${tr>=0?'+':''}${tr.toFixed(2)}%`;$('sV').style.color=pf>=0?'var(--green)':'var(--red)';
+$('sD').textContent=`Annualized: ${ar>=0?'+':''}${ar.toFixed(2)}%/yr · Profit: $${F(pf,2)} · Cost: $${F(cost,2)}`;
+$('sPl').textContent=`Invested $${F(cost,2)} (${F(n)}×$${b}). After ${y}yr${d>0?` + $${F(d,2)} dividends`:''} → $${F(rev,2)}. ${pf>=0?'Gain':'Loss'}: $${F(Math.abs(pf),2)} (${ar>=0?'+':''}${ar.toFixed(2)}%/yr).`}
+
+// ═══════ INFLATION CALC ═══════
+function iP(t){$('ir').value={e:2.1,h:6,l:1}[t];iC()}
+function iC(){const a=parseFloat($('ia').value)||0,r=(parseFloat($('ir').value)||0)/100,y=parseInt($('iy').value)||1,dir=$('id').value;
+const b=$('iB');b.innerHTML='';const sh=new Set();for(let i=1;i<=Math.min(y,5);i++)sh.add(i);[10,15,20,25,30].forEach(v=>{if(v<=y)sh.add(v)});sh.add(y);
+if(dir==='f'){const v=a/Math.pow(1+r,y);$('iL').textContent=`Purchasing Power in ${y} Years`;
+for(let i=1;i<=y;i++){if(!sh.has(i))continue;const val=a/Math.pow(1+r,i);b.innerHTML+=`<tr><td>${i}</td><td>$${F(val,2)}</td><td style="color:var(--red)">-$${F(a-val,2)}</td></tr>`}
+$('iV').textContent=`$${F(v,2)}`;$('iD').textContent=`$${F(a)} → $${F(v,2)} purchasing power · Lost: ${((1-v/a)*100).toFixed(1)}%`;
+$('iPl').textContent=`At ${(r*100).toFixed(1)}% inflation, $${F(a)} today buys only $${F(v,2)} worth of stuff in ${y}yr. ${((1-v/a)*100).toFixed(0)}% of purchasing power gone.`}
+else{const v=a*Math.pow(1+r,y);$('iL').textContent=`$${F(a)} Was Worth This ${y} Years Ago`;
+for(let i=1;i<=y;i++){if(!sh.has(i))continue;const val=a*Math.pow(1+r,i);b.innerHTML+=`<tr><td>${i}yr ago</td><td>$${F(val,2)}</td><td style="color:var(--green)">+$${F(val-a,2)}</td></tr>`}
+$('iV').textContent=`$${F(v,2)}`;$('iD').textContent=`$${F(a)} from ${y}yr ago = $${F(v,2)} today · Things got ${((v/a-1)*100).toFixed(0)}% more expensive`;
+$('iPl').textContent=`$${F(a)} from ${y} years ago had the purchasing power of $${F(v,2)} in today's money.`}}
+
+// ═══════ INIT ═══════
+cvFX();fetchCrypto();fetchInflation();dC();cC();lC();sC();iC();
+</script>
+</body>
+</html>

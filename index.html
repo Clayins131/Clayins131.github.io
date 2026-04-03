@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Clay Liang 梁珂玮 — Data Science, AI, and the gap between data and decisions.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Clay Liang">
+  <meta property="og:description" content="Data Science, AI, and the gap between data and decisions.">
+  <meta property="og:url" content="https://tuixue.nl/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Clay Liang">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Clay Liang">
+  <meta name="twitter:description" content="Data Science, AI, and the gap between data and decisions.">
+
+  <title>Clay Liang</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="/assets/shared.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ── page-specific: home ── */
+    .topbar { justify-content: flex-end; gap: 14px; margin-bottom: 28px; }
+    .topbar a { color: var(--text3); }
+    .topbar a:hover { color: var(--link-hover); }
+
+    .bio { margin-bottom: 32px; }
+    .bio-text .name { font-size: 24px; line-height: 1.3; }
+    .bio-text .name-cn {
+      font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      font-size: 15px; color: var(--text2);
+    }
+    .bio-text .email {
+      font-family: 'Courier New', monospace;
+      font-size: 12.5px; color: var(--text3); margin-top: 2px;
+    }
+    .bio-text p { margin-top: 8px; color: var(--text2); }
+    .bio-text p em { color: var(--text3); font-style: normal; }
+    .bio-links {
+      margin-top: 12px; font-size: 13.5px;
+      display: flex; flex-wrap: wrap; gap: 4px 5px;
+    }
+    .bio-links .sep { color: var(--text3); user-select: none; }
+
+    .section { margin-top: 34px; }
+    .section h2 {
+      font-size: 19px; font-weight: normal;
+      padding-bottom: 7px; border-bottom: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .nav-card {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 14px; background: var(--card);
+      border: 1px solid var(--border-light); border-radius: 8px;
+      color: var(--text); transition: border-color 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .nav-card:hover {
+      border-color: var(--link);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      color: var(--text);
+    }
+    [data-theme="dark"] .nav-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+    .nav-card .ci {
+      font-size: 18px; width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; background: var(--tag-bg); border-radius: 7px; color: var(--link);
+    }
+    .nav-card .cl { font-size: 13px; font-weight: 600; }
+    .nav-card .cd { font-size: 11px; color: var(--text3); }
+
+    .exp {
+      margin-bottom: 16px; padding-left: 14px;
+      border-left: 2px solid var(--border-light); transition: border-color 0.2s;
+    }
+    .exp:hover { border-left-color: var(--link); }
+    .exp .role { font-weight: bold; }
+    .exp .date { font-size: 12.5px; color: var(--text3); }
+    .exp .det { font-size: 13.5px; color: var(--text2); margin-top: 3px; }
+    .exp .det ul { padding-left: 16px; margin: 2px 0 0; }
+    .exp .det li { margin-bottom: 1px; }
+
+    .proj {
+      display: flex; gap: 12px; margin-bottom: 14px;
+      padding-bottom: 14px; border-bottom: 1px solid var(--border-light);
+    }
+    .proj:last-child { border-bottom: none; padding-bottom: 0; }
+    .proj-icon { font-size: 22px; width: 32px; text-align: center; flex-shrink: 0; padding-top: 1px; }
+    .proj .pt { font-weight: bold; font-size: 14.5px; }
+    .proj .pd { font-size: 13.5px; color: var(--text2); margin-top: 2px; }
+    .proj .ptech { font-size: 12px; color: var(--text3); margin-top: 3px; }
+
+    .skill-row { margin-bottom: 5px; font-size: 13.5px; }
+    .skill-row .label { font-weight: bold; color: var(--text2); }
+
+    .edu { font-size: 14px; color: var(--text2); margin-bottom: 6px; }
+    .edu strong { color: var(--text); font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="topbar">
+    <a href="/blog/">Blog</a>
+    <a href="/projects/">Projects</a>
+    <a href="/fintools/">Fin Tools</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+  </div>
+
+  <div class="bio">
+    <div class="bio-text">
+      <div class="name">Clay Liang <span class="name-cn">梁珂玮</span></div>
+      <div class="email">claysps@outlook.com</div>
+      <p>
+        I work at the intersection of <strong>data science</strong> and <strong>decision-making</strong> — building tools, dashboards, and models that bridge the gap between raw data and the people who act on it.
+      </p>
+      <p>
+        Currently a BSc student at <a href="https://www.universiteitleiden.nl/en">Leiden University</a> (AI &amp; Data Science), heading to <a href="https://www.tum.de/en/">TU Munich</a> next.
+        Previously interned at <a href="https://www.airbus.com/">Airbus</a> <em>(data analytics, Tianjin)</em> and <a href="https://www.lenovo.com/">Lenovo</a> <em>(data science)</em>, and doing research at <a href="https://www.tsinghua.edu.cn/">Tsinghua University</a> on deep learning for audio.
+      </p>
+      <div class="bio-links">
+        <a href="/CV.pdf">CV</a> <span class="sep">/</span>
+        <a href="https://github.com/Clayins131"><i class="fab fa-github"></i> GitHub</a>
+        <span class="sep">/</span>
+        <a href="https://www.linkedin.com/in/clay-coulson-a4a11a27b"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <span class="sep">/</span>
+        <a href="mailto:claysps@outlook.com"><i class="fas fa-envelope"></i> Email</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="nav-grid">
+      <a class="nav-card" href="/blog/">
+        <div class="ci"><i class="fas fa-pen-nib"></i></div>
+        <div><div class="cl">Blog</div><div class="cd">Data, markets &amp; thinking</div></div>
+      </a>
+      <a class="nav-card" href="/projects/">
+        <div class="ci"><i class="fas fa-flask"></i></div>
+        <div><div class="cl">Projects</div><div class="cd">Things I've built</div></div>
+      </a>
+      <a class="nav-card" href="/fintools/">
+        <div class="ci"><i class="fas fa-chart-line"></i></div>
+        <div><div class="cl">Fin Tools</div><div class="cd">Market data &amp; analysis</div></div>
+      </a>
+      <a class="nav-card" href="/reading/">
+        <div class="ci"><i class="fas fa-book"></i></div>
+        <div><div class="cl">Reading</div><div class="cd">Books &amp; annual reports</div></div>
+      </a>
+    </div>
+  </div>
+
+  <div class="section" id="experience">
+    <h2>Experience</h2>
+    <div class="exp">
+      <span class="role">Data Analyst Intern</span>,
+      <a href="https://www.airbus.com/">Airbus</a> (Tianjin Final Assembly)
+      <br><span class="date">Jun 2025 – Sep 2025</span>
+      <div class="det"><ul>
+        <li>Used SQL and Apps Script to query operational data, surface decarbonisation metrics and process bottlenecks</li>
+        <li>Built Databricks / Python workflows for large-scale preprocessing</li>
+        <li>Main owner of visual outputs — charts, infographics, slide decks — delivered to cross-functional teams</li>
+      </ul></div>
+    </div>
+    <div class="exp">
+      <span class="role">Data Science Intern</span>,
+      <a href="https://www.lenovo.com/">Lenovo</a>
+      <br><span class="date">Feb 2025 – Jun 2025</span>
+      <div class="det"><ul>
+        <li>Designed Tableau &amp; Power BI dashboards for digital transformation strategy</li>
+        <li>Developed training data optimisation strategies to improve model performance</li>
+        <li>Built Excel / PowerPoint templates for technical presentations; led intern team as project lead</li>
+      </ul></div>
+    </div>
+    <div class="exp">
+      <span class="role">Research Assistant</span>,
+      <a href="https://www.tsinghua.edu.cn/">Tsinghua University</a>
+      <br><span class="date">Jun 2024 – Present</span>
+      <div class="det"><ul>
+        <li>Co-developed deep learning models for audio processing; improved speech recognition accuracy via data augmentation and loss function tuning</li>
+        <li>Managed and structured datasets for training and evaluation</li>
+        <li>Debugged backend code to reduce latency and improve runtime efficiency</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="section" id="projects">
+    <h2>Projects</h2>
+    <div class="proj">
+      <div class="proj-icon">🎥</div>
+      <div>
+        <div class="pt"><a href="https://github.com/Clayins131/video-annotator">Video Annotation Tool</a></div>
+        <div class="pd">Local video annotation tool with browser-based UI. Supports playback, timestamped labeling, and CSV export for ML datasets. Built for small-scale research workflows where off-the-shelf tools are overkill.</div>
+        <div class="ptech">Python · Flask · OpenCV · JavaScript</div>
+      </div>
+    </div>
+    <div class="proj">
+      <div class="proj-icon">🎵</div>
+      <div>
+        <div class="pt"><a href="https://github.com/Clayins131/Offline-Music-Recommendation-System">Offline Music Recommendation</a></div>
+        <div class="pd">Emotion-aware music recommendation system with speech recognition input and local playback. Combines sentiment analysis with a content-based recommender — entirely offline, no API dependencies.</div>
+        <div class="ptech">Python · Speech Recognition · Emotion Analysis</div>
+      </div>
+    </div>
+    <div class="proj">
+      <div class="proj-icon">⚡</div>
+      <div>
+        <div class="pt"><a href="https://github.com/Clayins131/csvtool">csvtool</a></div>
+        <div class="pd">Lightweight CSV parser in C++. Written because Python was too slow for the dataset size at the time. Focused on performance and memory efficiency.</div>
+        <div class="ptech">C++</div>
+      </div>
+    </div>
+    <div class="proj">
+      <div class="proj-icon">🌍</div>
+      <div>
+        <div class="pt"><a href="https://github.com/Clayins131/AI-Eco">AI-Eco</a></div>
+        <div class="pd">Interactive web prototype visualising the environmental impact of AI models — energy consumption, water usage, e-waste. Built with Three.js and Chart.js. Course project on interaction design.</div>
+        <div class="ptech">HTML · JavaScript · Three.js · Chart.js</div>
+      </div>
+    </div>
+    <div class="aside">
+      I also built a set of <a href="/fintools/">free financial tools</a> — live FX, crypto, stock quotes, DCF valuation, and an <a href="/fintools/asml.html">ASML tracker</a> that plots the market price against my own DCF estimate. Details on the <a href="/projects/">projects page</a>.
+    </div>
+  </div>
+
+  <div class="section" id="education">
+    <h2>Education</h2>
+    <div class="edu">
+      <strong>BSc Management &amp; Data Science</strong> · <a href="https://www.tum.de/en/">TU Munich</a> · 2026 –
+    </div>
+    <div class="edu">
+      <strong>BSc Artificial Intelligence &amp; Data Science</strong> · <a href="https://www.universiteitleiden.nl/en">Leiden University</a> · 2025 – 2026
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Skills</h2>
+    <div class="skill-row"><span class="label">Languages:</span> Python, SQL, C++, Java, JavaScript</div>
+    <div class="skill-row"><span class="label">ML / DL:</span> PyTorch, TensorFlow, Scikit-learn, Pandas, NumPy</div>
+    <div class="skill-row"><span class="label">Data &amp; Infra:</span> Databricks, Docker, Git, Linux, Spark</div>
+    <div class="skill-row"><span class="label">Visualisation:</span> Tableau, Power BI, Matplotlib, Seaborn</div>
+    <div class="skill-row"><span class="label">Audio:</span> Librosa, FFmpeg, Praat</div>
+    <div class="skill-row"><span class="label">Office &amp; Comms:</span> Excel (advanced), PowerPoint, Google Workspace</div>
+  </div>
+
+  <div class="section">
+    <h2>Miscellaneous</h2>
+    <p style="font-size:14px; color:var(--text2);">
+      I read annual reports recreationally, which is either a personality trait or a warning sign. Also: photography, Chinese cooking, and enough German to survive a Bäckerei. Currently reading Damodaran and wondering why I didn't start earlier.
+    </p>
+    <p style="font-size:14px; color:var(--text2); margin-top:8px;">
+      Looking for internships where data touches money — banking, asset management, fintech, risk. If that's your world and you're open to a conversation, I'd like to <a href="mailto:claysps@outlook.com">hear from you</a>.
+    </p>
+  </div>
+
+  <div class="footer">
+    &copy; 2025–2026 Clay Liang &middot; <a href="https://tuixue.nl">tuixue.nl</a>
+    &middot; Style credit <a href="https://jonbarron.info/">Jon Barron</a>
+  </div>
+
+</div>
+
+<script src="/assets/theme.js"></script>
+</body>
+</html>

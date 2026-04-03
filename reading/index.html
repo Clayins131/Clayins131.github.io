@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Clay Liang — Books and annual reports I've read.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Reading — Clay Liang">
+  <meta property="og:description" content="Books I've learned from and annual reports I've read.">
+  <meta property="og:url" content="https://tuixue.nl/reading/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Clay Liang">
+  <meta name="twitter:card" content="summary">
+
+  <title>Reading — Clay Liang</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="/assets/shared.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .wrap { max-width: 680px; }
+    h1 { font-size: 28px; font-weight: normal; margin-bottom: 6px; }
+    .desc { color: var(--text3); font-size: 14px; margin-bottom: 32px; }
+    .section { margin-bottom: 36px; }
+    .section h2 {
+      font-size: 19px; font-weight: normal;
+      padding-bottom: 7px; border-bottom: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+    .book {
+      margin-bottom: 16px; padding-left: 14px;
+      border-left: 2px solid var(--border-light);
+      transition: border-color 0.2s;
+    }
+    .book:hover { border-left-color: var(--link); }
+    .book .title { font-weight: bold; font-size: 15px; }
+    .book .author { font-size: 13px; color: var(--text3); }
+    .book .note { font-size: 13.5px; color: var(--text2); margin-top: 3px; line-height: 1.5; }
+    .book .tags { margin-top: 4px; display: flex; gap: 4px; flex-wrap: wrap; }
+    .tag { font-size: 10px; }
+    .report {
+      display: flex; gap: 10px; margin-bottom: 12px;
+      padding-bottom: 12px; border-bottom: 1px solid var(--border-light);
+    }
+    .report:last-child { border-bottom: none; }
+    .report .year {
+      font-family: 'Courier New', monospace;
+      font-size: 12px; color: var(--text3);
+      width: 40px; flex-shrink: 0; padding-top: 2px;
+    }
+    .report .company { font-weight: bold; font-size: 14px; }
+    .report .comment { font-size: 13px; color: var(--text2); margin-top: 2px; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="/"><i class="fas fa-arrow-left"></i> Clay Liang</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+  </div>
+
+  <h1>Reading</h1>
+  <p class="desc">Books I've learned from and annual reports I've read. Updated as I go.</p>
+
+  <div class="section">
+    <h2>📚 Books</h2>
+
+    <div class="book">
+      <div class="title">The Intelligent Investor</div>
+      <div class="author">Benjamin Graham</div>
+      <div class="note">Chapter 8 on Mr. Market is the best mental model for dealing with volatility in any domain — data, markets, or your own career. The rest is a long argument for doing homework before buying things, which shouldn't need 600 pages but apparently does.</div>
+      <div class="tags"><span class="tag">finance</span> <span class="tag">investing</span></div>
+    </div>
+
+    <div class="book">
+      <div class="title">Investment Valuation</div>
+      <div class="author">Aswath Damodaran</div>
+      <div class="note">The textbook behind my <a href="/fintools/#dcf">DCF calculator</a>. Damodaran is rare — an academic who admits his models are wrong and explains exactly how. The terminal value chapters should be required reading for anyone who's ever put a growth rate in a spreadsheet and called it a forecast.</div>
+      <div class="tags"><span class="tag">finance</span> <span class="tag">valuation</span></div>
+    </div>
+
+    <div class="book">
+      <div class="title">Designing Data-Intensive Applications</div>
+      <div class="author">Martin Kleppmann</div>
+      <div class="note">Made me understand, retroactively, why every design decision in the Airbus pipeline was the way it was. If you're going to read one book on data engineering, this is the one. If you've already built a pipeline and it broke, this is the book that will tell you why.</div>
+      <div class="tags"><span class="tag">engineering</span> <span class="tag">data</span></div>
+    </div>
+
+    <div class="book">
+      <div class="title">Thinking, Fast and Slow</div>
+      <div class="author">Daniel Kahneman</div>
+      <div class="note">Explains why certain dashboards work and others don't, better than any data viz course. Read it before Lenovo, re-read it after watching executives make decisions from my charts. System 1 is the audience for every deck you'll ever build.</div>
+      <div class="tags"><span class="tag">psychology</span> <span class="tag">decisions</span></div>
+    </div>
+
+    <div class="book">
+      <div class="title">The Man Who Solved the Market</div>
+      <div class="author">Gregory Zuckerman</div>
+      <div class="note">Read it in a weekend. The takeaway isn't "quant trading is cool." It's that Renaissance found signal by hiring people who knew nothing about finance but everything about pattern recognition. The best financial returns came from outsiders. Encouraging, if you're an outsider.</div>
+      <div class="tags"><span class="tag">finance</span> <span class="tag">quant</span></div>
+    </div>
+
+    <div class="book">
+      <div class="title">Python for Data Analysis</div>
+      <div class="author">Wes McKinney</div>
+      <div class="note">The Pandas bible. I reopen it every two weeks when I forget how multi-indexing works. At this point the spine is purely decorative.</div>
+      <div class="tags"><span class="tag">technical</span> <span class="tag">python</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📄 Annual Reports</h2>
+    <p style="font-size:13px;color:var(--text3);margin-bottom:14px;">I read these cover to cover. Not to become an analyst — to understand how organisations narrate their own numbers. <a href="/blog/why-i-read-annual-reports.html">Why I do this.</a></p>
+
+    <div class="report">
+      <div class="year">2024</div>
+      <div><div class="company">ASML</div><div class="comment">45 minutes from Leiden by train. The risk factors read like a geopolitical thriller — export controls, single-customer concentration, a supply chain with no redundancy. I <a href="/blog/asml-first-dcf.html">valued it from scratch</a>.</div></div>
+    </div>
+
+    <div class="report">
+      <div class="year">2024</div>
+      <div><div class="company">Airbus</div><div class="comment">Read this during my internship. The decarbonisation metrics I was dashboarding appear in the sustainability section, word for word. Surreal to see your own work cited in a public filing.</div></div>
+    </div>
+
+    <div class="report">
+      <div class="year">2024</div>
+      <div><div class="company">Lenovo</div><div class="comment">The digital transformation language in this report is nearly identical to the internal strategy decks I saw as an intern. Makes you wonder who writes which first.</div></div>
+    </div>
+
+    <div class="report">
+      <div class="year">2023</div>
+      <div><div class="company">JPMorgan Chase</div><div class="comment">Dimon's shareholder letter is a masterclass in narrating uncertainty without hedging everything into meaninglessness. The AI section is what pointed me toward fintech.</div></div>
+    </div>
+
+    <div class="report">
+      <div class="year">2023</div>
+      <div><div class="company">Berkshire Hathaway</div><div class="comment">Buffett's letters are the original blog posts — short, opinionated, zero corporate speak. The contrast with JPMorgan's 400-page filing tells you everything about how different companies think about disclosure.</div></div>
+    </div>
+  </div>
+
+  <div class="footer">&copy; 2025–2026 Clay Liang &middot; <a href="https://tuixue.nl">tuixue.nl</a></div>
+</div>
+<script src="/assets/theme.js"></script>
+</body>
+</html>

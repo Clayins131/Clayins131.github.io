@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Practical things I learned processing 10TB+ of aviation data — partition strategies, avoiding collect(), and scaling pain.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Notes on Building a Databricks Pipeline That Doesn't Fall Over — Clay Liang">
+  <meta property="og:description" content="Practical things I learned processing 10TB+ of aviation data — partition strategies, avoiding collect(), and scaling pain.">
+  <meta property="og:url" content="https://tuixue.nl/blog/databricks-pipeline-notes.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Clay Liang">
+  <meta name="twitter:card" content="summary">
+
+  <title>Notes on Building a Databricks Pipeline That Doesn't Fall Over — Clay Liang</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="/assets/shared.css">
+  <link rel="stylesheet" href="/assets/blog-post.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .post-body h3 { font-size: 17px; font-weight: bold; margin: 24px 0 8px; color: var(--text); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="/blog/"><i class="fas fa-arrow-left"></i> All Posts</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+  </div>
+
+  <div class="post-header">
+    <h1 class="post-title">Notes on Building a Databricks Pipeline That Doesn't Fall Over</h1>
+    <div class="post-meta">July 2025 <span class="tag">technical</span> <span class="tag">python</span> <span class="tag">spark</span> <span class="read-time">6 min read</span></div>
+  </div>
+
+  <div class="post-body">
+
+
+    <p>
+      These are notes from building a data pipeline at Airbus that processed 10TB+ of aviation operational data on Databricks. None of this is novel. All of it was learned the hard way.
+    </p>
+
+    <p>
+      If you're a data science student about to do your first internship at a company with real data, this might save you a week of debugging.
+    </p>
+
+    <h2>1. Your notebook works at 1GB. It will betray you at 100GB.</h2>
+
+    <p>
+      The most common failure mode I saw: someone prototypes a pipeline on a sample dataset, it works fine, then it falls over spectacularly on the full dataset. Usually because of one of three things:
+    </p>
+
+    <ul>
+      <li><strong><code>.collect()</code> somewhere it shouldn't be.</strong> This pulls the entire distributed dataset into the driver node's memory. Fine at 1GB, death at 100GB. Search your codebase for every <code>.collect()</code>, <code>.toPandas()</code>, and <code>.toLocalIterator()</code> — each one is a potential bomb.</li>
+      <li><strong>Unpartitioned writes.</strong> Writing a large DataFrame without partitioning means one node does all the work.</li>
+      <li><strong>Implicit broadcast joins.</strong> Spark tries to broadcast small tables automatically. When your "small" table grows past the threshold, the join silently switches strategy and performance craters.</li>
+    </ul>
+
+    <h2>2. Partition strategy matters more than you think</h2>
+
+    <p>
+      We partitioned by date and aircraft ID. Sounds obvious in retrospect. The first version partitioned only by date, which meant queries filtering by aircraft had to scan every partition. The second version partitioned by both, which cut query time dramatically.
+    </p>
+
+    <p>
+      The general principle: <strong>partition by the columns you filter on most often</strong>. Not by the columns that make the most logical sense. These are sometimes different things.
+    </p>
+
+    <pre><code># Good: partition by what you actually filter on
+df.write.partitionBy("flight_date", "aircraft_id") \
+  .parquet("/mnt/data/operations/")
+
+# Less good: partition by what seems "correct"
+df.write.partitionBy("data_source", "year") \
+  .parquet("/mnt/data/operations/")</code></pre>
+
+    <p>
+      Also: too many partitions is nearly as bad as too few. If your partition column has 500,000 unique values, you'll create 500,000 tiny files and your reads will be slow because of metadata overhead. Aim for partitions in the hundreds, maybe low thousands.
+    </p>
+
+    <h2>3. Delta Lake is worth the overhead</h2>
+
+    <p>
+      We switched from raw Parquet to Delta Lake midway through the project. Three things that made it worth it:
+    </p>
+
+    <ul>
+      <li><strong>ACID transactions.</strong> Before Delta, a failed write could leave the table in a corrupt state. After Delta, writes are atomic.</li>
+      <li><strong><code>OPTIMIZE</code> and <code>ZORDER</code>.</strong> These compact small files and co-locate related data. Ran <code>OPTIMIZE</code> nightly and saw 3-5x read speedup on our most common queries.</li>
+      <li><strong>Time travel.</strong> Being able to query the table as it was yesterday is invaluable when someone asks "did the numbers change?" and you need to prove they didn't (or explain why they did).</li>
+    </ul>
+
+    <pre><code>-- Compact small files and optimise for common query patterns
+OPTIMIZE operations.flight_data
+ZORDER BY (aircraft_id, flight_date)
+
+-- Query yesterday's version of the table
+SELECT * FROM operations.flight_data VERSION AS OF 42</code></pre>
+
+    <h2>4. Scheduling: make it boring</h2>
+
+    <p>
+      Our pipeline ran nightly via Databricks Workflows. The most important thing I did was make it boring:
+    </p>
+
+    <ul>
+      <li>Every step logs its row count before and after transformation. If the count drops by more than 5%, the job sends an alert instead of continuing.</li>
+      <li>Every output table has a <code>_pipeline_timestamp</code> column so we can always trace which run produced which data.</li>
+      <li>Retry logic on the ingestion step only (where transient failures are common). No retries on transformation (where failures mean bugs).</li>
+    </ul>
+
+    <p>
+      The goal is that when something goes wrong — and it will — you can diagnose it from the logs without re-running anything.
+    </p>
+
+    <h2>5. The 40% came from one stupid thing</h2>
+
+    <p>
+      The "reduced processing time by 40%" line on my CV sounds impressive. The actual fix was embarrassing: the previous pipeline was reading the entire raw dataset every run, even though only the last day's data was new. I added incremental loading — check the max timestamp in the target table, only ingest rows newer than that.
+    </p>
+
+    <pre><code># Instead of this:
+raw_df = spark.read.parquet("/mnt/raw/")
+
+# Do this:
+last_loaded = spark.sql("""
+  SELECT MAX(_pipeline_timestamp)
+  FROM operations.flight_data
+""").collect()[0][0]
+
+raw_df = spark.read.parquet("/mnt/raw/") \
+  .filter(col("ingestion_time") > last_loaded)</code></pre>
+
+    <p>
+      That's it. That's the 40%. Most performance improvements in real pipelines aren't clever algorithms — they're avoiding doing work you've already done.
+    </p>
+
+    <h2>Summary</h2>
+
+    <p>
+      If you're building your first serious data pipeline, the things that matter most are not the things your coursework emphasises. Partition strategy, incremental loading, monitoring, and file compaction will account for more of your performance than any choice of algorithm. The boring infrastructure work is the work that makes everything else possible.
+    </p>
+
+    </div>
+
+  <div class="post-nav" style="display: flex; justify-content: space-between;">
+    <span>Prev: <a href="/blog/what-airbus-taught-me.html">What Airbus Taught Me</a></span>
+    <span>Next: <a href="/blog/bimodal-reality-of-cs.html">The Bimodal Reality of CS Careers</a></span>
+  </div>
+
+  <div class="footer">&copy; 2025–2026 Clay Liang &middot; <a href="https://tuixue.nl">tuixue.nl</a></div>
+</div>
+<script src="/assets/theme.js"></script>
+</body>
+</html>
