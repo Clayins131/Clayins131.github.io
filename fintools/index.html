@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Clay Liang — Free financial tools with live data. Currency, crypto, stocks, inflation, DCF, loan calculator.">
+  <script src="/assets/site-boot.js"></script>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Fin Tools — Clay Liang">
@@ -12,17 +13,20 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Clay Liang">
   <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://tuixue.nl/fintools/">
 
   <title>Fin Tools — Clay Liang</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    :root{--bg:#fff;--text:#222;--text2:#555;--text3:#999;--link:#1772d0;--link-hover:#f09228;--border:#ddd;--bl:#eee;--card:#fafafa;--tag:#f0f0f0;--green:#16a34a;--red:#dc2626;--tip:#f0f7ff;--tipb:#c4ddf5}
-    [data-theme="dark"]{--bg:#111;--text:#ddd;--text2:#aaa;--text3:#666;--link:#6db3f2;--link-hover:#f09228;--border:#333;--bl:#222;--card:#1a1a1a;--tag:#252525;--green:#4ade80;--red:#f87171;--tip:#131c25;--tipb:#1e3a5f}
+    :root{--bg:#fff;--text:#222;--text2:#555;--text3:#999;--link:#1772d0;--link-hover:#f09228;--border:#ddd;--bl:#eee;--card:#fafafa;--tag:#f0f0f0;--green:#16a34a;--red:#dc2626;--tip:#f0f7ff;--tipb:#c4ddf5;color-scheme:light}
+    [data-theme="dark"]{--bg:#111;--text:#ddd;--text2:#aaa;--text3:#666;--link:#6db3f2;--link-hover:#f09228;--border:#333;--bl:#222;--card:#1a1a1a;--tag:#252525;--green:#4ade80;--red:#f87171;--tip:#131c25;--tipb:#1e3a5f;color-scheme:dark}
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--bg);transition:background .3s,color .3s;padding:30px 20px 60px}
     a{color:var(--link);text-decoration:none}a:hover{color:var(--link-hover)}::selection{background:var(--link);color:#fff}
+    .skip-link{position:absolute;left:16px;top:-48px;z-index:1000;padding:8px 12px;background:var(--bg);border:1px solid var(--link);border-radius:6px;color:var(--link);font-family:-apple-system,sans-serif;font-size:13px;transition:top .2s}
+    .skip-link:focus{top:12px}
     .wrap{max-width:840px;margin:0 auto}
     .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;font-size:13px;font-family:-apple-system,sans-serif}
     .topbar .back{color:var(--text2)}.topbar .back:hover{color:var(--link-hover)}
@@ -46,7 +50,7 @@
     .fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;margin-top:14px}
     .fc{background:var(--card);border:1px solid var(--bl);border-radius:8px;padding:10px 12px;font-family:-apple-system,sans-serif;transition:border-color .2s;cursor:pointer}
     .fc:hover{border-color:var(--link)}
-    .fp{font-size:10.5px;font-weight:600;color:var(--text3);letter-spacing:.04em}
+    .fp{font-size:10.5px;font-weight:600;color:var(--text3);letter-spacing:0}
     .fv{font-size:17px;font-weight:700;color:var(--text);margin:2px 0;font-family:'Courier New',monospace}
     .fch{font-size:10px}.fch.up{color:var(--green)}.fch.down{color:var(--red)}
     .fsp{margin:3px 0 1px}.fsp svg{display:block}
@@ -66,9 +70,14 @@
     .cf .h{font-size:10px;color:var(--text3);font-weight:400;font-style:italic;margin-left:2px}
     .cf input,.cf select{width:100%;padding:8px 10px;font-family:'Courier New',monospace;font-size:14px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text)}
     .cf input:focus,.cf select:focus{outline:none;border-color:var(--link)}.cf select{font-family:-apple-system,sans-serif}
+    a:focus-visible,button:focus-visible,summary:focus-visible,.fq select:focus-visible,.fq input:focus-visible,.cf input:focus-visible,.cf select:focus-visible{outline:2px solid var(--link);outline-offset:3px}
     .pr{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;font-family:-apple-system,sans-serif}
     .pr button{font-size:11px;font-weight:600;padding:4px 10px;border:1px solid var(--border);border-radius:14px;background:var(--bg);color:var(--text3);cursor:pointer;transition:.2s}
     .pr button:hover{border-color:var(--link);color:var(--link)}
+    .key-row{margin-top:10px}
+    .key-row input[type="password"]{min-width:240px;font-family:-apple-system,sans-serif}
+    .key-btn{font-size:12px;font-weight:600;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text2);cursor:pointer;transition:.2s;font-family:-apple-system,sans-serif}
+    .key-btn:hover{border-color:var(--link);color:var(--link)}
     .cr{background:var(--card);border:1px solid var(--bl);border-radius:8px;padding:16px;font-family:-apple-system,sans-serif}
     .cr .lb{font-size:12px;color:var(--text3);font-weight:600}
     .cr .vl{font-size:28px;font-weight:700;color:var(--link);font-family:'Courier New',monospace;margin:4px 0}
@@ -80,11 +89,13 @@
     .ct tr:last-child td{font-weight:700;color:var(--text)}
     .footer{margin-top:44px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);text-align:center;font-family:-apple-system,sans-serif}
     .footer a{color:var(--text3)}
-    @media(max-width:560px){.cg2{grid-template-columns:1fr}.fg,.cg{grid-template-columns:1fr 1fr}.fq{flex-direction:column;align-items:stretch}.fq select,.fq input{width:100%}}
+    @media(max-width:560px){body{padding:24px 16px 48px}.cg2{grid-template-columns:1fr}.fg,.cg{grid-template-columns:1fr 1fr}.fq{flex-direction:column;align-items:stretch}.fq select,.fq input{width:100%}}
+    @media(max-width:420px){.fg,.cg{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-<div class="wrap">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="wrap" id="main">
   <div class="topbar">
     <a class="back" href="/"><i class="fas fa-arrow-left"></i> Clay Liang</a>
     <button class="tb" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
@@ -113,7 +124,7 @@
     <div class="fq">
       <input type="number" id="fxAmt" value="1000" min="0" style="width:110px;" oninput="cvFX()">
       <select id="fxF" onchange="cvFX()"><option value="EUR" selected>EUR</option><option value="USD">USD</option><option value="GBP">GBP</option><option value="CNY">CNY</option><option value="JPY">JPY</option><option value="CHF">CHF</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="HKD">HKD</option><option value="SGD">SGD</option><option value="SEK">SEK</option><option value="KRW">KRW</option></select>
-      <button class="sb" onclick="swFX()" title="Swap"><i class="fas fa-arrows-alt-h"></i></button>
+      <button class="sb" onclick="swFX()" title="Swap" aria-label="Swap currencies"><i class="fas fa-arrows-alt-h"></i></button>
       <select id="fxT" onchange="cvFX()"><option value="USD" selected>USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="CNY">CNY</option><option value="JPY">JPY</option><option value="CHF">CHF</option><option value="CAD">CAD</option><option value="AUD">AUD</option><option value="HKD">HKD</option><option value="SGD">SGD</option><option value="SEK">SEK</option><option value="KRW">KRW</option></select>
     </div>
     <div class="fr" id="fxR">—</div><div class="fd" id="fxD"></div>
@@ -124,7 +135,7 @@
   <!-- ═══ 2. CRYPTO ═══ -->
   <div class="s" id="crypto">
     <h2>₿ Crypto Prices <span style="font-size:12px;color:var(--text3);font-weight:400;">— live</span></h2>
-    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>Live cryptocurrency prices from <a href="https://www.coingecko.com/" target="_blank">CoinGecko</a>. Prices update every time you open the page. Shows the top coins by market cap plus 24-hour change.</p></details>
+    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>Live cryptocurrency prices from <a href="https://www.coingecko.com/" target="_blank" rel="noopener noreferrer">CoinGecko</a>. Prices update every time you open the page. Shows the top coins by market cap plus 24-hour change.</p></details>
     <div id="cryptoGrid" class="cg"><div class="fl">Loading crypto prices...</div></div>
     <div id="cryptoDt" class="fdt"></div>
   </div>
@@ -132,7 +143,8 @@
   <!-- ═══ 3. STOCKS ═══ -->
   <div class="s" id="stocks">
     <h2>📈 Stock Quote <span style="font-size:12px;color:var(--text3);font-weight:400;">— live</span></h2>
-    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>Look up any US stock price by ticker symbol (like AAPL, TSLA, MSFT). Uses <a href="https://www.alphavantage.co/" target="_blank">Alpha Vantage</a> free API. The free tier allows 25 lookups per day — plenty for checking prices. Data is delayed ~15 min.</p></details>
+    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>Look up any US stock price by ticker symbol (like AAPL, TSLA, MSFT). Uses <a href="https://www.alphavantage.co/" target="_blank" rel="noopener noreferrer">Alpha Vantage</a> free API. The free tier allows 25 lookups per day — plenty for checking prices. Data is delayed ~15 min.</p></details>
+    <details class="ex"><summary><i class="fas fa-key"></i> API key</summary><p>Optional: paste your own Alpha Vantage key for more reliable stock lookups. It is stored only in this browser.</p><div class="fq key-row"><input type="password" id="avKey" placeholder="Alpha Vantage API key"><button class="key-btn" onclick="saveAVKey()">Save</button><button class="key-btn" onclick="clearAVKey()">Clear</button></div></details>
     <div class="fq">
       <input type="text" id="stockTicker" placeholder="Enter ticker, e.g. AAPL" style="width:200px;text-transform:uppercase;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-family:-apple-system,sans-serif;font-size:14px;" onkeydown="if(event.key==='Enter')fetchStock()">
       <button class="sb" onclick="fetchStock()" title="Search" style="border-radius:8px;width:auto;padding:0 14px;font-weight:600;background:var(--link);color:#fff;border-color:var(--link);font-size:13px;font-family:-apple-system,sans-serif;">Search</button>
@@ -155,7 +167,7 @@
   <!-- ═══ 4. INFLATION LIVE ═══ -->
   <div class="s" id="inflation-live">
     <h2>🌍 Inflation by Country <span style="font-size:12px;color:var(--text3);font-weight:400;">— World Bank data</span></h2>
-    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>Real annual inflation rates (CPI) for major economies, from the <a href="https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG" target="_blank">World Bank</a>. This is the official data governments report. Updated yearly — the most recent data is typically 1-2 years behind. Useful for comparing inflation across countries over time.</p></details>
+    <details class="ex"><summary><i class="fas fa-question-circle"></i> What is this?</summary><p>Real annual inflation rates (CPI) for major economies, from the <a href="https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG" target="_blank" rel="noopener noreferrer">World Bank</a>. This is the official data governments report. Updated yearly — the most recent data is typically 1-2 years behind. Useful for comparing inflation across countries over time.</p></details>
     <div id="inflLiveGrid" class="fl">Loading inflation data...</div>
     <table class="ct" id="inflLiveTable" style="display:none"><thead><tr><th>Country</th><th id="inflY1"></th><th id="inflY2"></th><th id="inflY3"></th><th id="inflY4"></th><th id="inflY5"></th></tr></thead><tbody id="inflLiveBody"></tbody></table>
     <div id="inflLiveDt" class="fdt"></div>
@@ -247,9 +259,9 @@ const $=id=>document.getElementById(id),F=(n,d=0)=>n.toLocaleString(undefined,{m
 
 // Theme
 const tb=$('themeBtn'),ti=tb.querySelector('i');
-function gT(){const m=document.cookie.match(/(?:^|; )theme=(\w+)/);return m?m[1]:null}
-function sT(t){document.cookie=`theme=${t};path=/;max-age=${365*86400};SameSite=Lax`;if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');ti.className='fas fa-sun'}else{document.documentElement.removeAttribute('data-theme');ti.className='fas fa-moon'}}
-if(gT()==='dark')sT('dark');tb.addEventListener('click',()=>sT(gT()==='dark'?'light':'dark'));
+function gT(){const m=document.cookie.match(/(?:^|; )theme=(\w+)/);return m?m[1]:(document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light')}
+function sT(t,p=true){if(p)document.cookie=`theme=${t};path=/;max-age=${365*86400};SameSite=Lax`;document.documentElement.style.colorScheme=t==='dark'?'dark':'light';if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');ti.className='fas fa-sun'}else{document.documentElement.removeAttribute('data-theme');ti.className='fas fa-moon'}tb.setAttribute('aria-pressed',t==='dark'?'true':'false');tb.title=t==='dark'?'Switch to light mode':'Switch to dark mode'}
+sT(gT(),false);tb.addEventListener('click',()=>sT(gT()==='dark'?'light':'dark'));
 
 // ═══════ FX ═══════
 let fxC={};const AC=['USD','EUR','GBP','CNY','JPY','CHF','CAD','AUD','HKD','SGD','SEK','KRW'];
@@ -270,15 +282,19 @@ card.innerHTML=`<div><span class="cn">${c.name}</span><span class="cs">${c.symbo
 g.appendChild(card)}$('cryptoDt').textContent=`Source: CoinGecko · ${new Date().toLocaleString()}`}catch(e){g.innerHTML='<div class="fl">Failed to load. CoinGecko may be rate-limiting — try again in a minute.</div>'}}
 
 // ═══════ STOCKS ═══════
-const AV_KEY='demo'; // free demo key — users can get their own at alphavantage.co
+const AV_KEY='demo'; // fallback demo key
+function avKey(){return localStorage.getItem('avKey')||AV_KEY}
+function initAVKey(){const i=$('avKey');if(i)i.value=localStorage.getItem('avKey')||''}
+function saveAVKey(){const v=$('avKey').value.trim();if(v){localStorage.setItem('avKey',v);$('stockMsg').textContent='API key saved locally.'}else clearAVKey()}
+function clearAVKey(){localStorage.removeItem('avKey');const i=$('avKey');if(i)i.value='';$('stockMsg').textContent='Using Alpha Vantage demo key.'}
 function qStock(t){$('stockTicker').value=t;fetchStock()}
 async function fetchStock(){const t=$('stockTicker').value.trim().toUpperCase();if(!t){$('stockMsg').textContent='Enter a ticker symbol';return}
 $('stockMsg').textContent='Loading...';$('stockResult').style.display='none';
-try{const r=await fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${t}&apikey=${AV_KEY}`);const d=await r.json();const q=d['Global Quote'];if(!q||!q['05. price']){$('stockMsg').textContent=d.Note?'API limit reached (25/day). Try again tomorrow or get a free key at alphavantage.co':'Ticker not found. Try a US stock like AAPL, MSFT, GOOGL.';return}
+try{const r=await fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${t}&apikey=${encodeURIComponent(avKey())}`);const d=await r.json();const q=d['Global Quote'];if(!q||!q['05. price']){$('stockMsg').textContent=d.Note?'API limit reached. Add your own free Alpha Vantage key above or try again later.':'Ticker not found. Try a US stock like AAPL, MSFT, GOOGL.';return}
 const price=parseFloat(q['05. price']),chg=parseFloat(q['09. change']),pct=parseFloat(q['10. change percent']),prev=parseFloat(q['08. previous close']),vol=parseInt(q['06. volume']);
 const cls=chg>=0?'up':'down',arrow=chg>=0?'▲':'▼';
 $('stockResult').style.display='block';$('stockMsg').textContent='';
-$('stockResult').innerHTML=`<div class="lb">${t} · ${q['07. latest trading day']}</div><div class="vl" style="color:var(--${chg>=0?'green':'red'})">\$${F(price,2)}</div><div class="dt"><span class="fch ${cls}">${arrow} $${Math.abs(chg).toFixed(2)} (${pct})</span> · Prev close: $${F(prev,2)} · Vol: ${vol.toLocaleString()}</div><div class="pl">Data from Alpha Vantage (15-min delay). Free tier: 25 lookups/day. Get your own key at <a href="https://www.alphavantage.co/support/#api-key" target="_blank">alphavantage.co</a> for more.</div>`}catch(e){$('stockMsg').textContent='Network error. Try again.'}}
+$('stockResult').innerHTML=`<div class="lb">${t} · ${q['07. latest trading day']}</div><div class="vl" style="color:var(--${chg>=0?'green':'red'})">\$${F(price,2)}</div><div class="dt"><span class="fch ${cls}">${arrow} $${Math.abs(chg).toFixed(2)} (${pct})</span> · Prev close: $${F(prev,2)} · Vol: ${vol.toLocaleString()}</div><div class="pl">Data from Alpha Vantage (15-min delay). Free tier: 25 lookups/day. Get your own key at <a href="https://www.alphavantage.co/support/#api-key" target="_blank" rel="noopener noreferrer">alphavantage.co</a> for more.</div>`}catch(e){$('stockMsg').textContent='Network error. Try again.'}}
 
 // ═══════ INFLATION LIVE ═══════
 async function fetchInflation(){try{const r=await fetch('https://api.worldbank.org/v2/country/US;DE;CN;GB;JP;NL;FR;IN;BR;KR/indicator/FP.CPI.TOTL.ZG?format=json&per_page=500&date=2019:2024');const d=await r.json();if(!d[1]){$('inflLiveGrid').textContent='Could not load data';return}
@@ -344,7 +360,7 @@ $('iV').textContent=`$${F(v,2)}`;$('iD').textContent=`$${F(a)} from ${y}yr ago =
 $('iPl').textContent=`$${F(a)} from ${y} years ago had the purchasing power of $${F(v,2)} in today's money.`}}
 
 // ═══════ INIT ═══════
-cvFX();fetchCrypto();fetchInflation();dC();cC();lC();sC();iC();
+initAVKey();cvFX();fetchCrypto();fetchInflation();dC();cC();lC();sC();iC();
 </script>
 </body>
 </html>

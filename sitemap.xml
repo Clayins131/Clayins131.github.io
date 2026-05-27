@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://tuixue.nl/</loc><priority>1.0</priority></url>
-  <url><loc>https://tuixue.nl/blog/</loc><priority>0.9</priority></url>
-  <url><loc>https://tuixue.nl/projects/</loc><priority>0.8</priority></url>
-  <url><loc>https://tuixue.nl/fintools/</loc><priority>0.8</priority></url>
-  <url><loc>https://tuixue.nl/reading/</loc><priority>0.7</priority></url>
-  <url><loc>https://tuixue.nl/blog/asml-first-dcf.html</loc><priority>0.7</priority></url>
-  <url><loc>https://tuixue.nl/blog/bimodal-reality-of-cs.html</loc><priority>0.7</priority></url>
-  <url><loc>https://tuixue.nl/blog/databricks-pipeline-notes.html</loc><priority>0.7</priority></url>
-  <url><loc>https://tuixue.nl/blog/from-loss-functions-to-decisions.html</loc><priority>0.7</priority></url>
-  <url><loc>https://tuixue.nl/blog/what-airbus-taught-me.html</loc><priority>0.7</priority></url>
-  <url><loc>https://tuixue.nl/blog/why-i-read-annual-reports.html</loc><priority>0.7</priority></url>
-  <url><loc>https://tuixue.nl/fintools/asml.html</loc><priority>0.6</priority></url>
+  <url><loc>https://tuixue.nl/</loc><lastmod>2026-05-27</lastmod><priority>1.0</priority></url>
+  <url><loc>https://tuixue.nl/blog/</loc><lastmod>2026-05-27</lastmod><priority>0.9</priority></url>
+  <url><loc>https://tuixue.nl/projects/</loc><lastmod>2026-05-27</lastmod><priority>0.8</priority></url>
+  <url><loc>https://tuixue.nl/fintools/</loc><lastmod>2026-05-27</lastmod><priority>0.8</priority></url>
+  <url><loc>https://tuixue.nl/reading/</loc><lastmod>2026-05-27</lastmod><priority>0.7</priority></url>
+  <url><loc>https://tuixue.nl/blog/asml-first-dcf.html</loc><lastmod>2026-05-27</lastmod><priority>0.7</priority></url>
+  <url><loc>https://tuixue.nl/blog/bimodal-reality-of-cs.html</loc><lastmod>2026-05-27</lastmod><priority>0.7</priority></url>
+  <url><loc>https://tuixue.nl/blog/databricks-pipeline-notes.html</loc><lastmod>2026-05-27</lastmod><priority>0.7</priority></url>
+  <url><loc>https://tuixue.nl/blog/from-loss-functions-to-decisions.html</loc><lastmod>2026-05-27</lastmod><priority>0.7</priority></url>
+  <url><loc>https://tuixue.nl/blog/what-airbus-taught-me.html</loc><lastmod>2026-05-27</lastmod><priority>0.7</priority></url>
+  <url><loc>https://tuixue.nl/blog/why-i-read-annual-reports.html</loc><lastmod>2026-05-27</lastmod><priority>0.7</priority></url>
+  <url><loc>https://tuixue.nl/fintools/asml.html</loc><lastmod>2026-05-27</lastmod><priority>0.6</priority></url>
 </urlset>

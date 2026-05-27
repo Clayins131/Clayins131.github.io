@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="ASML live price vs DCF valuation — Clay Liang's personal tracker.">
+  <script src="/assets/site-boot.js"></script>
 
   <!-- Open Graph -->
   <meta property="og:title" content="ASML Tracker — Clay Liang">
@@ -12,17 +13,21 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Clay Liang">
   <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://tuixue.nl/fintools/asml.html">
 
   <title>ASML Tracker — Clay Liang</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    :root{--bg:#fff;--text:#222;--text2:#555;--text3:#999;--link:#1772d0;--link-hover:#f09228;--border:#ddd;--bl:#eee;--card:#fafafa;--tag:#f0f0f0;--green:#16a34a;--red:#dc2626;--tip:#f0f7ff;--tipb:#c4ddf5}
-    [data-theme="dark"]{--bg:#111;--text:#ddd;--text2:#aaa;--text3:#666;--link:#6db3f2;--link-hover:#f09228;--border:#333;--bl:#222;--card:#1a1a1a;--tag:#252525;--green:#4ade80;--red:#f87171;--tip:#131c25;--tipb:#1e3a5f}
+    :root{--bg:#fff;--text:#222;--text2:#555;--text3:#999;--link:#1772d0;--link-hover:#f09228;--border:#ddd;--bl:#eee;--card:#fafafa;--tag:#f0f0f0;--green:#16a34a;--red:#dc2626;--tip:#f0f7ff;--tipb:#c4ddf5;color-scheme:light}
+    [data-theme="dark"]{--bg:#111;--text:#ddd;--text2:#aaa;--text3:#666;--link:#6db3f2;--link-hover:#f09228;--border:#333;--bl:#222;--card:#1a1a1a;--tag:#252525;--green:#4ade80;--red:#f87171;--tip:#131c25;--tipb:#1e3a5f;color-scheme:dark}
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--bg);transition:background .3s,color .3s;padding:30px 20px 60px}
     a{color:var(--link);text-decoration:none}a:hover{color:var(--link-hover)}::selection{background:var(--link);color:#fff}
+    a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--link);outline-offset:3px}
+    .skip-link{position:absolute;left:16px;top:-48px;z-index:1000;padding:8px 12px;background:var(--bg);border:1px solid var(--link);border-radius:6px;color:var(--link);font-family:-apple-system,sans-serif;font-size:13px;transition:top .2s}
+    .skip-link:focus{top:12px}
     .wrap{max-width:820px;margin:0 auto}
     .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;font-size:13px;font-family:-apple-system,sans-serif}
     .topbar .back{color:var(--text2)}.topbar .back:hover{color:var(--link-hover)}
@@ -34,7 +39,7 @@
 
     /* price card */
     .price-card{background:var(--card);border:1px solid var(--bl);border-radius:12px;padding:20px 24px;margin-bottom:20px;font-family:-apple-system,sans-serif}
-    .price-card .ticker{font-size:12px;font-weight:700;color:var(--text3);letter-spacing:.08em}
+    .price-card .ticker{font-size:12px;font-weight:700;color:var(--text3);letter-spacing:0}
     .price-card .price{font-family:'Courier New',monospace;font-size:36px;font-weight:700;color:var(--text);margin:4px 0}
     .price-card .change{font-size:14px;font-weight:600}
     .price-card .change.up{color:var(--green)}.price-card .change.down{color:var(--red)}
@@ -43,7 +48,7 @@
     /* valuation comparison */
     .val-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px}
     .val-box{background:var(--card);border:1px solid var(--bl);border-radius:10px;padding:14px;text-align:center;font-family:-apple-system,sans-serif}
-    .val-box .label{font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.03em;margin-bottom:4px}
+    .val-box .label{font-size:11px;font-weight:600;color:var(--text3);letter-spacing:0;margin-bottom:4px}
     .val-box .num{font-family:'Courier New',monospace;font-size:22px;font-weight:700}
     .val-box .note{font-size:10.5px;color:var(--text3);margin-top:3px}
     .val-box.bear .num{color:var(--red)}.val-box.base .num{color:var(--link)}.val-box.bull .num{color:var(--green)}
@@ -76,11 +81,12 @@
     .footer{margin-top:44px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);text-align:center;font-family:-apple-system,sans-serif}.footer a{color:var(--text3)}
     .fl{color:var(--text3);font-size:13px;font-family:-apple-system,sans-serif;padding:12px 0}
 
-    @media(max-width:560px){.val-grid{grid-template-columns:1fr}.price-card .price{font-size:28px}}
+    @media(max-width:560px){body{padding:24px 16px 48px}.val-grid{grid-template-columns:1fr}.price-card .price{font-size:28px}}
   </style>
 </head>
 <body>
-<div class="wrap">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="wrap" id="main">
   <div class="topbar">
     <a class="back" href="/fintools/"><i class="fas fa-arrow-left"></i> Fin Tools</a>
     <button class="tb" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
@@ -97,7 +103,7 @@
 
   <!-- Price Card -->
   <div class="price-card" id="priceCard">
-    <div class="ticker">ASML · Euronext Amsterdam</div>
+    <div class="ticker">ASML · Nasdaq ADR converted to EUR</div>
     <div class="price" id="livePrice">Loading...</div>
     <div class="change" id="liveChange"></div>
     <div class="meta" id="liveMeta"></div>
@@ -171,42 +177,61 @@
 <script>
 // Theme
 const tb=document.getElementById('themeBtn'),ti=tb.querySelector('i');
-function gT(){const m=document.cookie.match(/(?:^|; )theme=(\w+)/);return m?m[1]:null}
-function sT(t){document.cookie=`theme=${t};path=/;max-age=${365*86400};SameSite=Lax`;t==='dark'?(document.documentElement.setAttribute('data-theme','dark'),ti.className='fas fa-sun'):(document.documentElement.removeAttribute('data-theme'),ti.className='fas fa-moon')}
-if(gT()==='dark')sT('dark');tb.addEventListener('click',()=>{sT(gT()==='dark'?'light':'dark');if(chart)updateChartColors()});
+function gT(){const m=document.cookie.match(/(?:^|; )theme=(\w+)/);return m?m[1]:(document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light')}
+function sT(t,p=true){if(p)document.cookie=`theme=${t};path=/;max-age=${365*86400};SameSite=Lax`;document.documentElement.style.colorScheme=t==='dark'?'dark':'light';t==='dark'?(document.documentElement.setAttribute('data-theme','dark'),ti.className='fas fa-sun'):(document.documentElement.removeAttribute('data-theme'),ti.className='fas fa-moon');tb.setAttribute('aria-pressed',t==='dark'?'true':'false');tb.title=t==='dark'?'Switch to light mode':'Switch to dark mode'}
+sT(gT(),false);tb.addEventListener('click',()=>{sT(gT()==='dark'?'light':'dark');if(chart)updateChartColors()});
 
 const BEAR=298, BASE=429, BULL=581;
+const AV_KEY='demo';
+let usdEurRate=null;
 
-// Fetch ASML price from Alpha Vantage
+function avKey(){
+  return localStorage.getItem('avKey')||AV_KEY;
+}
+
+async function fetchUsdEur(){
+  if(usdEurRate)return usdEurRate;
+  try{
+    const r=await fetch('https://api.frankfurter.app/latest?from=USD&to=EUR');
+    const d=await r.json();
+    usdEurRate=d.rates?.EUR||0.92;
+  }catch(e){
+    usdEurRate=0.92;
+  }
+  return usdEurRate;
+}
+
+// Fetch ASML ADR price from Alpha Vantage, then convert USD to EUR for DCF comparison.
 async function fetchASML(){
   try{
-    // Try quote first
-    const qr=await fetch('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=ASML&apikey=demo');
-    const qd=await qr.json();
+    const [qd,fx]=await Promise.all([
+      fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=ASML&apikey=${encodeURIComponent(avKey())}`).then(r=>r.json()),
+      fetchUsdEur()
+    ]);
     const q=qd['Global Quote'];
 
     if(q&&q['05. price']){
-      const price=parseFloat(q['05. price']);
-      const change=parseFloat(q['09. change']);
+      const usdPrice=parseFloat(q['05. price']);
+      const price=usdPrice*fx;
+      const change=parseFloat(q['09. change'])*fx;
       const pct=q['10. change percent'];
       const cls=change>=0?'up':'down';
       const arrow=change>=0?'▲':'▼';
       document.getElementById('livePrice').textContent=`€${price.toFixed(2)}`;
       document.getElementById('liveChange').className='change '+cls;
-      document.getElementById('liveChange').textContent=`${arrow} €${Math.abs(change).toFixed(2)} (${pct})`;
-      document.getElementById('liveMeta').textContent=`Last: ${q['07. latest trading day']} · Data: Alpha Vantage (15-min delay)`;
+      document.getElementById('liveChange').textContent=`${arrow} €${Math.abs(change).toFixed(2)} (${pct}) · ADR $${usdPrice.toFixed(2)}`;
+      document.getElementById('liveMeta').textContent=`Last: ${q['07. latest trading day']} · Alpha Vantage ADR quote, converted with USD/EUR ${fx.toFixed(4)}`;
       updateVerdict(price);
       return price;
     }
 
-    // Fallback: try with ticker ASML (might need .AS for Amsterdam)
     document.getElementById('livePrice').textContent='€ —';
-    document.getElementById('liveMeta').textContent='Could not fetch live price. Alpha Vantage demo key may be rate-limited. Try refreshing in a minute.';
+    document.getElementById('liveMeta').textContent='Could not fetch live price. Alpha Vantage demo key may be rate-limited. Using an approximate EUR price.';
     updateVerdict(680); // use approximate known price as fallback
     return 680;
   }catch(e){
     document.getElementById('livePrice').textContent='€ —';
-    document.getElementById('liveMeta').textContent='Network error. Using approximate price.';
+    document.getElementById('liveMeta').textContent='Network error. Using approximate EUR price.';
     updateVerdict(680);
     return 680;
   }
@@ -236,16 +261,17 @@ function updateVerdict(price){
 let chart=null;
 async function fetchHistory(){
   try{
-    // Use Alpha Vantage monthly data
-    const r=await fetch('https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=ASML&apikey=demo');
-    const d=await r.json();
+    const [d,fx]=await Promise.all([
+      fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=ASML&apikey=${encodeURIComponent(avKey())}`).then(r=>r.json()),
+      fetchUsdEur()
+    ]);
     const ts=d['Monthly Time Series'];
     if(!ts){
       // Fallback: generate approximate data
       return generateFallbackData();
     }
     const dates=Object.keys(ts).sort().slice(-12); // last 12 months
-    return dates.map(date=>({date,price:parseFloat(ts[date]['4. close'])}));
+    return dates.map(date=>({date,price:parseFloat(ts[date]['4. close'])*fx}));
   }catch(e){
     return generateFallbackData();
   }
@@ -288,7 +314,7 @@ async function drawChart(){
     data:{
       labels,
       datasets:[
-        {label:'ASML Price',data:prices,borderColor:colors.line,borderWidth:2.5,pointRadius:3,pointBackgroundColor:colors.line,fill:false,tension:0.3},
+        {label:'ASML ADR in EUR',data:prices,borderColor:colors.line,borderWidth:2.5,pointRadius:3,pointBackgroundColor:colors.line,fill:false,tension:0.3},
         {label:'Bull (€581)',data:Array(labels.length).fill(BULL),borderColor:colors.bull.replace('0.15','0.6'),borderWidth:1,borderDash:[6,4],pointRadius:0,fill:false},
         {label:'Base (€429)',data:Array(labels.length).fill(BASE),borderColor:colors.base,borderWidth:1.5,borderDash:[4,4],pointRadius:0,fill:false},
         {label:'Bear (€298)',data:Array(labels.length).fill(BEAR),borderColor:colors.bear.replace('0.15','0.6'),borderWidth:1,borderDash:[6,4],pointRadius:0,fill:false},
@@ -304,7 +330,7 @@ async function drawChart(){
       }
     }
   });
-  document.getElementById('chartNote').textContent=`Showing ${labels.length} months of data. Dashed lines = my DCF estimates.`;
+  document.getElementById('chartNote').textContent=`Showing ${labels.length} months of data. ADR prices are converted to EUR; dashed lines = my DCF estimates.`;
 }
 
 function updateChartColors(){

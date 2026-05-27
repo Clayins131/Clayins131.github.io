@@ -4,13 +4,21 @@
   if (!btn) return;
   const icon = btn.querySelector('i');
 
-  function getTheme() {
+  function getStoredTheme() {
     const m = document.cookie.match(/(?:^|; )theme=(\w+)/);
     return m ? m[1] : null;
   }
 
-  function setTheme(t) {
-    document.cookie = 'theme=' + t + ';path=/;max-age=' + (365 * 86400) + ';SameSite=Lax';
+  function getCurrentTheme() {
+    return getStoredTheme() ||
+      (document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+  }
+
+  function applyTheme(t, persist) {
+    if (persist) {
+      document.cookie = 'theme=' + t + ';path=/;max-age=' + (365 * 86400) + ';SameSite=Lax';
+    }
+    document.documentElement.style.colorScheme = t === 'dark' ? 'dark' : 'light';
     if (t === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
       if (icon) icon.className = 'fas fa-sun';
@@ -18,13 +26,14 @@
       document.documentElement.removeAttribute('data-theme');
       if (icon) icon.className = 'fas fa-moon';
     }
+    btn.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
+    btn.title = t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
   }
 
-  // Apply saved preference on load
-  if (getTheme() === 'dark') setTheme('dark');
+  applyTheme(getCurrentTheme(), false);
 
   btn.addEventListener('click', function () {
-    setTheme(getTheme() === 'dark' ? 'light' : 'dark');
+    applyTheme(getCurrentTheme() === 'dark' ? 'light' : 'dark', true);
   });
 
   // Smooth scroll for anchor links

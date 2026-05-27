@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Clay Liang 梁珂玮 — Data Science, AI, and the gap between data and decisions.">
+  <meta name="description" content="Clay Liang 梁珂玮 — Incoming TUM BMDS undergraduate working at the intersection of data science, AI, finance, and decisions.">
+  <script src="/assets/site-boot.js"></script>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Clay Liang">
-  <meta property="og:description" content="Data Science, AI, and the gap between data and decisions.">
+  <meta property="og:description" content="Incoming TUM BMDS undergraduate working at the intersection of data science, AI, finance, and decisions.">
   <meta property="og:url" content="https://tuixue.nl/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Clay Liang">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Clay Liang">
-  <meta name="twitter:description" content="Data Science, AI, and the gap between data and decisions.">
+  <meta name="twitter:description" content="Incoming TUM BMDS undergraduate working at the intersection of data science, AI, finance, and decisions.">
+  <link rel="canonical" href="https://tuixue.nl/">
 
   <title>Clay Liang</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -104,11 +106,69 @@
 
     .edu { font-size: 14px; color: var(--text2); margin-bottom: 6px; }
     .edu strong { color: var(--text); font-weight: bold; }
+
+    .focus-list {
+      display: grid;
+      gap: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 13.5px;
+    }
+    .focus-item {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .focus-item:last-child { border-bottom: none; }
+    .focus-item .k {
+      color: var(--text3);
+      font-family: 'Courier New', monospace;
+      font-size: 12.5px;
+    }
+    .focus-item .v { color: var(--text2); }
+    .focus-item strong { color: var(--text); }
+
+    @media (max-width: 560px) {
+      .focus-item { grid-template-columns: 1fr; gap: 2px; }
+    }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Clay Liang",
+    "alternateName": "梁珂玮",
+    "url": "https://tuixue.nl/",
+    "email": "mailto:claysps@outlook.com",
+    "sameAs": [
+      "https://github.com/Clayins131",
+      "https://www.linkedin.com/in/clay-coulson-a4a11a27b"
+    ],
+    "affiliation": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Technical University of Munich"
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Leiden University"
+      }
+    ],
+    "knowsAbout": [
+      "Data Science",
+      "Artificial Intelligence",
+      "Financial Technology",
+      "Data Visualization",
+      "Decision-Making"
+    ]
+  }
+  </script>
 </head>
 <body>
 
-<div class="wrap">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="wrap" id="main">
 
   <div class="topbar">
     <a href="/blog/">Blog</a>
@@ -125,7 +185,7 @@
         I work at the intersection of <strong>data science</strong> and <strong>decision-making</strong> — building tools, dashboards, and models that bridge the gap between raw data and the people who act on it.
       </p>
       <p>
-        Currently a BSc student at <a href="https://www.universiteitleiden.nl/en">Leiden University</a> (AI &amp; Data Science), heading to <a href="https://www.tum.de/en/">TU Munich</a> next.
+        Incoming BSc <strong>Management &amp; Data Science</strong> student at <a href="https://www.tum.de/en/">Technical University of Munich</a> in 2026, currently studying AI &amp; Data Science at <a href="https://www.universiteitleiden.nl/en">Leiden University</a>.
         Previously interned at <a href="https://www.airbus.com/">Airbus</a> <em>(data analytics, Tianjin)</em> and <a href="https://www.lenovo.com/">Lenovo</a> <em>(data science)</em>, and doing research at <a href="https://www.tsinghua.edu.cn/">Tsinghua University</a> on deep learning for audio.
       </p>
       <div class="bio-links">
@@ -157,6 +217,24 @@
         <div class="ci"><i class="fas fa-book"></i></div>
         <div><div class="cl">Reading</div><div class="cd">Books &amp; annual reports</div></div>
       </a>
+    </div>
+  </div>
+
+  <div class="section" id="focus">
+    <h2>Current Focus</h2>
+    <div class="focus-list">
+      <div class="focus-item">
+        <div class="k">2026</div>
+        <div class="v"><strong>Incoming TUM BMDS undergraduate</strong>, focused on the overlap between data science, management, and real business decisions.</div>
+      </div>
+      <div class="focus-item">
+        <div class="k">Finance</div>
+        <div class="v">Learning valuation, markets, and risk by building small tools and reading annual reports from cover to cover.</div>
+      </div>
+      <div class="focus-item">
+        <div class="k">Builds</div>
+        <div class="v">Turning messy datasets into dashboards, pipelines, and lightweight products that people can actually use.</div>
+      </div>
     </div>
   </div>
 
@@ -236,7 +314,7 @@
   <div class="section" id="education">
     <h2>Education</h2>
     <div class="edu">
-      <strong>BSc Management &amp; Data Science</strong> · <a href="https://www.tum.de/en/">TU Munich</a> · 2026 –
+      <strong>BSc Management &amp; Data Science (BMDS)</strong> · <a href="https://www.tum.de/en/">Technical University of Munich</a> · incoming 2026
     </div>
     <div class="edu">
       <strong>BSc Artificial Intelligence &amp; Data Science</strong> · <a href="https://www.universiteitleiden.nl/en">Leiden University</a> · 2025 – 2026
