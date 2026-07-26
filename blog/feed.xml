@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clay Liang — Blog</title>
+    <link>https://tuixue.nl/blog/</link>
+    <description>Data, markets, and the space between models and decisions.</description>
+    <language>en</language>
+    <atom:link href="https://tuixue.nl/blog/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>My First DCF: Valuing ASML as a Leiden Student</title>
+      <link>https://tuixue.nl/blog/asml-first-dcf.html</link>
+      <guid>https://tuixue.nl/blog/asml-first-dcf.html</guid>
+      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
+      <description>ASML is 45 minutes from my university. I used my own DCF calculator to value it from scratch — three scenarios, real numbers, and every place I was unsure.</description>
+    </item>
+
+    <item>
+      <title>The Bimodal Reality of CS Careers</title>
+      <link>https://tuixue.nl/blog/bimodal-reality-of-cs.html</link>
+      <guid>https://tuixue.nl/blog/bimodal-reality-of-cs.html</guid>
+      <pubDate>Tue, 15 Jul 2025 00:00:00 +0000</pubDate>
+      <description>CS has two career tracks: research scientist and infrastructure engineer. The middle is hollow.</description>
+    </item>
+
+    <item>
+      <title>Notes on Building a Databricks Pipeline That Doesn't Fall Over</title>
+      <link>https://tuixue.nl/blog/databricks-pipeline-notes.html</link>
+      <guid>https://tuixue.nl/blog/databricks-pipeline-notes.html</guid>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <description>Practical things I learned processing 10TB+ of aviation data — partition strategies, avoiding collect(), and why your notebook that works at 1GB will betray you at 100GB.</description>
+    </item>
+
+    <item>
+      <title>What an Aircraft Factory Taught Me About Data</title>
+      <link>https://tuixue.nl/blog/what-airbus-taught-me.html</link>
+      <guid>https://tuixue.nl/blog/what-airbus-taught-me.html</guid>
+      <pubDate>Sun, 01 Jun 2025 00:00:00 +0000</pubDate>
+      <description>I went to Airbus expecting to build models. Instead I spent most of my time cleaning SQL queries, arguing about chart colours, and learning that the hardest part of data work has nothing to do with data.</description>
+    </item>
+
+    <item>
+      <title>Why I Read Annual Reports as a Data Person</title>
+      <link>https://tuixue.nl/blog/why-i-read-annual-reports.html</link>
+      <guid>https://tuixue.nl/blog/why-i-read-annual-reports.html</guid>
+      <pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate>
+      <description>Everyone says "data-driven." But most data work never touches the documents where real decisions get recorded.</description>
+    </item>
+
+    <item>
+      <title>From Loss Functions to Decisions: Why I'm Moving Toward Finance</title>
+      <link>https://tuixue.nl/blog/from-loss-functions-to-decisions.html</link>
+      <guid>https://tuixue.nl/blog/from-loss-functions-to-decisions.html</guid>
+      <pubDate>Sat, 01 Mar 2025 00:00:00 +0000</pubDate>
+      <description>I spent two years optimising models and one year optimising slide decks. The slide decks changed more outcomes.</description>
+    </item>
+
+  </channel>
+</rss>

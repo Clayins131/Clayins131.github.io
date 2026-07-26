@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Clay Liang - Management & Data Science student at TUM using data, models and technology to support financial, risk and strategic decisions.">
+  <script src="/assets/site-boot.js"></script>
+
+  <meta property="og:title" content="Clay Liang">
+  <meta property="og:description" content="Data-driven decision-making across finance, risk and technology.">
+  <meta property="og:url" content="https://tuixue.nl/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Clay Liang">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://tuixue.nl/">
+
+  <title>Clay Liang - Data, Finance & Decisions</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="/assets/shared.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .wrap { max-width: 880px; }
+    .topbar { justify-content: flex-end; margin-bottom: 48px; }
+    .topbar-right { gap: 16px; }
+    .topbar-right a { color: var(--text3); }
+
+    .hero { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 44px; align-items: start; margin-bottom: 48px; }
+    .eyebrow { font: 600 11px/1.4 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--text3); margin-bottom: 12px; }
+    h1 { font-size: 34px; line-height: 1.15; font-weight: normal; letter-spacing: -.02em; margin-bottom: 14px; }
+    .name-cn { font-family: 'PingFang SC','Microsoft YaHei',sans-serif; font-size: 17px; color: var(--text3); margin-left: 6px; }
+    .lead { font-size: 18px; line-height: 1.55; color: var(--text2); max-width: 620px; }
+    .lead strong { color: var(--text); font-weight: normal; }
+    .hero-note { margin-top: 18px; color: var(--text2); font-size: 14.5px; max-width: 650px; }
+    .hero-note em { color: var(--text); font-style: normal; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px 15px; margin-top: 20px; font: 13px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+    .links a { color: var(--text2); }
+    .links a:hover { color: var(--link-hover); }
+
+    .profile-card { background: var(--card); border: 1px solid var(--border-light); border-radius: 10px; padding: 17px; font: 13px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+    .profile-card .k { color: var(--text3); font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+    .profile-card .v { color: var(--text2); margin-bottom: 14px; }
+    .profile-card .v:last-child { margin-bottom: 0; }
+    .profile-card strong { color: var(--text); }
+
+    .principle { border-left: 3px solid var(--link); padding: 13px 0 13px 17px; margin: 0 0 48px; color: var(--text2); font-size: 15px; }
+    .principle strong { color: var(--text); }
+
+    .section { margin-top: 46px; }
+    .section-title { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); margin-bottom: 17px; }
+    .section-title h2 { font-size: 20px; font-weight: normal; }
+    .section-title a { font: 12px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color: var(--text3); }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .feature { border: 1px solid var(--border-light); border-radius: 9px; padding: 17px; background: var(--card); transition: transform .2s, border-color .2s; }
+    .feature:hover { transform: translateY(-2px); border-color: var(--link); }
+    .feature .meta { font: 10.5px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color: var(--text3); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 7px; }
+    .feature h3 { font-size: 16px; margin-bottom: 7px; }
+    .feature h3 a { color: var(--text); }
+    .feature h3 a:hover { color: var(--link); }
+    .feature p { font-size: 13.5px; color: var(--text2); }
+    .feature .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 11px; }
+
+    .timeline-item { display: grid; grid-template-columns: 150px minmax(0,1fr); gap: 22px; padding: 0 0 20px; margin-bottom: 20px; border-bottom: 1px solid var(--border-light); }
+    .timeline-item:last-child { border-bottom: 0; margin-bottom: 0; }
+    .timeline-item .org { font-size: 14px; color: var(--text); }
+    .timeline-item .date { font: 11.5px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color: var(--text3); margin-top: 3px; }
+    .timeline-item h3 { font-size: 15px; margin-bottom: 5px; }
+    .timeline-item p { font-size: 13.5px; color: var(--text2); }
+
+    .interest-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+    .interest { padding: 13px 14px; border: 1px solid var(--border-light); border-radius: 8px; }
+    .interest strong { display: block; font: 600 12.5px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color: var(--text); margin-bottom: 3px; }
+    .interest span { font-size: 13px; color: var(--text2); }
+
+    .skills { display: grid; grid-template-columns: 115px 1fr; gap: 8px 16px; font-size: 13.5px; }
+    .skills .label { color: var(--text3); font: 600 11.5px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; text-transform: uppercase; letter-spacing: .04em; padding-top: 2px; }
+    .skills .value { color: var(--text2); }
+
+    .edu-row { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid var(--border-light); font-size: 13.5px; }
+    .edu-row:last-child { border-bottom: 0; }
+    .edu-row strong { color: var(--text); }
+    .edu-row span { color: var(--text3); white-space: nowrap; font: 12px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+
+    @media (max-width: 700px) {
+      .topbar { margin-bottom: 34px; }
+      .hero { grid-template-columns: 1fr; gap: 24px; }
+      .profile-card { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+      .feature-grid, .interest-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 5px; }
+      h1 { font-size: 29px; }
+    }
+    @media (max-width: 460px) {
+      .profile-card { grid-template-columns: 1fr; }
+      .skills { grid-template-columns: 1fr; gap: 2px; }
+      .skills .value { margin-bottom: 9px; }
+      .edu-row { display: block; }
+      .edu-row span { display: block; margin-top: 3px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Clay Liang",
+    "alternateName": "梁珂玮",
+    "url": "https://tuixue.nl/",
+    "email": "mailto:claysps@outlook.com",
+    "sameAs": [
+      "https://github.com/Clayins131",
+      "https://www.linkedin.com/in/clayins131"
+    ],
+    "affiliation": {"@type":"CollegeOrUniversity","name":"Technical University of Munich"},
+    "alumniOf": {"@type":"CollegeOrUniversity","name":"Leiden University"},
+    "knowsAbout": ["Management and Data Science","Financial Analytics","Risk Analytics","Portfolio Analytics","Technology Consulting","Data Visualization"]
+  }
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="wrap" id="main">
+  <nav class="topbar" aria-label="Primary navigation">
+    <div class="topbar-right">
+      <a href="/projects/">Projects</a>
+      <a href="/blog/">Writing</a>
+      <a href="/fintools/">Fin Tools</a>
+      <a href="/CV.pdf">CV</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Data · Finance · Technology</div>
+      <h1>Clay Liang <span class="name-cn">梁珂玮</span></h1>
+      <p class="lead">I use data and models to make <strong>financial, operational and strategic decisions</strong> clearer.</p>
+      <p class="hero-note">I am a Management &amp; Data Science student at TUM with experience at Airbus, Lenovo and Tsinghua University. I enjoy research most when it leads somewhere practical: a better risk view, a clearer portfolio decision, or a more useful way of running a business.</p>
+      <div class="links">
+        <a href="mailto:claysps@outlook.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://github.com/Clayins131"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/clayins131"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="/CV.pdf"><i class="fas fa-file-lines"></i> CV</a>
+      </div>
+    </div>
+    <aside class="profile-card" aria-label="Profile summary">
+      <div><div class="k">Current</div><div class="v"><strong>BSc Management &amp; Data Science</strong><br>TUM School of Management</div></div>
+      <div><div class="k">Experience</div><div class="v">Airbus · Lenovo · Tsinghua</div></div>
+      <div><div class="k">Working style</div><div class="v">Analytical, collaborative and accountable</div></div>
+      <div><div class="k">Based in</div><div class="v">Germany · open to Asia and Europe</div></div>
+    </aside>
+  </header>
+
+  <div class="principle"><strong>What I care about:</strong> not analysis for its own sake, but reliable evidence that helps a team act. I try to make assumptions visible, communicate simply and take responsibility for the quality of the final output.</div>
+
+  <section class="section" id="work">
+    <div class="section-title"><h2>Selected work</h2><a href="/projects/">View all projects →</a></div>
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="meta">Financial analytics</div>
+        <h3><a href="/fintools/">Financial Data &amp; Scenario Tools</a></h3>
+        <p>A browser-based toolkit for live market data, DCF valuation, FX, inflation, investment returns and scenario testing with transparent assumptions.</p>
+        <div class="tags"><span class="tag">DCF</span><span class="tag">Market data</span><span class="tag">JavaScript</span></div>
+      </article>
+      <article class="feature">
+        <div class="meta">Valuation case study</div>
+        <h3><a href="/fintools/asml.html">ASML Valuation Tracker</a></h3>
+        <p>A live comparison between ASML's market price and my own DCF range, built to understand how assumptions, risk and expectations move valuation.</p>
+        <div class="tags"><span class="tag">Equity research</span><span class="tag">Scenario analysis</span></div>
+      </article>
+      <article class="feature">
+        <div class="meta">Decision systems</div>
+        <h3><a href="/blog/what-airbus-taught-me.html">From operational data to decisions</a></h3>
+        <p>Lessons from working with production data, cross-functional stakeholders and the gap between a technically correct output and one people can use.</p>
+        <div class="tags"><span class="tag">Operations</span><span class="tag">Stakeholders</span></div>
+      </article>
+      <article class="feature">
+        <div class="meta">Applied machine learning</div>
+        <h3><a href="https://github.com/Clayins131/video-annotator">Video Annotation Tool</a></h3>
+        <p>A lightweight research workflow for timestamped video labels and CSV export, designed around what users actually needed rather than feature complexity.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Workflow design</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="section-title"><h2>Experience</h2></div>
+    <div class="timeline-item">
+      <div><div class="org">Airbus Tianjin Final Assembly</div><div class="date">Jun 2025 - Sep 2025</div></div>
+      <div><h3>Data Analytics Intern</h3><p>Analysed operational data with SQL, Python, Databricks and Apps Script; identified bottlenecks and performance patterns; and turned findings into dashboards, visual materials and concise updates for cross-functional teams.</p></div>
+    </div>
+    <div class="timeline-item">
+      <div><div class="org">Lenovo</div><div class="date">Feb 2025 - Jun 2025</div></div>
+      <div><h3>Data Science Intern / Intern Project Lead</h3><p>Built Tableau and Power BI reporting for digital-transformation and supply-chain work, standardised recurring analysis and coordinated a small intern workstream across technical and business deliverables.</p></div>
+    </div>
+    <div class="timeline-item">
+      <div><div class="org">Tsinghua University</div><div class="date">Jun 2024 - Present</div></div>
+      <div><h3>AI Research Assistant</h3><p>Supported audio deep-learning research through dataset preparation, model evaluation, controlled experiments and backend debugging, with an emphasis on traceable results and clear documentation.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="interests">
+    <div class="section-title"><h2>Where I want to apply this</h2></div>
+    <div class="interest-grid">
+      <div class="interest"><strong>Banking &amp; financial analysis</strong><span>Understanding companies, cash flows, financing needs and transaction decisions.</span></div>
+      <div class="interest"><strong>Risk &amp; quantitative analytics</strong><span>Using data and models to measure exposure, test scenarios and make uncertainty visible.</span></div>
+      <div class="interest"><strong>Portfolio analytics</strong><span>Connecting market information, valuation and risk to disciplined investment decisions.</span></div>
+      <div class="interest"><strong>Technology consulting</strong><span>Helping organisations turn data infrastructure and analytical tools into better operating decisions.</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <div class="section-title"><h2>Education</h2></div>
+    <div class="edu-row"><div><strong>BSc Management &amp; Data Science</strong><br>Technical University of Munich, School of Management</div><span>2026 - Present</span></div>
+    <div class="edu-row"><div><strong>Previous studies: Artificial Intelligence &amp; Data Science</strong><br>Leiden University</div><span>2025 - 2026</span></div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="section-title"><h2>Tools</h2></div>
+    <div class="skills">
+      <div class="label">Analytics</div><div class="value">Excel, Power BI, Tableau, Pandas, NumPy, data visualisation and scenario analysis</div>
+      <div class="label">Programming</div><div class="value">Python, SQL, JavaScript, C++ and Java</div>
+      <div class="label">Data</div><div class="value">Databricks, Spark, Git, Docker and Linux</div>
+      <div class="label">Machine learning</div><div class="value">PyTorch, TensorFlow and Scikit-learn</div>
+      <div class="label">Languages</div><div class="value">Mandarin Chinese (native), English (fluent), German (basic)</div>
+    </div>
+  </section>
+
+  <footer class="footer">&copy; 2026 Clay Liang · <a href="mailto:claysps@outlook.com">claysps@outlook.com</a> · Built without a framework</footer>
+</div>
+<script src="/assets/theme.js"></script>
+</body>
+</html>

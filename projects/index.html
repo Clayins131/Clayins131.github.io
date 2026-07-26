@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projects by Clay Liang across financial analytics, data products, machine learning and decision systems.">
+  <script src="/assets/site-boot.js"></script>
+  <meta property="og:title" content="Projects - Clay Liang">
+  <meta property="og:description" content="Financial analytics, data products and applied machine-learning projects.">
+  <meta property="og:url" content="https://tuixue.nl/projects/">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://tuixue.nl/projects/">
+  <title>Projects - Clay Liang</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/shared.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .wrap { max-width: 760px; }
+    h1 { font-size: 30px; font-weight: normal; margin-bottom: 7px; }
+    .desc { color: var(--text2); font-size: 15px; margin-bottom: 38px; max-width: 650px; }
+    .proj { margin-bottom: 34px; padding-bottom: 30px; border-bottom: 1px solid var(--border-light); }
+    .proj:last-of-type { border-bottom: none; }
+    .proj h2 { font-size: 20px; font-weight: normal; margin-bottom: 5px; }
+    .proj .meta { font: 11.5px -apple-system,sans-serif; color: var(--text3); margin-bottom: 11px; }
+    .proj p { color: var(--text2); margin-bottom: 9px; font-size: 14.5px; }
+    .proj .tech { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 11px; }
+    .takeaway { background: var(--card); border: 1px solid var(--border-light); border-radius: 8px; padding: 11px 13px; font: 13px/1.55 -apple-system,sans-serif; color: var(--text2); margin-top: 11px; }
+    .takeaway strong { color: var(--text); }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="wrap" id="main">
+  <div class="topbar">
+    <a class="back" href="/"><i class="fas fa-arrow-left"></i> Clay Liang</a>
+    <div class="topbar-right"><a href="/blog/">Writing</a><a href="/fintools/">Fin Tools</a><a href="/CV.pdf">CV</a><button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button></div>
+  </div>
+
+  <h1>Projects</h1>
+  <p class="desc">I build small, practical tools to understand how data, assumptions and models change a decision. The projects below range from financial analysis to research workflows and applied machine learning.</p>
+
+  <article class="proj">
+    <h2>Financial Data &amp; Scenario Tools</h2>
+    <div class="meta"><a href="/fintools/">Live project</a> · Financial analytics · 2025 - Present</div>
+    <p>A browser-based toolkit covering live FX and market data, country inflation, DCF valuation, investment returns, compound interest, loan amortisation and purchasing-power analysis.</p>
+    <p>The DCF tool makes its assumptions visible and adjustable, so users can see how cash flow, growth and discount rates change the valuation rather than treating the output as a black box.</p>
+    <div class="takeaway"><strong>Why I built it:</strong> I learn finance more effectively when I can test an assumption, see the result immediately and understand which input actually drives the answer.</div>
+    <div class="tech"><span class="tag">DCF</span><span class="tag">Scenario analysis</span><span class="tag">JavaScript</span><span class="tag">World Bank API</span><span class="tag">Market data APIs</span></div>
+  </article>
+
+  <article class="proj">
+    <h2>ASML Valuation Tracker</h2>
+    <div class="meta"><a href="/fintools/asml.html">Live project</a> · Valuation case study · 2025 - Present</div>
+    <p>A live tracker that compares ASML's market price with an independently modelled DCF range. It combines company research, explicit assumptions and scenario analysis in one compact view.</p>
+    <div class="takeaway"><strong>What it taught me:</strong> valuation is less about producing one precise number than understanding which expectations are already reflected in the price and where the downside assumptions break.</div>
+    <div class="tech"><span class="tag">Equity research</span><span class="tag">DCF</span><span class="tag">Risk scenarios</span></div>
+  </article>
+
+  <article class="proj">
+    <h2>Video Annotation Tool</h2>
+    <div class="meta"><a href="https://github.com/Clayins131/video-annotator">GitHub</a> · Research workflow · 2024</div>
+    <p>A lightweight browser-based video labelling workflow with frame navigation, timestamped multi-class annotations and CSV export. It was designed for a research task that needed speed and simplicity rather than a large annotation platform.</p>
+    <div class="takeaway"><strong>Design principle:</strong> start with the user's real bottleneck. The most useful version had fewer features, a shorter workflow and clearer output.</div>
+    <div class="tech"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">OpenCV</span><span class="tag">JavaScript</span></div>
+  </article>
+
+  <article class="proj">
+    <h2>Offline Music Recommendation</h2>
+    <div class="meta"><a href="https://github.com/Clayins131/Offline-Music-Recommendation-System">GitHub</a> · Applied machine learning · 2024</div>
+    <p>An offline pipeline combining speech recognition, sentiment analysis, content-based filtering and local playback. The project explored how separate models can be connected into one usable workflow under strict privacy and connectivity constraints.</p>
+    <div class="tech"><span class="tag">Python</span><span class="tag">Speech recognition</span><span class="tag">Sentiment analysis</span></div>
+  </article>
+
+  <article class="proj">
+    <h2>csvtool</h2>
+    <div class="meta"><a href="https://github.com/Clayins131/csvtool">GitHub</a> · Data infrastructure · 2024</div>
+    <p>A C++ CSV parser built when Python-based processing became the bottleneck for a large research file. The project focused on runtime, memory use and a simple interface rather than adding unnecessary abstraction.</p>
+    <div class="tech"><span class="tag">C++</span><span class="tag">Performance</span><span class="tag">Data processing</span></div>
+  </article>
+
+  <article class="proj">
+    <h2>AI-Eco</h2>
+    <div class="meta"><a href="https://github.com/Clayins131/AI-Eco">GitHub</a> · Data visualisation · 2025</div>
+    <p>An interactive visualisation of AI's energy, water and e-waste footprint, originally developed as a university interaction-design project. Users can compare models and explore how usage assumptions change environmental impact.</p>
+    <div class="tech"><span class="tag">Three.js</span><span class="tag">Chart.js</span><span class="tag">Interactive storytelling</span></div>
+  </article>
+
+  <footer class="footer">&copy; 2026 Clay Liang · <a href="https://tuixue.nl">tuixue.nl</a></footer>
+</div>
+<script src="/assets/theme.js"></script>
+</body>
+</html>
