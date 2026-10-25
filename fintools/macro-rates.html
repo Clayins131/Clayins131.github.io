@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A global macro and fixed-income research workbench by Clay Liang. Connect a macro thesis to yield-curve scenarios, bond repricing and key-rate risk.">
+  <meta property="og:title" content="Global Macro & Rates Lab — Clay Liang">
+  <meta property="og:description" content="From macro thesis to curve scenario to bond risk. An interactive research workbench with transparent assumptions.">
+  <meta property="og:url" content="https://tuixue.nl/fintools/macro-rates.html">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://tuixue.nl/fintools/macro-rates.html">
+  <title>Global Macro & Rates Lab — Clay Liang</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <script src="/assets/site-boot.js"></script>
+  <link rel="stylesheet" href="/assets/shared.css">
+  <link rel="stylesheet" href="/assets/macro-rates.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to research workbench</a>
+<div class="wrap lab-wrap">
+  <nav class="topbar" aria-label="Primary navigation">
+    <a class="back" href="/">← Clay Liang</a>
+    <div class="topbar-right"><a href="/projects/">Projects</a><a href="/fintools/">Fin Tools</a><a href="#methodology">Methodology</a><button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button></div>
+  </nav>
+  <header class="lab-hero">
+    <div><div class="eyebrow">Research workbench / 01</div><h1>Global Macro <span>&amp;</span> Rates Lab</h1><p class="intro">Translate a macro view into a curve scenario.<br> Then see where the bond risk actually sits.</p></div>
+    <div class="hero-aside"><span class="status-dot"></span> Interactive research project<br><span>Growth → inflation → policy → rates</span><a href="https://github.com/Clayins131/Clayins131.github.io">Inspect the source ↗</a></div>
+  </header>
+  <div class="data-banner"><strong>Illustrative inputs, explicit assumptions.</strong> The starting curves are teaching examples, not current market observations. Edit the zero rates and record your evidence below. Nothing here is a live data feed.</div>
+  <noscript><p class="error">Enable JavaScript to calculate scenarios. The methodology and source links remain readable below.</p></noscript>
+  <main id="main">
+    <div class="market-tabs" role="group" aria-label="Select research market">
+      <button type="button" data-market="us" aria-pressed="true"><span>United States</span><small>USD / Federal Reserve</small></button>
+      <button type="button" data-market="eu" aria-pressed="false"><span>Euro area</span><small>EUR / ECB</small></button>
+      <button type="button" data-market="uk" aria-pressed="false"><span>United Kingdom</span><small>GBP / Bank of England</small></button>
+      <button type="button" data-market="jp" aria-pressed="false"><span>Japan</span><small>JPY / Bank of Japan</small></button>
+      <button type="button" data-market="cn" aria-pressed="false"><span>China</span><small>CNY / PBoC</small></button>
+    </div>
+    <section class="research-section" aria-labelledby="thesis-heading">
+      <div class="section-head"><div><span class="step">01 / Frame the thesis</span><h2 id="thesis-heading">Start with the fundamentals.</h2></div><span class="small">Research prompts, not a market forecast</span></div>
+      <div class="research-grid">
+        <article class="research-card"><span class="card-index">G</span><h3>Growth &amp; labour</h3><p id="growth-prompt"></p><label for="growth">Your growth view</label><select id="growth"><option>Unassigned</option><option>Accelerating</option><option>Stable</option><option>Slowing</option></select></article>
+        <article class="research-card"><span class="card-index">π</span><h3>Inflation &amp; wages</h3><p id="inflation-prompt"></p><label for="inflation">Your inflation view</label><select id="inflation"><option>Unassigned</option><option>Reaccelerating</option><option>Sticky</option><option>Disinflating</option></select></article>
+        <article class="research-card"><span class="card-index">r</span><h3>Policy &amp; supply</h3><p id="policy-prompt"></p><label for="policy">Your policy view</label><select id="policy"><option>Unassigned</option><option>Tightening</option><option>On hold</option><option>Easing</option></select></article>
+      </div>
+      <div class="evidence-row"><div><span class="small-label">Primary sources · <span id="market-name">United States</span></span><div id="source-links" class="source-links"></div></div><p>Check release dates, revisions and what is already priced in. A macro view does not map mechanically to a bond trade.</p></div>
+    </section>
+    <section aria-labelledby="curve-heading">
+      <div class="section-head"><div><span class="step">02 / Express the rates view</span><h2 id="curve-heading">A curve, a shock, a repricing.</h2></div><button type="button" class="text-button" id="reset-market">Reset this market</button></div>
+      <div class="desk-grid">
+        <div class="curve-panel panel">
+          <div class="panel-heading"><div><h3>Zero-coupon yield curve</h3><p id="curve-status">Illustrative curve · USD</p></div><div class="legend"><span class="base-key">Base</span><span class="shock-key">Scenario</span></div></div>
+          <svg id="curve-chart" viewBox="0 0 680 292" role="img" aria-labelledby="curve-title curve-desc"><title id="curve-title">Base and scenario zero-coupon yield curves</title><desc id="curve-desc">Edit the accessible tenor inputs below to change the curve.</desc></svg>
+          <div class="curve-inputs" id="curve-inputs"></div>
+          <p class="chart-note">Annual effective zero rates (%), linearly interpolated by maturity. Par yields require conversion before use.</p>
+          <div class="scenario-controls">
+            <div class="small-label">Scenario templates <span>· hypothetical, editable</span></div>
+            <div class="preset-buttons" role="group" aria-label="Curve scenario templates"><button type="button" data-preset="unchanged">Unchanged</button><button type="button" data-preset="easing">Policy easing</button><button type="button" data-preset="inflation">Inflation repricing</button><button type="button" data-preset="premium">Term premium ↑</button></div>
+            <p id="scenario-story" class="scenario-story"></p>
+            <div class="shock-inputs"><label for="parallel">Parallel shift <span>bp</span><input id="parallel" type="number" min="-300" max="300" step="5" value="-25"></label><label for="steepness">Curve twist <span>bp amplitude</span><input id="steepness" type="number" min="-300" max="300" step="5" value="25"></label><label for="belly">5Y belly shift <span>bp</span><input id="belly" type="number" min="-300" max="300" step="5" value="0"></label></div>
+            <p class="chart-note">Twist: −amplitude at 6M, +amplitude at 30Y, linear between. Belly: triangular shock peaking at 5Y; zero at 6M and 30Y. Positive rates shocks reduce a conventional bond’s price.</p>
+          </div>
+        </div>
+        <aside class="bond-panel panel" aria-labelledby="bond-heading">
+          <span class="small-label">Instrument / stylised sovereign bond</span><h3 id="bond-heading">Where does the risk land?</h3>
+          <div class="bond-inputs"><label for="maturity">Maturity <span>years</span><input id="maturity" type="number" value="10" min="1" max="30" step="1"></label><label for="coupon">Annual coupon <span>%</span><input id="coupon" type="number" value="3" min="0" max="15" step="0.1"></label><label for="frequency">Payments / year<select id="frequency"><option value="2">2 · semiannual</option><option value="1">1 · annual</option></select></label><label for="notional">Face amount <span id="currency-label">USD</span><input id="notional" type="number" value="1000000" min="1" max="10000000000" step="1"></label></div>
+          <div class="result-primary"><span>Instantaneous scenario P&amp;L</span><strong id="pnl">—</strong><span id="price-return">—</span></div>
+          <dl class="risk-stats"><div><dt>Base price / 100</dt><dd id="base-price">—</dd></div><div><dt>Scenario price / 100</dt><dd id="scenario-price">—</dd></div><div><dt>Effective duration</dt><dd id="duration">—</dd></div><div><dt>Effective convexity</dt><dd id="convexity">—</dd></div><div><dt>DV01 · face amount</dt><dd id="dv01">—</dd></div><div><dt>2Y–10Y base slope</dt><dd id="slope">—</dd></div></dl>
+          <p class="chart-note">Same valuation instant; no carry, roll-down, credit spread, FX or trading cost. Settlement is on a coupon date, immediately after payment.</p>
+        </aside>
+      </div>
+      <p id="error" class="error" role="alert" hidden></p>
+      <p id="calculation-status" class="sr-only" aria-live="polite"></p>
+      <div class="risk-bottom-grid"><div class="panel key-panel"><h3>Key-rate DV01</h3><p class="small">Local-currency sensitivity by curve node, for the face amount above.</p><div id="key-rates" class="key-rates"></div><p class="chart-note">Each node is bumped independently by ±1 bp. Neighbouring discount rates move through interpolation.</p></div><div class="panel interpretation"><span class="small-label">Read the result</span><h3 id="interpretation-heading">The curve shape matters.</h3><p id="interpretation"></p><p id="approximation" class="chart-note"></p></div></div>
+    </section>
+    <section class="comparison-section" aria-labelledby="comparison-heading"><div class="section-head"><div><span class="step">03 / Compare the transmission</span><h2 id="comparison-heading">Same bond. Different rate structures.</h2></div></div><p class="small comparison-note">The same coupon, maturity and shock are applied to each local curve. Price returns are comparable; local-currency P&amp;Ls are not added or FX-adjusted. These are illustrative instruments, not quoted securities.</p><div class="table-scroll"><table><caption class="sr-only">Cross-market bond risk and scenario comparison</caption><thead><tr><th scope="col">Market / input status</th><th scope="col">10Y zero</th><th scope="col">2s10s</th><th scope="col">Price / 100</th><th scope="col">Duration</th><th scope="col">Price change</th></tr></thead><tbody id="comparison-body"></tbody></table></div></section>
+    <section class="memo-section" aria-labelledby="memo-heading"><div class="section-head"><div><span class="step">04 / Make the research inspectable</span><h2 id="memo-heading">Write the thesis. Name the risk.</h2></div><span class="small">Per-market notes · kept in this tab</span></div><div class="memo-grid"><label for="evidence">Evidence &amp; catalysts<textarea id="evidence" rows="4" maxlength="6000" placeholder="Release, observation date, source URL, surprise vs consensus… What would move the front end or term premium?"></textarea></label><label for="invalidation">What would change your mind?<textarea id="invalidation" rows="4" maxlength="6000" placeholder="Alternative explanation, next release, fiscal supply, wages, currency or a risk that is already priced in…"></textarea></label></div><div class="memo-meta"><label for="observation-date">Curve observation date (if using sourced inputs)<input id="observation-date" type="date"></label><p class="small">Edits and notes stay in memory until you close or reload this page. Export to keep a copy. Your inputs are not uploaded.</p></div><div class="export-row"><button class="primary-button" type="button" id="export-memo">Export research memo ↗</button><button class="secondary-button" type="button" id="export-csv">Export scenario CSV</button><span id="export-status" class="small" role="status"></span></div></section>
+    <section id="methodology" class="methodology"><div class="section-head"><div><span class="step">Method &amp; limits</span><h2>A small model you can audit.</h2></div><a href="https://github.com/Clayins131/Clayins131.github.io/blob/main/assets/rates-engine.js">Read the calculation code ↗</a></div><div class="method-grid"><div><h3>Cash flows, not a black box</h3><p>For each payment at t years, PV = cash flow / (1 + z(t))<sup>t</sup>. Here z is an annual effective zero rate as a decimal. Coupon payments are face × coupon / frequency; principal is returned at maturity. The grid assumes full coupon periods and zero accrued interest.</p><p>Effective duration = (P<sub>−</sub> − P<sub>+</sub>) / (2PΔy). Convexity = (P<sub>−</sub> + P<sub>+</sub> − 2P) / (PΔy²), with Δy = 0.0001. DV01 = (P<sub>−</sub> − P<sub>+</sub>) / 2, scaled to the face amount.</p></div><div><h3>Interpretation comes first</h3><p>Illustrative curves are not fitted to market instruments. Use bootstrapped or published zero rates with matching compounding, not policy rates or raw par yields. The euro-area curve is a generic EUR assumption; sovereign spreads are not modelled.</p><p>Scenario repricing is exact within this model. Duration/convexity is a local approximation for a parallel move only. Macro surprises, policy expectations and term premia can move in different directions; the templates are hypotheses to investigate.</p></div></div><p class="method-sources">Further reading: <a href="https://www.ecb.europa.eu/stats/financial_markets_and_interest_rates/euro_area_yield_curves/html/index.en.html">ECB yield-curve methodology</a> · <a href="https://www.bankofengland.co.uk/statistics/yield-curves">Bank of England yield curves</a> · <a href="https://www.newyorkfed.org/research/data_indicators/term-premia-tabs">New York Fed term-premium estimates</a></p></section>
+  </main>
+  <footer class="footer">© 2026 Clay Liang · <a href="/">About me</a> · <a href="mailto:claysps@outlook.com">Contact</a> · Global macro / fixed-income research</footer>
+</div>
+<script src="/assets/rates-engine.js"></script>
+<script src="/assets/macro-rates.js"></script>
+<script src="/assets/theme.js"></script>
+</body>
+</html>

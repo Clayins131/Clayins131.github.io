@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Clay Liang - Management & Data Science student at TUM using data, models and technology to support financial, risk and strategic decisions.">
+  <meta name="description" content="Clay Liang - Management & Data Science student at TUM exploring global macro fundamentals, fixed income and risk through data and transparent models.">
   <script src="/assets/site-boot.js"></script>
 
   <meta property="og:title" content="Clay Liang">
-  <meta property="og:description" content="Data-driven decision-making across finance, risk and technology.">
+  <meta property="og:description" content="Global macro fundamentals, fixed income and transparent research tools.">
   <meta property="og:url" content="https://tuixue.nl/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Clay Liang">
   <meta name="twitter:card" content="summary">
   <link rel="canonical" href="https://tuixue.nl/">
 
-  <title>Clay Liang - Data, Finance & Decisions</title>
+  <title>Clay Liang - Macro, Fixed Income & Data</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="stylesheet" href="/assets/shared.css">
@@ -60,6 +60,10 @@
     .feature h3 a:hover { color: var(--link); }
     .feature p { font-size: 13.5px; color: var(--text2); }
     .feature .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 11px; }
+    .feature.featured { grid-column: 1 / -1; border-color: var(--tipb); background: var(--tip); }
+    .feature.featured .meta { color: var(--link); }
+    .feature.featured h3 { font-size: 19px; }
+    .feature .project-link { display: inline-block; margin-top: 12px; font: 600 12px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
 
     .timeline-item { display: grid; grid-template-columns: 150px minmax(0,1fr); gap: 22px; padding: 0 0 20px; margin-bottom: 20px; border-bottom: 1px solid var(--border-light); }
     .timeline-item:last-child { border-bottom: 0; margin-bottom: 0; }
@@ -112,7 +116,7 @@
     ],
     "affiliation": {"@type":"CollegeOrUniversity","name":"Technical University of Munich"},
     "alumniOf": {"@type":"CollegeOrUniversity","name":"Leiden University"},
-    "knowsAbout": ["Management and Data Science","Financial Analytics","Risk Analytics","Portfolio Analytics","Technology Consulting","Data Visualization"]
+    "knowsAbout": ["Management and Data Science","Financial Analytics","Risk Analytics","Portfolio Analytics","Global Macro Research","Fixed Income Analytics","Technology Consulting","Data Visualization"]
   }
   </script>
 </head>
@@ -131,10 +135,10 @@
 
   <header class="hero">
     <div>
-      <div class="eyebrow">Data · Finance · Technology</div>
+      <div class="eyebrow">Global macro · Fixed income · Data</div>
       <h1>Clay Liang <span class="name-cn">梁珂玮</span></h1>
-      <p class="lead">I use data and models to make <strong>financial, operational and strategic decisions</strong> clearer.</p>
-      <p class="hero-note">I am a Management &amp; Data Science student at TUM with experience at Airbus, Lenovo and Tsinghua University. I enjoy research most when it leads somewhere practical: a better risk view, a clearer portfolio decision, or a more useful way of running a business.</p>
+      <p class="lead">I use data and models to study <strong>macroeconomic fundamentals, interest rates and risk</strong>.</p>
+      <p class="hero-note">I am a Management &amp; Data Science student at TUM with experience at Airbus, Lenovo and Tsinghua University. My research interests connect growth, inflation and monetary policy with fixed-income markets. I enjoy turning an economic thesis into explicit assumptions, testable scenarios and a clearer view of risk.</p>
       <div class="links">
         <a href="mailto:claysps@outlook.com"><i class="fas fa-envelope"></i> Email</a>
         <a href="https://github.com/Clayins131"><i class="fab fa-github"></i> GitHub</a>
@@ -155,6 +159,13 @@
   <section class="section" id="work">
     <div class="section-title"><h2>Selected work</h2><a href="/projects/">View all projects →</a></div>
     <div class="feature-grid">
+      <article class="feature featured">
+        <div class="meta">Interactive research tool · Global macro &amp; fixed income</div>
+        <h3><a href="/fintools/macro-rates.html">Global Macro &amp; Rates Lab</a></h3>
+        <p>Connect a macro thesis to a yield-curve scenario. Explore five markets, edit illustrative zero curves, and measure how parallel shifts, steepening and belly shocks change a bond's value, duration and DV01.</p>
+        <div class="tags"><span class="tag">Macro fundamentals</span><span class="tag">Yield curves</span><span class="tag">Key-rate risk</span></div>
+        <a class="project-link" href="/fintools/macro-rates.html">Open the research lab →</a>
+      </article>
       <article class="feature">
         <div class="meta">Financial analytics</div>
         <h3><a href="/fintools/">Financial Data &amp; Scenario Tools</a></h3>
@@ -201,8 +212,8 @@
   <section class="section" id="interests">
     <div class="section-title"><h2>Where I want to apply this</h2></div>
     <div class="interest-grid">
-      <div class="interest"><strong>Banking &amp; financial analysis</strong><span>Understanding companies, cash flows, financing needs and transaction decisions.</span></div>
-      <div class="interest"><strong>Risk &amp; quantitative analytics</strong><span>Using data and models to measure exposure, test scenarios and make uncertainty visible.</span></div>
+      <div class="interest"><strong>Global macro research</strong><span>Connecting growth, inflation and monetary policy across economies to a clear, evidence-based market thesis.</span></div>
+      <div class="interest"><strong>Fixed income &amp; quantitative risk</strong><span>Understanding yield curves, duration and key-rate exposure through transparent models and scenarios.</span></div>
       <div class="interest"><strong>Portfolio analytics</strong><span>Connecting market information, valuation and risk to disciplined investment decisions.</span></div>
       <div class="interest"><strong>Technology consulting</strong><span>Helping organisations turn data infrastructure and analytical tools into better operating decisions.</span></div>
     </div>

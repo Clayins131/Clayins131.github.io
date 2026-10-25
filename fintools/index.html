@@ -37,6 +37,11 @@
     .tn{display:flex;gap:6px;margin-bottom:32px;flex-wrap:wrap;font-family:-apple-system,sans-serif}
     .tn a{font-size:11.5px;font-weight:600;padding:5px 11px;border:1px solid var(--border);border-radius:18px;color:var(--text2);transition:.2s;white-space:nowrap}
     .tn a:hover{border-color:var(--link);color:var(--link)}
+    .research-feature{margin:18px 0 22px;padding:18px;border:1px solid var(--tipb);border-radius:8px;background:var(--tip)}
+    .research-feature .eyebrow{font:600 10.5px/1.5 -apple-system,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--link);margin-bottom:5px}
+    .research-feature h2{font-size:20px;font-weight:normal;margin-bottom:6px}
+    .research-feature p{font-size:13.5px;color:var(--text2);margin-bottom:10px}
+    .research-feature .research-cta{font:600 12px -apple-system,sans-serif}
     .s{margin-bottom:44px}.s h2{font-size:19px;font-weight:normal;padding-bottom:7px;border-bottom:1px solid var(--border);margin-bottom:6px}
     .ex{background:var(--tip);border:1px solid var(--tipb);border-radius:8px;padding:12px 14px;margin:10px 0 16px;font-size:13px;color:var(--text2);line-height:1.6;font-family:-apple-system,sans-serif}
     .ex summary{cursor:pointer;font-weight:600;color:var(--link);font-size:13px}.ex summary:hover{color:var(--link-hover)}.ex p{margin-top:8px}
@@ -105,7 +110,15 @@
   <p class="pd">Small tools for testing assumptions, understanding market data and making financial calculations more transparent.</p>
   <div class="ex"><strong>How I use this page:</strong> not as a source of investment advice, but as a learning environment. Each tool is designed to show its main inputs clearly so the result can be questioned, adjusted and reproduced.</div>
 
+  <section class="research-feature" aria-labelledby="rates-lab-title">
+    <div class="eyebrow">Featured · Macro &amp; fixed income</div>
+    <h2 id="rates-lab-title"><a href="/fintools/macro-rates.html">Global Macro &amp; Rates Lab</a></h2>
+    <p>Turn a view on growth, inflation and policy into a curve scenario. Explore five markets, adjust illustrative zero rates, and inspect bond pricing, duration, convexity and key-rate DV01. Export the scenario and your research memo.</p>
+    <a class="research-cta" href="/fintools/macro-rates.html">Explore the lab →</a>
+  </section>
+
   <div class="tn">
+    <a href="/fintools/macro-rates.html" style="border-color:var(--link);color:var(--link)">Macro &amp; Rates Lab</a>
     <a href="#fx"><i class="fas fa-exchange-alt"></i> Currency</a>
     <a href="#crypto"><i class="fab fa-bitcoin"></i> Crypto</a>
     <a href="#stocks"><i class="fas fa-chart-bar"></i> Stocks</a>
