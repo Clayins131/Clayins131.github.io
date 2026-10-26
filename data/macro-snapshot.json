@@ -1,0 +1,398 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-26T04:26:14.105Z",
+  "sources": {
+    "growth": {
+      "status": "ok",
+      "fetchedAt": "2026-10-26T04:26:14.662Z",
+      "url": "https://api.worldbank.org/v2/country/USA;EMU;GBR;JPN;CHN/indicator/NY.GDP.MKTP.KD.ZG?format=json&mrnev=2&per_page=100",
+      "sourcePage": "https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG",
+      "label": "World Bank · real GDP growth",
+      "data": {
+        "us": {
+          "market": "us",
+          "value": 2.16138195623856,
+          "date": "2025",
+          "unit": "%",
+          "frequency": "Annual",
+          "definition": "Real GDP growth, annual percentage change.",
+          "publisherUpdated": "2026-10-08",
+          "previous": {
+            "value": 2.79318715363841,
+            "date": "2024"
+          }
+        },
+        "eu": {
+          "market": "eu",
+          "value": 1.4110724231835,
+          "date": "2025",
+          "unit": "%",
+          "frequency": "Annual",
+          "definition": "Real GDP growth, annual percentage change.",
+          "publisherUpdated": "2026-10-08",
+          "previous": {
+            "value": 0.938707263867116,
+            "date": "2024"
+          }
+        },
+        "uk": {
+          "market": "uk",
+          "value": 1.38844207858726,
+          "date": "2025",
+          "unit": "%",
+          "frequency": "Annual",
+          "definition": "Real GDP growth, annual percentage change.",
+          "publisherUpdated": "2026-10-08",
+          "previous": {
+            "value": 1.08027716858781,
+            "date": "2024"
+          }
+        },
+        "jp": {
+          "market": "jp",
+          "value": 1.19311288444599,
+          "date": "2025",
+          "unit": "%",
+          "frequency": "Annual",
+          "definition": "Real GDP growth, annual percentage change.",
+          "publisherUpdated": "2026-10-08",
+          "previous": {
+            "value": -0.240084236041696,
+            "date": "2024"
+          }
+        },
+        "cn": {
+          "market": "cn",
+          "value": 4.95994886240992,
+          "date": "2025",
+          "unit": "%",
+          "frequency": "Annual",
+          "definition": "Real GDP growth, annual percentage change.",
+          "publisherUpdated": "2026-10-08",
+          "previous": {
+            "value": 4.95830378788091,
+            "date": "2024"
+          }
+        }
+      }
+    },
+    "inflation": {
+      "status": "ok",
+      "fetchedAt": "2026-10-26T04:26:15.085Z",
+      "url": "https://stats.bis.org/api/v2/data/dataflow/BIS/WS_LONG_CPI/1.0/M.US+XM+GB+JP+CN.771?lastNObservations=2&format=csv",
+      "sourcePage": "https://data.bis.org/topics/CPI",
+      "label": "BIS · consumer prices",
+      "data": {
+        "us": {
+          "market": "us",
+          "value": 3.396548,
+          "date": "2026-08",
+          "unit": "%",
+          "frequency": "Monthly YoY",
+          "definition": "All-items CPI, year-on-year percentage change. Euro-area coverage follows the BIS CPI series.",
+          "observationStatus": "A",
+          "sourceInstitution": null,
+          "previous": {
+            "value": 3.364825,
+            "date": "2026-07"
+          }
+        },
+        "eu": {
+          "market": "eu",
+          "value": 3.248577,
+          "date": "2026-08",
+          "unit": "%",
+          "frequency": "Monthly YoY",
+          "definition": "All-items CPI, year-on-year percentage change. Euro-area coverage follows the BIS CPI series.",
+          "observationStatus": "A",
+          "sourceInstitution": null,
+          "previous": {
+            "value": 2.942874,
+            "date": "2026-07"
+          }
+        },
+        "uk": {
+          "market": "uk",
+          "value": 3.086863,
+          "date": "2026-08",
+          "unit": "%",
+          "frequency": "Monthly YoY",
+          "definition": "All-items CPI, year-on-year percentage change. Euro-area coverage follows the BIS CPI series.",
+          "observationStatus": "A",
+          "sourceInstitution": null,
+          "previous": {
+            "value": 2.805755,
+            "date": "2026-07"
+          }
+        },
+        "jp": {
+          "market": "jp",
+          "value": 1.898102,
+          "date": "2026-07",
+          "unit": "%",
+          "frequency": "Monthly YoY",
+          "definition": "All-items CPI, year-on-year percentage change. Euro-area coverage follows the BIS CPI series.",
+          "observationStatus": "A",
+          "sourceInstitution": null,
+          "previous": {
+            "value": 1.701702,
+            "date": "2026-06"
+          }
+        },
+        "cn": {
+          "market": "cn",
+          "value": 0.8,
+          "date": "2026-08",
+          "unit": "%",
+          "frequency": "Monthly YoY",
+          "definition": "All-items CPI, year-on-year percentage change. Euro-area coverage follows the BIS CPI series.",
+          "observationStatus": "A",
+          "sourceInstitution": null,
+          "previous": {
+            "value": 0.5,
+            "date": "2026-07"
+          }
+        }
+      }
+    },
+    "policy": {
+      "status": "ok",
+      "fetchedAt": "2026-10-26T04:26:15.087Z",
+      "url": "https://stats.bis.org/api/v2/data/dataflow/BIS/WS_CBPOL/1.0/D.US+XM+GB+JP+CN?lastNObservations=2&format=csv",
+      "sourcePage": "https://data.bis.org/topics/CBPOL",
+      "label": "BIS · policy-rate series",
+      "data": {
+        "us": {
+          "market": "us",
+          "value": 3.875,
+          "date": "2026-10-20",
+          "unit": "%",
+          "frequency": "Daily",
+          "definition": "From 19 Dec 1985 onwards: mid-point of the Federal Reserve target rate; from 1 Jul 1954 to 18 Dec 1985: US Fed Funds effective rate.",
+          "observationStatus": "A",
+          "sourceInstitution": "US Federal Reserve System",
+          "previous": {
+            "value": 3.875,
+            "date": "2026-10-19"
+          }
+        },
+        "eu": {
+          "market": "eu",
+          "value": 2.5,
+          "date": "2026-10-20",
+          "unit": "%",
+          "frequency": "Daily",
+          "definition": "From 18 Sep 2024 onwards: official central bank steering rate is the deposit facility rate, fixed rate; from 15 Oct 2008 to 17 Sep 2024: official central bank liquidity providing, main refinancing operations, fixed rate; from 28 Jun 2000 to 14 Oct 2008: official central bank liquidity providing, main refinancing operations, minimum bid rate; from 5 Jan 1999 to 27 Jun 2000: official central bank liquidity providing, main refinancing operations, fixed rate.",
+          "observationStatus": "A",
+          "sourceInstitution": "European Central Bank",
+          "previous": {
+            "value": 2.5,
+            "date": "2026-10-19"
+          }
+        },
+        "uk": {
+          "market": "uk",
+          "value": 3.75,
+          "date": "2026-10-19",
+          "unit": "%",
+          "frequency": "Daily",
+          "definition": "From 3 Aug 2006 onwards: official bank rate; from 6 May 1997 to 2 Aug 2006: repo rate; from 20 Aug 1981 to 5 May 1997: minimum Bank of England Band 1 dealing rate; from 16 Oct 1972 to 19 Aug 1981: minimum lending rate; from 1 Jan 1946 to 15 Oct 1972: bank rate.",
+          "observationStatus": "A",
+          "sourceInstitution": "Bank of England",
+          "previous": {
+            "value": 3.75,
+            "date": "2026-10-16"
+          }
+        },
+        "jp": {
+          "market": "jp",
+          "value": 1.25,
+          "date": "2026-10-20",
+          "unit": "%",
+          "frequency": "Daily",
+          "definition": "From 24 Sep 2026: the BOJ encourages the uncollateralized overnight call rate to remain at around 1.25 percent; From 17 Jun 2026 to 23 Sep 2026: the BOJ encourages the uncollateralized overnight call rate to remain at around 1.00 percent; From 22 Dec 2025 to 16 Jun 2026: the BOJ encourages the uncollateralized overnight call rate to remain at around 0.75 percent; From 27 Jan 2025 to 21 Dec 2025: the BOJ encourages the uncollateralized overnight call rate to remain at around 0.50 percent; From 1 Aug 2024 to 26 Jan 2025: the BOJ encouraged the UOCR to remain at around 0.25% ; From 21 Mar 2024 to 31 July: the BOJ encouraged the UOCR to remain at around 0 to 0.1 %; from 21 Sep 2016 to 20 Mar 2024: the BOJ set the guideline for market operations which specifies a short-term policy interest rate at minus 0.1% and a target level of 10-year JGB yields at around 0%. Short-term policy interest rate; from 4 Apr 2013 to 20 Sep 2016: no policy rate; from 5 Oct 2010 to 3 Apr 2013: the BOJ encouraged the UOCR to remain at around 0 to 0.1%; from 19 Dec 2008 to 4 Oct 2010: the BOJ encouraged the UOCR to remain at around 0. %; from 31 Oct 2008 to 18 Dec 2008: the BOJ encouraged the UOCR to remain at around 0.3%; before 30 Oct 2008, refer to https://data.bis.org/topics/CBPOL",
+          "observationStatus": "A",
+          "sourceInstitution": "Bank of Japan",
+          "previous": {
+            "value": 1.25,
+            "date": "2026-10-19"
+          }
+        },
+        "cn": {
+          "market": "cn",
+          "value": 3,
+          "date": "2026-10-19",
+          "unit": "%",
+          "frequency": "Daily",
+          "definition": "From 20 Aug 2019 onwards: Loan Prime Rate  (1 year): from 1 Jan 1996 till 19 Aug 2019: Official lending rate (1 year).",
+          "observationStatus": "A",
+          "sourceInstitution": "People's Bank of China",
+          "previous": {
+            "value": 3,
+            "date": "2026-10-18"
+          }
+        }
+      }
+    },
+    "ecb": {
+      "status": "ok",
+      "fetchedAt": "2026-10-26T04:26:15.422Z",
+      "url": "https://data-api.ecb.europa.eu/service/data/YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_6M+SR_1Y+SR_2Y+SR_5Y+SR_10Y+SR_20Y+SR_30Y?lastNObservations=10&format=csvdata",
+      "sourcePage": "https://www.ecb.europa.eu/stats/financial_markets_and_interest_rates/euro_area_yield_curves/html/index.en.html",
+      "label": "ECB · AAA sovereign zero curve",
+      "data": {
+        "market": "eu",
+        "date": "2026-10-22",
+        "points": [
+          {
+            "tenor": 0.5,
+            "yield": 2.747132978364878
+          },
+          {
+            "tenor": 1,
+            "yield": 2.9113071791582774
+          },
+          {
+            "tenor": 2,
+            "yield": 3.0531770839394348
+          },
+          {
+            "tenor": 5,
+            "yield": 3.1829017921243623
+          },
+          {
+            "tenor": 10,
+            "yield": 3.4423233370554995
+          },
+          {
+            "tenor": 20,
+            "yield": 3.719967211792731
+          },
+          {
+            "tenor": 30,
+            "yield": 3.6838844179533856
+          }
+        ],
+        "rawPoints": [
+          {
+            "tenor": 0.5,
+            "yield": 2.7100764112
+          },
+          {
+            "tenor": 1,
+            "yield": 2.8697335938
+          },
+          {
+            "tenor": 2,
+            "yield": 3.0074951382
+          },
+          {
+            "tenor": 5,
+            "yield": 3.1332973024
+          },
+          {
+            "tenor": 10,
+            "yield": 3.3844008945
+          },
+          {
+            "tenor": 20,
+            "yield": 3.652445856
+          },
+          {
+            "tenor": 30,
+            "yield": 3.6176511365
+          }
+        ],
+        "provider": "ECB",
+        "kind": "published-model",
+        "method": "AAA euro-area government bonds; Svensson spot curve. Published continuously compounded zero rates converted to annual effective: 100 × expm1(z/100).",
+        "source": "https://www.ecb.europa.eu/stats/financial_markets_and_interest_rates/euro_area_yield_curves/html/index.en.html",
+        "frequency": "TARGET business days"
+      }
+    },
+    "fed": {
+      "status": "ok",
+      "fetchedAt": "2026-10-26T04:26:17.122Z",
+      "url": "https://www.federalreserve.gov/data/yield-curve-tables/feds200628.csv",
+      "sourcePage": "https://www.federalreserve.gov/data/nominal-yield-curve.htm",
+      "label": "Federal Reserve · GSW research curve",
+      "data": {
+        "market": "us",
+        "date": "2026-10-16",
+        "points": [
+          {
+            "tenor": 0.5,
+            "yield": 4.4006698573637095
+          },
+          {
+            "tenor": 1,
+            "yield": 4.5919078668009
+          },
+          {
+            "tenor": 2,
+            "yield": 4.803606659860098
+          },
+          {
+            "tenor": 5,
+            "yield": 4.969222273893329
+          },
+          {
+            "tenor": 10,
+            "yield": 5.220503971907899
+          },
+          {
+            "tenor": 20,
+            "yield": 5.683226013036613
+          },
+          {
+            "tenor": 30,
+            "yield": 5.608217553721394
+          }
+        ],
+        "rawPoints": [
+          {
+            "tenor": 0.5,
+            "yield": 4.306590569813596
+          },
+          {
+            "tenor": 1,
+            "yield": 4.4896
+          },
+          {
+            "tenor": 2,
+            "yield": 4.6918
+          },
+          {
+            "tenor": 5,
+            "yield": 4.8497
+          },
+          {
+            "tenor": 10,
+            "yield": 5.0888
+          },
+          {
+            "tenor": 20,
+            "yield": 5.5276
+          },
+          {
+            "tenor": 30,
+            "yield": 5.4566
+          }
+        ],
+        "parameters": {
+          "BETA0": 2.22044703943204e-14,
+          "BETA1": 4.0363292672379,
+          "BETA2": 4.5322140912015,
+          "BETA3": 16.4481309358,
+          "TAU1": 1.94398519793884,
+          "TAU2": 15.749079409778
+        },
+        "provider": "Federal Reserve GSW",
+        "kind": "research-model",
+        "method": "Off-the-run Treasury coupon-bond fit, not an official statistical release. 1–30Y: published continuous zero rates. 6M: extrapolation of published Svensson parameters, not a Treasury bill quote. Converted to annual effective using 100 × expm1(z/100).",
+        "source": "https://www.federalreserve.gov/data/nominal-yield-curve.htm",
+        "frequency": "Daily observations · normally published weekly"
+      }
+    }
+  }
+}

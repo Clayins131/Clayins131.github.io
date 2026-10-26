@@ -38,7 +38,30 @@ I use data and models to study macroeconomic fundamentals, interest rates and ri
 
 Open `/fintools/macro-rates.html`, choose the US, euro area, UK, Japan or China, and edit the zero-curve inputs. Record a view on growth, inflation, policy and risks; then apply a parallel shift, steepening or belly shock. The tool reprices a fixed-rate bond and reports duration, convexity, DV01 and key-rate DV01. Export a scenario CSV and research memo to retain the assumptions behind the calculation.
 
-The starting curves are **illustrative**, not current or historical market data. Links to central banks and statistical agencies support independent macro research. Replace the inputs with an appropriate **zero-coupon curve**, not a par-yield curve, when using external rate data.
+### Free official data
+
+| Data | Coverage | Source and frequency |
+| --- | --- | --- |
+| Real GDP growth | All five markets | World Bank Indicators API; annual real growth |
+| CPI inflation | All five markets | BIS consumer prices API; monthly, year-on-year |
+| Policy-rate series | All five markets | BIS API; daily observations, country-specific definitions |
+| Model zero curve | Euro area | ECB AAA sovereign Svensson curve; TARGET business days |
+| Research zero curve | US | Federal Reserve GSW staff research; daily observations, normally published weekly |
+| Other zero curves | UK, Japan, China | Illustrative or user-entered; no automated zero-curve feed connected |
+
+China uses the **1-year LPR**, not an overnight target. Euro-area policy observations use the ECB deposit facility series. Annual GDP is structural context, not a current-quarter nowcast. Series have different release calendars and may be revised.
+
+ECB and Fed continuously compounded zero rates are converted to annual effective with 100 * expm1(z / 100). The US 6M node is extrapolated from published Svensson parameters, not a Treasury bill quote. The GSW curve is a staff research product, not an official statistical release. An ECB curve is accepted only when all seven nodes share a date.
+
+The browser requests World Bank, BIS and ECB data when opened or refreshed. Fed data is collected by scripts/refresh-market-data.mjs because its endpoint does not support cross-origin browser requests. The committed data/macro-snapshot.json supplies a dated fallback. Failed sources retain their previous verified values with a cached warning; missing data is never coerced to zero. API refreshes preserve edited curves and research notes.
+
+The GitHub Actions workflow .github/workflows/refresh-macro-data.yml refreshes snapshots at 06:45 UTC on weekdays, then runs tests and deploys Pages. Scheduled runs can be delayed by GitHub. It also supports manual dispatch and runs when the adapter or workflow changes. No paid API, key or browser-side secret is required.
+
+Source URLs, observation dates, retrieval timestamps and curve transformations are available in the page and JSON export; memo and scenario CSV exports retain provenance. Research views, shocks and hypothetical bond terms remain user inputs. Duration, convexity, DV01 and P&L are calculated locally.
+
+Primary documentation: [World Bank](https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api), [BIS API](https://stats.bis.org/api-doc/v2/), [ECB curve methodology](https://www.ecb.europa.eu/stats/financial_markets_and_interest_rates/euro_area_yield_curves/html/index.en.html), [Federal Reserve GSW](https://www.federalreserve.gov/data/nominal-yield-curve.htm).
+
+To collect a new snapshot manually (Node.js 22+, network required), run: node scripts/refresh-market-data.mjs
 
 ### Model conventions
 
@@ -51,5 +74,5 @@ The starting curves are **illustrative**, not current or historical market data.
 The site uses plain HTML, CSS and JavaScript and can be served by any static web server. Run the numerical engine checks with Node.js:
 
 ```sh
-node --test tests/rates-engine.test.cjs
+node --test tests/*.test.cjs
 ```
