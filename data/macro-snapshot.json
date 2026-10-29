@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T13:31:35.887Z",
+  "generatedAt": "2026-10-29T13:42:50.574Z",
   "sources": {
     "growth": {
       "status": "ok",
-      "fetchedAt": "2026-10-28T13:31:36.368Z",
+      "fetchedAt": "2026-10-29T13:42:50.741Z",
       "url": "https://api.worldbank.org/v2/country/USA;EMU;GBR;JPN;CHN/indicator/NY.GDP.MKTP.KD.ZG?format=json&mrnev=2&per_page=100",
       "sourcePage": "https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG",
       "label": "World Bank · real GDP growth",
@@ -78,86 +78,86 @@
     },
     "inflation": {
       "status": "ok",
-      "fetchedAt": "2026-10-28T13:31:36.612Z",
+      "fetchedAt": "2026-10-29T13:42:51.491Z",
       "url": "https://stats.bis.org/api/v2/data/dataflow/BIS/WS_LONG_CPI/1.0/M.US+XM+GB+JP+CN.771?lastNObservations=2&format=csv",
       "sourcePage": "https://data.bis.org/topics/CPI",
       "label": "BIS · consumer prices",
       "data": {
         "us": {
           "market": "us",
-          "value": 3.396548,
-          "date": "2026-08",
+          "value": 3.737685,
+          "date": "2026-09",
           "unit": "%",
           "frequency": "Monthly YoY",
           "definition": "All-items CPI, year-on-year percentage change. Euro-area coverage follows the BIS CPI series.",
           "observationStatus": "A",
           "sourceInstitution": null,
           "previous": {
-            "value": 3.364825,
-            "date": "2026-07"
+            "value": 3.396548,
+            "date": "2026-08"
           }
         },
         "eu": {
           "market": "eu",
-          "value": 3.248577,
-          "date": "2026-08",
+          "value": 3.770869,
+          "date": "2026-09",
           "unit": "%",
           "frequency": "Monthly YoY",
           "definition": "All-items CPI, year-on-year percentage change. Euro-area coverage follows the BIS CPI series.",
           "observationStatus": "A",
           "sourceInstitution": null,
           "previous": {
-            "value": 2.942874,
-            "date": "2026-07"
+            "value": 3.248577,
+            "date": "2026-08"
           }
         },
         "uk": {
           "market": "uk",
-          "value": 3.086863,
-          "date": "2026-08",
+          "value": 3.4458,
+          "date": "2026-09",
           "unit": "%",
           "frequency": "Monthly YoY",
           "definition": "All-items CPI, year-on-year percentage change. Euro-area coverage follows the BIS CPI series.",
           "observationStatus": "A",
           "sourceInstitution": null,
           "previous": {
-            "value": 2.805755,
-            "date": "2026-07"
+            "value": 3.086863,
+            "date": "2026-08"
           }
         },
         "jp": {
           "market": "jp",
-          "value": 1.898102,
-          "date": "2026-07",
+          "value": 2.097902,
+          "date": "2026-09",
           "unit": "%",
           "frequency": "Monthly YoY",
           "definition": "All-items CPI, year-on-year percentage change. Euro-area coverage follows the BIS CPI series.",
           "observationStatus": "A",
           "sourceInstitution": null,
           "previous": {
-            "value": 1.701702,
-            "date": "2026-06"
+            "value": 1.894317,
+            "date": "2026-08"
           }
         },
         "cn": {
           "market": "cn",
-          "value": 0.8,
-          "date": "2026-08",
+          "value": 0.9,
+          "date": "2026-09",
           "unit": "%",
           "frequency": "Monthly YoY",
           "definition": "All-items CPI, year-on-year percentage change. Euro-area coverage follows the BIS CPI series.",
           "observationStatus": "A",
           "sourceInstitution": null,
           "previous": {
-            "value": 0.5,
-            "date": "2026-07"
+            "value": 0.8,
+            "date": "2026-08"
           }
         }
       }
     },
     "policy": {
       "status": "ok",
-      "fetchedAt": "2026-10-28T13:31:37.357Z",
+      "fetchedAt": "2026-10-29T13:42:51.483Z",
       "url": "https://stats.bis.org/api/v2/data/dataflow/BIS/WS_CBPOL/1.0/D.US+XM+GB+JP+CN?lastNObservations=2&format=csv",
       "sourcePage": "https://data.bis.org/topics/CBPOL",
       "label": "BIS · policy-rate series",
@@ -165,7 +165,7 @@
         "us": {
           "market": "us",
           "value": 3.875,
-          "date": "2026-10-20",
+          "date": "2026-10-27",
           "unit": "%",
           "frequency": "Daily",
           "definition": "From 19 Dec 1985 onwards: mid-point of the Federal Reserve target rate; from 1 Jul 1954 to 18 Dec 1985: US Fed Funds effective rate.",
@@ -173,13 +173,13 @@
           "sourceInstitution": "US Federal Reserve System",
           "previous": {
             "value": 3.875,
-            "date": "2026-10-19"
+            "date": "2026-10-26"
           }
         },
         "eu": {
           "market": "eu",
           "value": 2.5,
-          "date": "2026-10-20",
+          "date": "2026-10-27",
           "unit": "%",
           "frequency": "Daily",
           "definition": "From 18 Sep 2024 onwards: official central bank steering rate is the deposit facility rate, fixed rate; from 15 Oct 2008 to 17 Sep 2024: official central bank liquidity providing, main refinancing operations, fixed rate; from 28 Jun 2000 to 14 Oct 2008: official central bank liquidity providing, main refinancing operations, minimum bid rate; from 5 Jan 1999 to 27 Jun 2000: official central bank liquidity providing, main refinancing operations, fixed rate.",
@@ -187,13 +187,13 @@
           "sourceInstitution": "European Central Bank",
           "previous": {
             "value": 2.5,
-            "date": "2026-10-19"
+            "date": "2026-10-26"
           }
         },
         "uk": {
           "market": "uk",
           "value": 3.75,
-          "date": "2026-10-19",
+          "date": "2026-10-26",
           "unit": "%",
           "frequency": "Daily",
           "definition": "From 3 Aug 2006 onwards: official bank rate; from 6 May 1997 to 2 Aug 2006: repo rate; from 20 Aug 1981 to 5 May 1997: minimum Bank of England Band 1 dealing rate; from 16 Oct 1972 to 19 Aug 1981: minimum lending rate; from 1 Jan 1946 to 15 Oct 1972: bank rate.",
@@ -201,13 +201,13 @@
           "sourceInstitution": "Bank of England",
           "previous": {
             "value": 3.75,
-            "date": "2026-10-16"
+            "date": "2026-10-23"
           }
         },
         "jp": {
           "market": "jp",
           "value": 1.25,
-          "date": "2026-10-20",
+          "date": "2026-10-27",
           "unit": "%",
           "frequency": "Daily",
           "definition": "From 24 Sep 2026: the BOJ encourages the uncollateralized overnight call rate to remain at around 1.25 percent; From 17 Jun 2026 to 23 Sep 2026: the BOJ encourages the uncollateralized overnight call rate to remain at around 1.00 percent; From 22 Dec 2025 to 16 Jun 2026: the BOJ encourages the uncollateralized overnight call rate to remain at around 0.75 percent; From 27 Jan 2025 to 21 Dec 2025: the BOJ encourages the uncollateralized overnight call rate to remain at around 0.50 percent; From 1 Aug 2024 to 26 Jan 2025: the BOJ encouraged the UOCR to remain at around 0.25% ; From 21 Mar 2024 to 31 July: the BOJ encouraged the UOCR to remain at around 0 to 0.1 %; from 21 Sep 2016 to 20 Mar 2024: the BOJ set the guideline for market operations which specifies a short-term policy interest rate at minus 0.1% and a target level of 10-year JGB yields at around 0%. Short-term policy interest rate; from 4 Apr 2013 to 20 Sep 2016: no policy rate; from 5 Oct 2010 to 3 Apr 2013: the BOJ encouraged the UOCR to remain at around 0 to 0.1%; from 19 Dec 2008 to 4 Oct 2010: the BOJ encouraged the UOCR to remain at around 0. %; from 31 Oct 2008 to 18 Dec 2008: the BOJ encouraged the UOCR to remain at around 0.3%; before 30 Oct 2008, refer to https://data.bis.org/topics/CBPOL",
@@ -215,7 +215,7 @@
           "sourceInstitution": "Bank of Japan",
           "previous": {
             "value": 1.25,
-            "date": "2026-10-19"
+            "date": "2026-10-26"
           }
         },
         "cn": {
@@ -236,71 +236,71 @@
     },
     "ecb": {
       "status": "ok",
-      "fetchedAt": "2026-10-28T13:31:39.461Z",
+      "fetchedAt": "2026-10-29T13:42:55.182Z",
       "url": "https://data-api.ecb.europa.eu/service/data/YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_6M+SR_1Y+SR_2Y+SR_5Y+SR_10Y+SR_20Y+SR_30Y?lastNObservations=10&format=csvdata",
       "sourcePage": "https://www.ecb.europa.eu/stats/financial_markets_and_interest_rates/euro_area_yield_curves/html/index.en.html",
       "label": "ECB · AAA sovereign zero curve",
       "data": {
         "market": "eu",
-        "date": "2026-10-27",
+        "date": "2026-10-28",
         "points": [
           {
             "tenor": 0.5,
-            "yield": 2.7301572060845594
+            "yield": 2.7466149737321692
           },
           {
             "tenor": 1,
-            "yield": 2.9205966556821568
+            "yield": 2.9508338142966086
           },
           {
             "tenor": 2,
-            "yield": 3.060944588186783
+            "yield": 3.107094781114383
           },
           {
             "tenor": 5,
-            "yield": 3.1621981650497837
+            "yield": 3.2035343309635422
           },
           {
             "tenor": 10,
-            "yield": 3.4285552072170344
+            "yield": 3.4509590300707957
           },
           {
             "tenor": 20,
-            "yield": 3.709150274310357
+            "yield": 3.72197328664989
           },
           {
             "tenor": 30,
-            "yield": 3.662091750280752
+            "yield": 3.671913148712428
           }
         ],
         "rawPoints": [
           {
             "tenor": 0.5,
-            "yield": 2.6935531523
+            "yield": 2.7095722551
           },
           {
             "tenor": 1,
-            "yield": 2.8787598685
+            "yield": 2.9081346669
           },
           {
             "tenor": 2,
-            "yield": 3.015032229
+            "yield": 3.0598017227
           },
           {
             "tenor": 5,
-            "yield": 3.1132303106
+            "yield": 3.1532913866
           },
           {
             "tenor": 10,
-            "yield": 3.3710900506
+            "yield": 3.392748863
           },
           {
             "tenor": 20,
-            "yield": 3.6420163294
+            "yield": 3.6543799633
           },
           {
             "tenor": 30,
-            "yield": 3.5966305523
+            "yield": 3.6061045394
           }
         ],
         "provider": "ECB",
@@ -312,7 +312,7 @@
     },
     "fed": {
       "status": "ok",
-      "fetchedAt": "2026-10-28T13:31:37.351Z",
+      "fetchedAt": "2026-10-29T13:42:51.373Z",
       "url": "https://www.federalreserve.gov/data/yield-curve-tables/feds200628.csv",
       "sourcePage": "https://www.federalreserve.gov/data/nominal-yield-curve.htm",
       "label": "Federal Reserve · GSW research curve",
