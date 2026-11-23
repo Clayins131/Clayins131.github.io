@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-20T15:45:21.170Z",
+  "generatedAt": "2026-11-23T18:44:11.282Z",
   "sources": {
     "growth": {
       "status": "ok",
-      "fetchedAt": "2026-11-20T15:45:22.312Z",
+      "fetchedAt": "2026-11-23T18:44:15.728Z",
       "url": "https://api.worldbank.org/v2/country/USA;EMU;GBR;JPN;CHN/indicator/NY.GDP.MKTP.KD.ZG?format=json&mrnev=2&per_page=100",
       "sourcePage": "https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG",
       "label": "World Bank · real GDP growth",
@@ -78,7 +78,7 @@
     },
     "inflation": {
       "status": "ok",
-      "fetchedAt": "2026-11-20T15:45:22.349Z",
+      "fetchedAt": "2026-11-23T18:44:12.627Z",
       "url": "https://stats.bis.org/api/v2/data/dataflow/BIS/WS_LONG_CPI/1.0/M.US+XM+GB+JP+CN.771?lastNObservations=2&format=csv",
       "sourcePage": "https://data.bis.org/topics/CPI",
       "label": "BIS · consumer prices",
@@ -157,7 +157,7 @@
     },
     "policy": {
       "status": "ok",
-      "fetchedAt": "2026-11-20T15:45:22.364Z",
+      "fetchedAt": "2026-11-23T18:44:12.625Z",
       "url": "https://stats.bis.org/api/v2/data/dataflow/BIS/WS_CBPOL/1.0/D.US+XM+GB+JP+CN?lastNObservations=2&format=csv",
       "sourcePage": "https://data.bis.org/topics/CBPOL",
       "label": "BIS · policy-rate series",
@@ -236,71 +236,71 @@
     },
     "ecb": {
       "status": "ok",
-      "fetchedAt": "2026-11-20T15:45:33.635Z",
+      "fetchedAt": "2026-11-23T18:44:13.990Z",
       "url": "https://data-api.ecb.europa.eu/service/data/YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_6M+SR_1Y+SR_2Y+SR_5Y+SR_10Y+SR_20Y+SR_30Y?lastNObservations=10&format=csvdata",
       "sourcePage": "https://www.ecb.europa.eu/stats/financial_markets_and_interest_rates/euro_area_yield_curves/html/index.en.html",
       "label": "ECB · AAA sovereign zero curve",
       "data": {
         "market": "eu",
-        "date": "2026-11-19",
+        "date": "2026-11-20",
         "points": [
           {
             "tenor": 0.5,
-            "yield": 2.860589666010905
+            "yield": 2.8380915834744047
           },
           {
             "tenor": 1,
-            "yield": 3.04981108908044
+            "yield": 2.981096566752363
           },
           {
             "tenor": 2,
-            "yield": 3.1744065255337746
+            "yield": 3.0766442189371426
           },
           {
             "tenor": 5,
-            "yield": 3.239748760776964
+            "yield": 3.1496274066609034
           },
           {
             "tenor": 10,
-            "yield": 3.501418322968577
+            "yield": 3.41788979558672
           },
           {
             "tenor": 20,
-            "yield": 3.799873622674195
+            "yield": 3.7345736666224894
           },
           {
             "tenor": 30,
-            "yield": 3.7614092179062175
+            "yield": 3.722386749293708
           }
         ],
         "rawPoints": [
           {
             "tenor": 0.5,
-            "yield": 2.8204387047
+            "yield": 2.7985639095
           },
           {
             "tenor": 1,
-            "yield": 3.004228815
+            "yield": 2.937525692
           },
           {
             "tenor": 2,
-            "yield": 3.1250637519
+            "yield": 3.0302644153
           },
           {
             "tenor": 5,
-            "yield": 3.1883755314
+            "yield": 3.1010441372
           },
           {
             "tenor": 10,
-            "yield": 3.4415130227
+            "yield": 3.3607776552
           },
           {
             "tenor": 20,
-            "yield": 3.7294567235
+            "yield": 3.6665274517
           },
           {
             "tenor": 30,
-            "yield": 3.6923935442
+            "yield": 3.6547785884
           }
         ],
         "provider": "ECB",
@@ -312,7 +312,7 @@
     },
     "fed": {
       "status": "ok",
-      "fetchedAt": "2026-11-20T15:45:22.175Z",
+      "fetchedAt": "2026-11-23T18:44:12.477Z",
       "url": "https://www.federalreserve.gov/data/yield-curve-tables/feds200628.csv",
       "sourcePage": "https://www.federalreserve.gov/data/nominal-yield-curve.htm",
       "label": "Federal Reserve · GSW research curve",
