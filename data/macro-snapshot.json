@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-24T18:18:35.692Z",
+  "generatedAt": "2026-11-25T17:37:26.657Z",
   "sources": {
     "growth": {
       "status": "ok",
-      "fetchedAt": "2026-11-24T18:18:36.688Z",
+      "fetchedAt": "2026-11-25T17:37:26.881Z",
       "url": "https://api.worldbank.org/v2/country/USA;EMU;GBR;JPN;CHN/indicator/NY.GDP.MKTP.KD.ZG?format=json&mrnev=2&per_page=100",
       "sourcePage": "https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG",
       "label": "World Bank · real GDP growth",
@@ -78,7 +78,7 @@
     },
     "inflation": {
       "status": "ok",
-      "fetchedAt": "2026-11-24T18:18:36.686Z",
+      "fetchedAt": "2026-11-25T17:37:27.826Z",
       "url": "https://stats.bis.org/api/v2/data/dataflow/BIS/WS_LONG_CPI/1.0/M.US+XM+GB+JP+CN.771?lastNObservations=2&format=csv",
       "sourcePage": "https://data.bis.org/topics/CPI",
       "label": "BIS · consumer prices",
@@ -157,7 +157,7 @@
     },
     "policy": {
       "status": "ok",
-      "fetchedAt": "2026-11-24T18:18:36.687Z",
+      "fetchedAt": "2026-11-25T17:37:27.836Z",
       "url": "https://stats.bis.org/api/v2/data/dataflow/BIS/WS_CBPOL/1.0/D.US+XM+GB+JP+CN?lastNObservations=2&format=csv",
       "sourcePage": "https://data.bis.org/topics/CBPOL",
       "label": "BIS · policy-rate series",
@@ -236,71 +236,71 @@
     },
     "ecb": {
       "status": "ok",
-      "fetchedAt": "2026-11-24T18:18:38.344Z",
+      "fetchedAt": "2026-11-25T17:37:28.630Z",
       "url": "https://data-api.ecb.europa.eu/service/data/YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_6M+SR_1Y+SR_2Y+SR_5Y+SR_10Y+SR_20Y+SR_30Y?lastNObservations=10&format=csvdata",
       "sourcePage": "https://www.ecb.europa.eu/stats/financial_markets_and_interest_rates/euro_area_yield_curves/html/index.en.html",
       "label": "ECB · AAA sovereign zero curve",
       "data": {
         "market": "eu",
-        "date": "2026-11-23",
+        "date": "2026-11-24",
         "points": [
           {
             "tenor": 0.5,
-            "yield": 2.8431862134939623
+            "yield": 2.851267291888488
           },
           {
             "tenor": 1,
-            "yield": 2.9859136331784577
+            "yield": 2.989049230820936
           },
           {
             "tenor": 2,
-            "yield": 3.0734223363449993
+            "yield": 3.062743958942321
           },
           {
             "tenor": 5,
-            "yield": 3.124104702464889
+            "yield": 3.1058065904625667
           },
           {
             "tenor": 10,
-            "yield": 3.376664527489727
+            "yield": 3.3675409577037554
           },
           {
             "tenor": 20,
-            "yield": 3.687772139650895
+            "yield": 3.6791120085659537
           },
           {
             "tenor": 30,
-            "yield": 3.68160982937229
+            "yield": 3.6682044390276425
           }
         ],
         "rawPoints": [
           {
             "tenor": 0.5,
-            "yield": 2.8035178169
+            "yield": 2.8113751784
           },
           {
             "tenor": 1,
-            "yield": 2.9422032046
+            "yield": 2.9452478442
           },
           {
             "tenor": 2,
-            "yield": 3.027138651
+            "yield": 3.0167781426
           },
           {
             "tenor": 5,
-            "yield": 3.0762976956
+            "yield": 3.0585523434
           },
           {
             "tenor": 10,
-            "yield": 3.3209069064
+            "yield": 3.3120809567
           },
           {
             "tenor": 20,
-            "yield": 3.6214006573
+            "yield": 3.6130481847
           },
           {
             "tenor": 30,
-            "yield": 3.6154573399
+            "yield": 3.602527123
           }
         ],
         "provider": "ECB",
@@ -312,80 +312,80 @@
     },
     "fed": {
       "status": "ok",
-      "fetchedAt": "2026-11-24T18:18:36.579Z",
+      "fetchedAt": "2026-11-25T17:37:27.663Z",
       "url": "https://www.federalreserve.gov/data/yield-curve-tables/feds200628.csv",
       "sourcePage": "https://www.federalreserve.gov/data/nominal-yield-curve.htm",
       "label": "Federal Reserve · GSW research curve",
       "data": {
         "market": "us",
-        "date": "2026-11-13",
+        "date": "2026-11-20",
         "points": [
           {
             "tenor": 0.5,
-            "yield": 4.531012659722751
+            "yield": 4.587544795364165
           },
           {
             "tenor": 1,
-            "yield": 4.738229609065549
+            "yield": 4.60309979970038
           },
           {
             "tenor": 2,
-            "yield": 4.947495893640568
+            "yield": 4.641182258614512
           },
           {
             "tenor": 5,
-            "yield": 5.051025156130544
+            "yield": 4.792812444285778
           },
           {
             "tenor": 10,
-            "yield": 5.269127075815063
+            "yield": 5.089796137219243
           },
           {
             "tenor": 20,
-            "yield": 5.737666891756342
+            "yield": 5.531890408018093
           },
           {
             "tenor": 30,
-            "yield": 5.661246188006949
+            "yield": 5.615716003359521
           }
         ],
         "rawPoints": [
           {
             "tenor": 0.5,
-            "yield": 4.431361325209113
+            "yield": 4.485428393867715
           },
           {
             "tenor": 1,
-            "yield": 4.6294
+            "yield": 4.5003
           },
           {
             "tenor": 2,
-            "yield": 4.829
+            "yield": 4.5367
           },
           {
             "tenor": 5,
-            "yield": 4.9276
+            "yield": 4.6815
           },
           {
             "tenor": 10,
-            "yield": 5.135
+            "yield": 4.9645
           },
           {
             "tenor": 20,
-            "yield": 5.5791
+            "yield": 5.3843
           },
           {
             "tenor": 30,
-            "yield": 5.5068
+            "yield": 5.4637
           }
         ],
         "parameters": {
-          "BETA0": 2.44987582349815e-14,
-          "BETA1": 4.12572501585,
-          "BETA2": 4.92617241312704,
-          "BETA3": 16.6249118257037,
-          "TAU1": 1.83445465299628,
-          "TAU2": 15.7018761009905
+          "BETA0": 0.00145663093339609,
+          "BETA1": 4.47155527863514,
+          "BETA2": -474.92747875208,
+          "BETA3": 486.313258831942,
+          "TAU1": 14.1554380168016,
+          "TAU2": 14.3408414268695
         },
         "provider": "Federal Reserve GSW",
         "kind": "research-model",
